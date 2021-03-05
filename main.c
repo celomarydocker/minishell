@@ -23,8 +23,8 @@ void    all_commands(char *s, char **envs)
     clear_map(&global_env, free_vars);
 }
 
-int         main(void)
-{
+// int         main(void)
+// {
     
-    return (0);
-}
+//     return (0);
+// }

@@ -4,18 +4,18 @@
 
 
 
-int         main(void)
-{
-    char      *str;
-    char      **spliter;
+// int         main(void)
+// {
+//     char      *str;
+//     char      **spliter;
 
-    str = "hello \\| \\| |world";
-    spliter = ft_csplit(str, '|', "\"'\\");
-    int     iter = 0;
-    while (spliter[iter])
-    {
-        printf("%s\n", spliter[iter]);
-        iter++;
-    }
-    return (0);
-}
+//     str = "hello \\| \\| |world";
+//     spliter = ft_csplit(str, '|', "\"'\\");
+//     int     iter = 0;
+//     while (spliter[iter])
+//     {
+//         printf("%s\n", spliter[iter]);
+//         iter++;
+//     }
+//     return (0);
+// }
