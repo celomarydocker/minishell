@@ -4,10 +4,10 @@
 
 
 
-int         main(void)
-{
-    char      *str;
-    char      **spliter;
+// int         main(void)
+// {
+//     char      *str;
+//     char      **spliter;
 
     str = "hello \\| \\| |world";
     spliter = ft_csplit(str, '|', "\"'\\");
