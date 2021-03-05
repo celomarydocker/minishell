@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:57:35 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/05 10:25:25 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:52:30 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,27 @@ void start_execut()
     t_file *file;
     t_exec *exec;
 
-    file = malloc(sizeof(*file));
-    exec = malloc(sizeof(*exec));
+    file = malloc(sizeof(t_file));
+    exec = malloc(sizeof(t_exec));
     file->redirect = ft_strdup(">");
     file->filename = ft_strdup("file1");
     exec->cmd = ft_strdup("echo");
     exec->arguments = ft_split("hicham fadyl", ' ');
-    exec->files->data = ft_strdup("file1");
+    exec->files = malloc(sizeof(t_clist));
+    exec->files->data = file;
     exec->files->next = NULL;
-
+    file  = malloc(sizeof(t_file));
+    file->filename = ft_strdup("f2");
+    file->redirect = ft_strdup(">>");
+    exec->files->next = malloc(sizeof(t_clist));
+    exec->files->next->data = file;
+    exec->files->next->next = NULL;
+    t_clist *files = exec->files;
+    while (files)
+    {
+        printf("%s %s\n", ((t_file *)files->data)->redirect, ((t_file *)files->data)->filename);
+        files = files->next;
+    }
     // if (check_if_builtins((char *)check->keys->data) == 1)
     // {
     //     if (ft_strncmp((char *)check->keys->data, "echo", 5))
