@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/05 15:36:37 by mel-omar         ###   ########.fr       */
+/*   Updated: 2020/03/12 13:53:52 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void       add_command(char *cmd, t_clist **lst, t_cmap *global_vars)
     command->data = NULL;
     while (cmd[i] == ' ')
         i++;
-    while (!is_found && cmd[i])
+    while (!is_found)
     {
         if (!in_set(cmd[i], "><"))
         {

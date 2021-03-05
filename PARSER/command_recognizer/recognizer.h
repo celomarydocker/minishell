@@ -13,12 +13,7 @@
 #ifndef RECOGNIZER_H
 # define RECOGNIZER_H
 
-# include "../dt/linkedlist/linkedlist.h"
-# include "../dt/hash_table/hash_map.h"
-# include "../split/ft_split.h"
-# include "../print/print.h"
-# include "../gnl/get_next_line.h" 
-# include <stdlib.h>
+# include "../../minishell.h"
 
 typedef struct	s_rec
 {
@@ -30,7 +25,7 @@ typedef struct	s_rec
 typedef struct  s_ccommand
 {
 	char		*cmd;
-    t_rec		*data;
+    	t_rec		*data;
 }               t_ccommand;
 
 t_rec			*init_rec();
@@ -63,7 +58,7 @@ char			*get_command(char *str, int *iter, t_cmap *map);
 t_rec       	*handle_command(char *str, t_cmap *map, int *iter, int is_found);
 void			add_command(char *cmd, t_clist **lst, t_cmap *global_vars);
 t_clist			*get_command_line(char *cmd, t_cmap *global_vars);
-t_clist			*all_commands(char *s, char **envs);
+//t_clist			*all_commands(char *s, char **envs);
 int				variables(char *dest, char *str, int *iter, t_cmap *map);
 char			*single_quotes(char *str, int *iter);
 void			free_ccommand(void *cmd);

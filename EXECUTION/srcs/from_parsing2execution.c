@@ -12,12 +12,12 @@
 
 #include "../include/execution.h"
 
-void        **convert_list2array2d(const t_clist *lst, size_t  size)
+char        **convert_list2array2d(const t_clist *lst, size_t  size)
 {
-    void    **array_2d;
+    char    **array_2d;
     size_t  iterator;
 
-    array_2d = malloc(size * length(lst));
+    array_2d = malloc(size * (length(lst) + 1));
     iterator = 0;
     while (lst)
     {
@@ -25,7 +25,7 @@ void        **convert_list2array2d(const t_clist *lst, size_t  size)
         lst = lst->next;
         iterator++;
     }
-    array_2d[iterator * size] = NULL;
+    *(array_2d + iterator * size) = NULL;
     return (array_2d);
 }
 

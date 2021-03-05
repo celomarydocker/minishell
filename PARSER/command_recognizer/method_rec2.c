@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "recognizer.h"
-
+/*
 int         main(int argc, char **argv, char **var_env)
 {
     char        **sp;
@@ -42,4 +42,4 @@ int         main(int argc, char **argv, char **var_env)
         free(s);
     }
     return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 21:15:15 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/05 17:21:58 by mel-omar         ###   ########.fr       */
+/*   Updated: 2020/03/11 03:35:07 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_rec		*init_rec(void)
 	rec->files = NULL;
 	rec->oper = NULL;
 	rec->text = NULL;
-	append(&(rec->text), ft_cstrdup("CMD"));
 	return (rec);
 }
 

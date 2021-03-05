@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+
 void     all_commands(char *s, char **envs)
 {
     t_clist     *cmd_pipes;
@@ -21,5 +22,14 @@ void     all_commands(char *s, char **envs)
 
 int     main(void)
 {
+	char 	*line;
+
+	line = NULL;
+	while (1)
+	{
+		print(">>> ");
+		get_next_line(1, &line);
+		all_commands(line, environ);
+	}
     return (0);
 }

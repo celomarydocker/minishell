@@ -39,7 +39,7 @@ void    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     close(fd[1]);
     if (!is_first)
         close(old_stdin);
-    mypipe(pipe_exec->next, 0, fd[0]);
+    ft_pipe(pipe_exec->next, 0, fd[0]);
     close(fd[0]);
     wait(NULL);
 }
