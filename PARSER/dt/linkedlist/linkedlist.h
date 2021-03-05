@@ -15,10 +15,10 @@
 
 # include <stdlib.h>
 
-typedef struct		s_list
+typedef struct		s_clist
 {
 	void			*data;
-	struct s_list	*next;
+	struct s_clist	*next;
 }					t_clist;
 
 void				*free_node(t_clist **list);

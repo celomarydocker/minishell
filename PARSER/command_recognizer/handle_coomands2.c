@@ -6,19 +6,18 @@
 /*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:12:10 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/04 14:41:07 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/05 15:44:34 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
 
-t_ccommand  *get_command_key_val(char *cmd, t_cmap *envs)
+t_clist  *get_commands(char *cmd, t_cmap *envs)
 {
-    t_ccommand  *key_val;
+    t_clist  *cmds;
 
-    key_val = malloc(sizeof(t_ccommand));
-    key_val->keys = NULL;
-    key_val->full_command = get_command_line(cmd, envs, &key_val->keys);
-    return (key_val);
+    cmds = NULL;
+    append(&cmds, get_command_line(cmd, envs));
+    return (cmds);
 }
 

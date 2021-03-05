@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "ft_split.h"
-
+/*
 
 
 
@@ -19,3 +19,4 @@ int         main(void)
     }
     return (0);
 }
+*/

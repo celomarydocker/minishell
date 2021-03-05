@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:56:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/09 18:00:27 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/05 16:13:32 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ int		get_next_line_helper(int fd, char **line, char **buffer)
 
 int		get_next_line(int fd, char **line)
 {
-	static char		*buffer;
+	static char		buffer[BUFFER_SIZE];
 
 	*line = NULL;
-	if (!buffer)
-		buffer = ft_realloc(NULL, 0, BUFFER_SIZE);
 	return (get_next_line_helper(fd, line, &buffer));
 }

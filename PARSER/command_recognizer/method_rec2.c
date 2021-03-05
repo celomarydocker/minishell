@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   method_rec2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:29:02 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/04 17:11:35 by hfadyl           ###   ########.fr       */
+/*   Updated: 2020/03/11 09:24:51 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,23 @@ int         main(int argc, char **argv, char **var_env)
     t_ccommand  *hi;
 
     iter = 0;
+    print("---method_rec2.c---\n");
     while (1)
     {
         print(">>> ");
         get_next_line(1, &s);
         //s = "< file echo";
         all = all_commands(s, var_env);
-        while (all)
+        for (t_clist *i = all; i != NULL; i = i->next)
         {
-            print(">> %d\n", iter);
-            hi = (t_ccommand *)all->data;
-            while (hi->keys)
+            for (t_clist *j = (t_clist *)all->data; j != NULL; j = j->next)
             {
-                print("%s\n", (char *)hi->keys->data);
-                print_rec(get_cmd(hi->full_command, (char *)hi->keys->data));
-                hi->keys = hi->keys->next;
+                hi = (t_ccommand *)j->data;
+                print("%s\n", (char *)hi->cmd);
+                print_rec((t_rec *)hi->data);
             }
-            all = all->next;
-            iter++;
-            print("\n\n");
         }
-        free_all_commands(&lst);
+        free_all_commands(&all);
         free(s);
     }
     return (0);
