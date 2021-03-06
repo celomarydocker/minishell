@@ -7,6 +7,8 @@
 /* END */
 
 typedef enum s_enum {INPUT, OUTPUT, APPEND} t_enum;
+typedef enum s_permessions{NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
+
 typedef struct  s_file
 {
                 t_enum  redirect;
@@ -20,9 +22,8 @@ typedef struct s_exec
     t_clist     *files;
 }               t_exec;
 
-
-void		ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
-char		**convert_list2array2d(const t_clist *lst, size_t size);
-t_clist		*from_parsing2exec(const t_clist *lst);
-
+int                 check_if_builtins(const char *str);
+void		        ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
+t_clist		        *from_parsing2exec(const t_clist *lst);
+t_permessions       check_existance(const char *command, const char *path, char **line);
 #endif

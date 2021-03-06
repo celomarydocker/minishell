@@ -3,6 +3,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include "PARSER/gnl/get_next_line.h"
 # include "PARSER/print/print.h"
 # include "PARSER/split/ft_split.h"

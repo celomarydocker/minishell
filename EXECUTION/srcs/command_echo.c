@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:05:59 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/05 15:21:44 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/06 17:49:05 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int check_if_builtins(char *str)
+int check_if_builtins(const char *str)
 {
     if (ft_strncmp(str, "echo", 5) == 0 || ft_strncmp(str, "cd", 3) == 0 ||
         ft_strncmp(str, "pwd", 4) == 0 || ft_strncmp(str, "export", 7) == 0 ||
@@ -46,7 +46,7 @@ void ft_exec_echo(char **str)
         }
     }
 }
-
+/*
 void start_execut()
 {
     t_file *file;
@@ -54,7 +54,7 @@ void start_execut()
 
     file = malloc(sizeof(t_file));
     exec = malloc(sizeof(t_exec));
-    file->redirect = ft_strdup(">");
+    //file->redirect = ft_strdup(">");
     file->filename = ft_strdup("file1");
     exec->cmd = ft_strdup("echo");
     exec->arguments = ft_split("hicham fadyl", ' ');
@@ -92,9 +92,10 @@ void start_execut()
         printf("ach hna %s\n", exec->cmd);
     }
 }
-
 int main()
 {
     start_execut();
     return 0;
 }
+*/
+
