@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:05:59 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/06 12:15:13 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/06 17:03:10 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void start_execut()
     file->redirect = OUTPUT;
     file->filename = ft_strdup("file1");
     exec->cmd = ft_strdup("echo");
-    exec->arguments = ft_split("-nnnnn hicham fadyl", ' ');
+    exec->arguments = ft_split("-nn hicham fadyl", ' ');
     exec->files = malloc(sizeof(t_clist));
     exec->files->data = file;
     exec->files->next = NULL;
