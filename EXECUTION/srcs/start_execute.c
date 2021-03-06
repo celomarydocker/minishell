@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_echo.c                                     :+:      :+:    :+:   */
+/*   start_execute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:05:59 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/06 12:11:29 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/06 12:15:13 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,6 @@ int check_if_builtins(char *str)
         return (1);
     else 
         return (0);
-}
-
-void ft_exec_pwd(char **str)
-{
-    int i = 0;
-    while (str[i])
-        ft_putstr_fd(str[i++], 1);
-}
-
-
-void ft_exec_echo(char **str)
-{
-    int i = -1;
-    if (str[0] == NULL)
-        write(1, "\n", 1);
-    if (ft_strncmp(str[0], "-n", 3) == 0)
-        i++;
-    while (str[++i])
-        ft_putstr_fd(str[i], 1);
-    if (ft_strncmp(str[0], "-n", 3) != 0)
-        write(1, "\n", 1);
 }
 
 void start_execut()

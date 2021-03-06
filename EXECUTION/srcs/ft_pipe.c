@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/05 17:58:01 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/06 12:16:29 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     wait(NULL);
 }
 
-int     main(void)
-{
-}
+// int     main(void)
+// {
+// }
