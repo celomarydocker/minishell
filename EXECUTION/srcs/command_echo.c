@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:05:59 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/05 15:21:44 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/06 12:11:29 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,40 @@ void ft_exec_pwd(char **str)
 {
     int i = 0;
     while (str[i])
-    {
-        printf("%s", str[i++]);
-    }
+        ft_putstr_fd(str[i++], 1);
 }
+
 
 void ft_exec_echo(char **str)
 {
-    int i = 0;
-    while (str[i])
-    {
-        if (ft_strncmp(str[1], "-n", 3) == 0)
-            printf("%s", str[i++]);
-        else
-        {
-            printf("%s", str[i++]);
-            // write(1, "\n", 1);
-        }
-    }
+    int i = -1;
+    if (str[0] == NULL)
+        write(1, "\n", 1);
+    if (ft_strncmp(str[0], "-n", 3) == 0)
+        i++;
+    while (str[++i])
+        ft_putstr_fd(str[i], 1);
+    if (ft_strncmp(str[0], "-n", 3) != 0)
+        write(1, "\n", 1);
 }
 
 void start_execut()
 {
     t_file *file;
     t_exec *exec;
-
+ 
     file = malloc(sizeof(t_file));
     exec = malloc(sizeof(t_exec));
-    file->redirect = ft_strdup(">");
+    file->redirect = OUTPUT;
     file->filename = ft_strdup("file1");
     exec->cmd = ft_strdup("echo");
-    exec->arguments = ft_split("hicham fadyl", ' ');
+    exec->arguments = ft_split("-nnnnn hicham fadyl", ' ');
     exec->files = malloc(sizeof(t_clist));
     exec->files->data = file;
     exec->files->next = NULL;
     file  = malloc(sizeof(t_file));
     file->filename = ft_strdup("file2");
-    file->redirect = ft_strdup(">>");
+    file->redirect = APPEND;
     exec->files->next = malloc(sizeof(t_clist));
     exec->files->next->data = file;
     exec->files->next->next = NULL;
