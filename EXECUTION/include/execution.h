@@ -9,6 +9,12 @@
 typedef enum s_enum {INPUT, OUTPUT, APPEND} t_enum;
 typedef enum s_permessions{NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
 
+typedef struct s_pair_files
+{
+    int         intput;
+    int         output;
+}              t_pair_files;
+
 typedef struct  s_file
 {
                 t_enum  redirect;
@@ -26,4 +32,6 @@ int                 check_if_builtins(const char *str);
 void		        ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
 t_clist		        *from_parsing2exec(const t_clist *lst);
 t_permessions       check_existance(const char *command, const char *path, char **line);
+void                free_exec(void *exec);
+t_pair_files        iofile(t_clist *files);
 #endif

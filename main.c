@@ -1,11 +1,17 @@
 #include "minishell.h"
 
-void     display(const t_exec *exec)
+void     display(const t_exec *exec, char *path)
 {
-    t_file  *file;
-    char    *type;
-    print("cmd %s\n", exec->cmd);
+    t_file          *file;
+    char            *type;
+    t_permessions   perm;
 
+    print("cmd %s\n", exec->cmd);
+    perm = check_existance(exec->cmd, path, &type);
+    if (perm == FILE_EXEC || perm == BUILTINS)
+        print("COMMAND %s EXIST %s\n", exec->cmd, type);
+    else
+        print("COMMAND NOT FOUND\n");
     char **args = exec->arguments;
     print("ARGUMENTS\n");
     while (*args)
@@ -46,7 +52,7 @@ void     all_commands(char *s, char **envs)
        cmd_pipes = from_parsing2exec(cmd_pipes);
        while (cmd_pipes)
        {
-           display(cmd_pipes->data);
+           display(cmd_pipes->data, get(global_env, "PATH"));
            cmd_pipes = cmd_pipes->next;
        }
        iter++;
@@ -54,7 +60,7 @@ void     all_commands(char *s, char **envs)
     free_split(&cmds);
     clear_map(&global_env, free_vars);
 }
-// gcc PARSER/print/*.c PARSER/gnl/*.c PARSER/dt/hash_table/*.c PARSER/dt/linkedlist/*.c PARSER/command_recognizer/*.c  main.c EXECUTION/srcs/check_existance.c  PARSER/split/*.c EXECUTION/srcs/command_echo.c libft/*.c
+
 int     main(void)
 {
 	char 	*line;
