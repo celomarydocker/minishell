@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/06 12:14:59 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/06 18:36:31 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,31 @@
 
 void ft_exec_echo(char **str)
 {
-    int i = -1;
+    int i;
+    int nl;
+    int j;
+
+    i = -1;
+    nl = 1;
     if (str[0] == NULL)
         write(1, "\n", 1);
-    if (ft_strncmp(str[0], "-n", 3) == 0)
-        i++;
     while (str[++i])
-        ft_putstr_fd(str[i], 1);
-    if (ft_strncmp(str[0], "-n", 3) != 0)
+    {
+        j = 1;
+        while (str[i][j] && str[i][0] == '-' && str[i][j] == 'n')
+            j++;   
+        if (str[i][j] && str[i][j] != 'n' && j > 0)
+        {
+            nl = (i == 0);
+            break;  
+        }
+    }
+    while (str[i])
+    {
+        ft_putstr_fd(str[i++], 1);
+        if (!str[i+1])
+            write(1, " ", 1);
+    }
+    if (nl)
         write(1, "\n", 1);
 }
