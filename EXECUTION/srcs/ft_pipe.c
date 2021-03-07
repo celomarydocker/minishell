@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/07 12:52:46 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/07 19:21:41 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ static void  ft_child_pipe(t_exec *data, int fd[2], int old_stdin, bool is[2])
     close(fd[0]);
     if (data->perm == FILE_EXEC)
         execve(data->cmd, data->arguments, NULL);
-    else
+    else if (data->perm == BUILTINS)
     {
-        print("BUILTINS\n", )
+        get_builtins(g_builtins, data->cmd)(data->arguments, 1);
+        exit(0);
     }
     exit(127);
 }
@@ -80,7 +81,7 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     int     is_first_last[2];
 
     if (!pipe_exec)
-        return ;
+        return (EXIT_FAILURE);
     is_first_last[0] = is_first;
     is_first_last[1] = (pipe_exec->next) ? 1 : 0;
     if (pipe_exec->next)

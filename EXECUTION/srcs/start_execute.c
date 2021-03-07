@@ -5,29 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2021/03/07 12:53:16 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/07 12:56:07 by mel-omar@st      ###   ########.fr       */
-=======
-/*   Created: 2021/03/05 12:05:59 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/06 19:08:13 by hfadyl           ###   ########.fr       */
->>>>>>> 5f5dac416a5db6495f0bc6a2d79134036ec78aa6
+/*   Updated: 2021/03/07 14:58:04 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../include/execution.h"
 
-int check_if_builtins(const char *str)
-{
-    if (ft_strncmp(str, "echo", 5) == 0 || ft_strncmp(str, "cd", 3) == 0 ||
-        ft_strncmp(str, "pwd", 4) == 0 || ft_strncmp(str, "export", 7) == 0 ||
-        ft_strncmp(str, "env", 4) == 0 || ft_strncmp(str, "exit", 5) == 0 ||
-        ft_strncmp(str, "unset", 6) == 0)
-        return (1);
-    else 
-        return (0);
-}
 /*
 void start_execut()
 {

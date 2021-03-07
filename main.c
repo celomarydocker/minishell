@@ -1,4 +1,5 @@
 #include "minishell.h"
+#include <stdio.h>
 
 void     display(const t_exec *exec, char *path)
 {
@@ -52,7 +53,7 @@ void     all_commands(char *s, char **envs)
     global_env = put_vars(envs);
     cmds = csplit(s, ';');
     iter = 0;
-    while (cmds[iter])
+   while (cmds[iter])
     {
        //print("%s\n", cmds[iter]);
        cmd_pipes = get_command_line(cmds[iter], global_env);
@@ -73,6 +74,12 @@ int     main(void)
 	char 	*line;
 
 	line = NULL;
+
+    /*** TEST BUILTINS ***/
+    init_builtins(&g_builtins);
+    insert_builtins(g_builtins, "echo", ft_exec_echo);
+    get_builtins(g_builtins, "echo")(ft_csplit(" echo hello world AGAIN", ' ', NULL), 1);
+    /*** END TEST ***/
 	while (1)
 	{
 		print(">>> ");

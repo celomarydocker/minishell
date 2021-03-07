@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/06 18:36:31 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/07 14:40:16 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-void ft_exec_echo(char **str)
+void ft_exec_echo(char **str, int fd)
 {
     int i;
     int nl;
@@ -21,7 +21,7 @@ void ft_exec_echo(char **str)
     i = -1;
     nl = 1;
     if (str[0] == NULL)
-        write(1, "\n", 1);
+        write(fd, "\n", 1);
     while (str[++i])
     {
         j = 1;
@@ -35,10 +35,10 @@ void ft_exec_echo(char **str)
     }
     while (str[i])
     {
-        ft_putstr_fd(str[i++], 1);
+        ft_putstr_fd(str[i++], fd);
         if (!str[i+1])
-            write(1, " ", 1);
+            write(fd, " ", 1);
     }
     if (nl)
-        write(1, "\n", 1);
+        write(fd, "\n", 1);
 }

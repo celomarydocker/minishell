@@ -6,11 +6,36 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/07 12:46:32 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/07 15:08:27 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
+int     check_if_builtins(const char *str)
+{
+    if (ft_strncmp(str, "echo", 5) == 0 || ft_strncmp(str, "cd", 3) == 0 ||
+    ft_strncmp(str, "pwd", 4) == 0 || ft_strncmp(str, "export", 7) == 0 ||
+    ft_strncmp(str, "env", 4) == 0 || ft_strncmp(str, "exit", 5) == 0 ||
+    ft_strncmp(str, "unset", 6) == 0)
+    {
+        return (1);
+    }
+    else 
+        return (0);
+}
 
+void           init_builtins(t_cmap **map)
+{
+    *map = init_map();   
+}
 
+void            insert_builtins(t_cmap *map, const char *builtin_name, t_builtin_function builtin_funcn)
+{
+    set_value(map, ft_cstrdup((char *)builtin_name), builtin_funcn, ft_cstrlen(builtin_name));
+}
+
+t_builtin_function            get_builtins(t_cmap *mp, const char *key)
+{
+    return ((t_builtin_function)get_value(mp, key, ft_cstrlen(key)));
+}
