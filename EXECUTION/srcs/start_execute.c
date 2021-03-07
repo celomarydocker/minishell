@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   start_execute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 12:05:59 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/06 12:15:13 by hfadyl           ###   ########.fr       */
+/*   Created: 2021/03/07 12:53:16 by mel-omar@st       #+#    #+#             */
+/*   Updated: 2021/03/07 12:56:07 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../include/execution.h"
 
-int check_if_builtins(char *str)
+int check_if_builtins(const char *str)
 {
     if (ft_strncmp(str, "echo", 5) == 0 || ft_strncmp(str, "cd", 3) == 0 ||
         ft_strncmp(str, "pwd", 4) == 0 || ft_strncmp(str, "export", 7) == 0 ||
@@ -22,7 +23,7 @@ int check_if_builtins(char *str)
     else 
         return (0);
 }
-
+/*
 void start_execut()
 {
     t_file *file;
@@ -68,9 +69,10 @@ void start_execut()
         printf("ach hna %s\n", exec->cmd);
     }
 }
-
 int main()
 {
     start_execut();
     return 0;
 }
+*/
+

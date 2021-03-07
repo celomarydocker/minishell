@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_coomands2.c                                 :+:      :+:    :+:   */
+/*   ft_setup_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 07:12:10 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/06 12:59:06 by mel-omar         ###   ########.fr       */
+/*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
+/*   Updated: 2021/03/07 12:46:32 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "recognizer.h"
+#include "../include/execution.h"
 
-t_clist  *get_commands(char *cmd, t_cmap *envs)
-{
-    t_clist  *cmds;
 
-    cmds = NULL;
-    append(&cmds, get_command_line(cmd, envs));
-    return (cmds);
-}
+

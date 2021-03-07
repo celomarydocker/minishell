@@ -2,30 +2,42 @@
 # define EXECUTION_H
 # define bool int
 # include "../../minishell.h"
+/* TESTING STUFF */
 # include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
+/* END */
 
-typedef enum s_enum {INPUT, OUTPUT, APPEND} t_enum;
+typedef enum e_enum {INPUT, OUTPUT, APPEND} t_enum;
+typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
+
+typedef struct s_pair_files
+{
+    int         input;
+    int         output;
+}              t_pair_files;
+
 typedef struct  s_file
 {
                 t_enum  redirect;
                 char    *filename;
 }               t_file;
 
-typedef struct s_exec
+typedef struct      s_exec
 {
-    char        *cmd;
-    char        **arguments;
-    t_clist     *files;
-}               t_exec;
+    char            *cmd;
+    char            **arguments;
+    t_permessions   perm;
+    t_clist         *files;
+}                   t_exec;
 
-int         check_if_builtins(char *str);
-void        ft_exec_echo(char **str);
-void        ft_exec_pwd(char **str);
-void        ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin);
-t_clist     *from_parsing2exec(const t_clist *lst);
-t_clist     *combine_files_and_redirections(const t_clist *files, const t_clist *redirections);
-void        **convert_list2array2d(const t_clist *lst, size_t  size);
+t_cmap              *g_builtins;
 
+int                 check_if_builtins(const char *str);
+void                ft_exec_echo(char **str);
+void                ft_exec_pwd(char **str);
+int                 ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
+t_clist		        *from_parsing2exec(const t_clist *lst, const char *path);
+t_permessions       check_existance(const char *command, const char *path, char **line);
+void                free_exec(void *exec);
+t_pair_files        iofile(t_clist *files, int *error);
+int                 ft_pipe_return(int status);
 #endif
