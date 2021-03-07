@@ -86,5 +86,6 @@ int     main(void)
 		get_next_line(1, &line);
 		all_commands(line, environ);
 	}
+    clear_map(&g_builtins, free_builtins);
     return (0);
 }

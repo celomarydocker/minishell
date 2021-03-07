@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/07 15:08:27 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/07 19:33:13 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ void            insert_builtins(t_cmap *map, const char *builtin_name, t_builtin
 t_builtin_function            get_builtins(t_cmap *mp, const char *key)
 {
     return ((t_builtin_function)get_value(mp, key, ft_cstrlen(key)));
+}
+
+void        free_builtins(void *data)
+{
+    t_key_value *key_value;
+    free(key_value->key);
+    free(key_value);
 }
