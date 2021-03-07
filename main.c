@@ -68,12 +68,6 @@ void     all_commands(char *s, char **envs)
     clear_map(&global_env, free_vars);
 }
 
-<<<<<<< HEAD
-// int     main(void)
-// {
-//     return (0);
-// }
-=======
 int     main(void)
 {
 	char 	*line;
@@ -87,4 +81,3 @@ int     main(void)
 	}
     return (0);
 }
->>>>>>> origin/cbranch
