@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   start_execute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hicham <hicham@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:53:16 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/07 14:58:04 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/07 21:04:10 by hicham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../include/execution.h"
 
-/*
+
 void start_execut()
 {
     t_file *file;
@@ -24,7 +24,7 @@ void start_execut()
     file->redirect = OUTPUT;
     file->filename = ft_strdup("file1");
     exec->cmd = ft_strdup("echo");
-    exec->arguments = ft_split("-nn hicham fadyl", ' ');
+    exec->arguments = ft_split("hicham fadyl", ' ');
     exec->files = malloc(sizeof(t_clist));
     exec->files->data = file;
     exec->files->next = NULL;
@@ -44,9 +44,9 @@ void start_execut()
     if (check_if_builtins(exec->cmd) == 1)
     {
         if (ft_strncmp(exec->cmd, "echo", 5) == 0)
-            ft_exec_echo(exec->arguments);
+            ft_exec_echo(exec->arguments, 1);
         else if (ft_strncmp(exec->cmd, "pwd", 4) == 0)
-            ft_exec_pwd(exec->arguments);
+            ft_exec_pwd(exec->arguments, 1);
         // else if (ft_strncmp(exec->cmd, "cd", 3) == 0)
         //     ft_exec_cd(exec->arguments);
         // else if (ft_strncmp(exec->cmd, "export", 7) == 0)
@@ -68,5 +68,5 @@ int main()
     start_execut();
     return 0;
 }
-*/
+
 
