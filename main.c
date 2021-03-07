@@ -4,11 +4,12 @@ void     display(const t_exec *exec, char *path)
 {
     t_file          *file;
     char            *type;
+    int             error;
     t_permessions   perm;
+    t_pair_files    io;
 
     print("cmd %s\n", exec->cmd);
-    perm = check_existance(exec->cmd, path, &type);
-    if (perm == FILE_EXEC || perm == BUILTINS)
+    if (exec->perm == FILE_EXEC || exec->perm == BUILTINS)
         print("COMMAND %s EXIST %s\n", exec->cmd, type);
     else
         print("COMMAND NOT FOUND\n");
@@ -20,6 +21,12 @@ void     display(const t_exec *exec, char *path)
         args++;
     }
     t_clist *lst = exec->files;
+    io = iofile(lst, &error);
+    print("%d %d\n", io.input, io.output);
+    if (io.input != -1)
+        close(io.input);
+    if (io.output != -1)
+        close(io.output);
     print("FILES\n");
     while (lst)
     {
@@ -49,7 +56,7 @@ void     all_commands(char *s, char **envs)
     {
        //print("%s\n", cmds[iter]);
        cmd_pipes = get_command_line(cmds[iter], global_env);
-       cmd_pipes = from_parsing2exec(cmd_pipes);
+       cmd_pipes = from_parsing2exec(cmd_pipes, get(global_env, "PATH"));
        while (cmd_pipes)
        {
            display(cmd_pipes->data, get(global_env, "PATH"));

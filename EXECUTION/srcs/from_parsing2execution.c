@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   from_parsing2execution.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:32:14 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/06 18:38:15 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/07 11:30:24 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_file   *create_file(const char *filename, const char *redirect)
     return (file);
 }
 
-t_clist      *combine_files_and_redirections(const t_clist *files, const t_clist *redirections)
+static t_clist      *combine_files_and_redirections(const t_clist *files, const t_clist *redirections)
 {
     t_clist     *combine;
 
@@ -63,26 +63,33 @@ t_clist      *combine_files_and_redirections(const t_clist *files, const t_clist
     return (combine);
 }
 
-static t_exec  *parse_exec(const t_ccommand *command)
+static t_exec  *parse_exec(const t_ccommand *command, const char *path)
 {
     t_exec      *exec;
     t_rec       *rec;
+    char        *line;
 
     exec = malloc(sizeof(t_exec));
     exec->cmd = ft_cstrdup(command->cmd);
     exec->arguments = convert_list2array2d(command->data->text);
+    exec->perm = check_existance(exec->cmd, path, &line);
+    if (line)
+    {
+        free(exec->cmd);
+        exec->cmd = line;
+    }
     exec->files = combine_files_and_redirections(command->data->files, command->data->oper);    
     return (exec);
 }
 
-t_clist        *from_parsing2exec(const t_clist *lst)
+t_clist        *from_parsing2exec(const t_clist *lst, const char *path)
 {
     t_clist     *execution;
 
     execution = NULL;
     while (lst)
     {
-        append(&execution, parse_exec(lst->data));
+        append(&execution, parse_exec(lst->data, path));
         lst = lst->next;   
     }
     return (execution);

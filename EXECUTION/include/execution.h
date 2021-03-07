@@ -6,12 +6,12 @@
 # include <stdio.h>
 /* END */
 
-typedef enum s_enum {INPUT, OUTPUT, APPEND} t_enum;
-typedef enum s_permessions{NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
+typedef enum e_enum {INPUT, OUTPUT, APPEND} t_enum;
+typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
 
 typedef struct s_pair_files
 {
-    int         intput;
+    int         input;
     int         output;
 }              t_pair_files;
 
@@ -21,17 +21,21 @@ typedef struct  s_file
                 char    *filename;
 }               t_file;
 
-typedef struct s_exec
+typedef struct      s_exec
 {
-    char        *cmd;
-    char        **arguments;
-    t_clist     *files;
-}               t_exec;
+    char            *cmd;
+    char            **arguments;
+    t_permessions   perm;
+    t_clist         *files;
+}                   t_exec;
+
+t_cmap              *g_builtins;
 
 int                 check_if_builtins(const char *str);
-void		        ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
-t_clist		        *from_parsing2exec(const t_clist *lst);
+int                 ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
+t_clist		        *from_parsing2exec(const t_clist *lst, const char *path);
 t_permessions       check_existance(const char *command, const char *path, char **line);
 void                free_exec(void *exec);
-t_pair_files        iofile(t_clist *files);
+t_pair_files        iofile(t_clist *files, int *error);
+int                 ft_pipe_return(int status);
 #endif
