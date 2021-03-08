@@ -27,3 +27,15 @@ void ft_exec_cd(char **str)
         ft_putstr_fd(str,1);
     }
 }
+// int main()
+// {
+//     char s[1000];
+
+//     printf("%s\n", getcwd(s, 100));  // print current working directory
+  
+//     chdir(".."); // change the directory
+
+//     printf("%s\n", getcwd(s, 100)); // print the change directory
+  
+//     return 0; 
+// }
