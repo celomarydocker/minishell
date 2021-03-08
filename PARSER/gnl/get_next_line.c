@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:56:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/09 18:00:27 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:50:02 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	free_buffer(char **buffer, char **line)
-{
-	if (!*line)
-		*line = ft_realloc(NULL, 0, 1);
-	free(*buffer);
-	*buffer = NULL;
-}
-
-int		get_next_line_helper(int fd, char **line, char **buffer)
+int		get_next_line_helper(int fd, char **line, char *buffer)
 {
 	static long	current;
 	static long	pos;
@@ -30,14 +22,15 @@ int		get_next_line_helper(int fd, char **line, char **buffer)
 	old_size = 0;
 	while (1)
 	{
-		if (update_buffer(*buffer, &current, &pos, fd) <= 0)
+		if (update_buffer(buffer, &current, &pos, fd) <= 0)
 		{
-			free_buffer(buffer, line);
+			if (!*line)
+				*line = ft_realloc(NULL, 0, 1);
 			return (pos);
 		}
-		len = get_len(*buffer, current, pos);
+		len = get_len(buffer, current, pos);
 		*line = ft_realloc(line, old_size, (size_t)len);
-		if (copy_to_line((*buffer) + current, (*line) + old_size, len))
+		if (copy_to_line((buffer) + current, (*line) + old_size, len))
 		{
 			current += len + 1;
 			break ;
@@ -50,10 +43,8 @@ int		get_next_line_helper(int fd, char **line, char **buffer)
 
 int		get_next_line(int fd, char **line)
 {
-	static char		*buffer;
+	static char		buffer[BUFFER_SIZE];
 
 	*line = NULL;
-	if (!buffer)
-		buffer = ft_realloc(NULL, 0, BUFFER_SIZE);
-	return (get_next_line_helper(fd, line, &buffer));
+	return (get_next_line_helper(fd, line, buffer));
 }
