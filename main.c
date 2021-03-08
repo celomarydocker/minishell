@@ -78,6 +78,8 @@ int     main(void)
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
+    insert_builtins(g_builtins, "pwd", ft_exec_pwd);
+    insert_builtins(g_builtins, "cd", ft_exec_cd);
     get_builtins(g_builtins, "echo")(ft_csplit("echo hello world AGAIN", ' ', NULL), 1);
     /*** END TEST ***/
 	while (1)

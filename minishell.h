@@ -13,6 +13,7 @@
 # include "libft/libft.h"
 # include "PARSER/command_recognizer/recognizer.h"
 # include "./EXECUTION/include/execution.h"
+# include <dirent.h>
 
 extern char **environ;
 #endif
