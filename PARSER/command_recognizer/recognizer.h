@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recognizer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:35:57 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/03/12 13:26:25 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/08 12:56:02 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ char			*single_quotes(char *str, int *iter);
 void			free_ccommand(void *cmd);
 void			free_all_commands(t_clist **lst);
 void			free_vars(void *vars);
+char			**split_envirement_variable(const char *line);
 #endif

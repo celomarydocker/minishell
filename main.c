@@ -51,6 +51,7 @@ void     all_commands(char *s, char **envs)
     int         iter;
     
     global_env = put_vars(envs);
+    get_builtins(g_builtins, "pwd")(ft_csplit(get(global_env, "PWD"), ' ', NULL), 1);
     cmds = csplit(s, ';');
     iter = 0;
    while (cmds[iter])
@@ -78,7 +79,8 @@ int     main(void)
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
-    get_builtins(g_builtins, "echo")(ft_csplit("echo hello world AGAIN", ' ', NULL), 1);
+    insert_builtins(g_builtins, "pwd", ft_exec_pwd);
+  
     /*** END TEST ***/
 	while (1)
 	{
