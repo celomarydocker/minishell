@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setup_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hicham <hicham@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/07 21:03:17 by hicham           ###   ########.fr       */
+/*   Updated: 2021/03/08 01:21:04 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int     check_if_builtins(const char *str)
         return (0);
 }
 
-/*void           init_builtins(t_cmap **map)
+void           init_builtins(t_cmap **map)
 {
     *map = init_map();   
 }
@@ -45,4 +45,4 @@ void        free_builtins(void *data)
     t_key_value *key_value;
     free(key_value->key);
     free(key_value);
-}*/
+}

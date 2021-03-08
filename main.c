@@ -78,7 +78,7 @@ int     main(void)
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
-    get_builtins(g_builtins, "echo")(ft_csplit(" echo hello world AGAIN", ' ', NULL), 1);
+    get_builtins(g_builtins, "echo")(ft_csplit("echo hello world AGAIN", ' ', NULL), 1);
     /*** END TEST ***/
 	while (1)
 	{

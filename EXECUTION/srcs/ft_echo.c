@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/07 14:40:16 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/08 01:22:57 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void ft_exec_echo(char **str, int fd)
     while (str[i])
     {
         ft_putstr_fd(str[i++], fd);
-        if (!str[i+1])
+        if (str[i])
             write(fd, " ", 1);
     }
     if (nl)
