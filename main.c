@@ -43,39 +43,43 @@ void     display(const t_exec *exec, char *path)
     }
 }
 
-void     all_commands(char *s, char **envs)
+void     all_commands(char *s, t_cmap *global_env)
 {
     t_clist     *cmd_pipes;
-    t_cmap      *global_env;
+    t_clist     *parser_pipe;
+    t_clist       *iter_lst;
     char        **cmds;
     int         iter;
     
-    global_env = put_vars(envs);
-    get_builtins(g_builtins, "pwd")(ft_csplit(get(global_env, "PWD"), ' ', NULL), 1);
+    //get_builtins(g_builtins, "pwd")(ft_csplit(get(global_env, "PWD"), ' ', NULL), 1);
     cmds = csplit(s, ';');
     iter = 0;
-   while (cmds[iter])
+   /*while (cmds[iter])
     {
        //print("%s\n", cmds[iter]);
-       cmd_pipes = get_command_line(cmds[iter], global_env);
-       cmd_pipes = from_parsing2exec(cmd_pipes, get(global_env, "PATH"));
-       while (cmd_pipes)
+       parser_pipe = get_command_line(cmds[iter], global_env);
+       cmd_pipes = from_parsing2exec(parser_pipe, get(global_env, "PATH"));
+       iter_lst = cmd_pipes;
+       clear_list(&parser_pipe, free_ccommand);
+       while (iter_lst)
        {
-           display(cmd_pipes->data, get(global_env, "PATH"));
-           cmd_pipes = cmd_pipes->next;
+           display(iter_lst->data, get(global_env, "PATH"));
+           iter_lst = iter_lst->next;
        }
+       clear_list(&cmd_pipes, free_exec);
        iter++;
     }
-    free_split(&cmds);
-    clear_map(&global_env, free_vars);
+    */
+    free_split(cmds);
 }
 
 int     main(void)
 {
 	char 	*line;
+    t_cmap *envs;
 
 	line = NULL;
-
+    envs = put_vars(environ);
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
@@ -86,8 +90,11 @@ int     main(void)
 	{
 		print(">>> ");
 		get_next_line(1, &line);
-		all_commands(line, environ);
+		all_commands(line, envs);
+        free(line);
+        line = NULL;
 	}
     clear_map(&g_builtins, free_builtins);
+    clear_map(&envs, free_vars);
     return (0);
 }

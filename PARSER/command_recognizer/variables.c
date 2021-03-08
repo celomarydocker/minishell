@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 04:17:19 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 12:56:35 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/08 19:33:56 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_cmap     *put_vars(char **vars)
     {
         sp = split_envirement_variable(vars[iter]);
         setv(map, sp[0], ft_cstrdup(sp[1]));
-        free_split(&sp);
+        free_split(sp);
         iter++;
     }
     return (map);

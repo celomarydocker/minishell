@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:32:14 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/07 11:30:24 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/08 17:59:02 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static char        **convert_list2array2d(const t_clist *lst)
     while (lst)
     {
         length_string = ft_cstrlen((char *)lst->data);
-        array_2d[iterator] = malloc(sizeof(char) * (length_string+ 1));
-        ft_cstrcpy( array_2d[iterator], lst->data, length_string);
+        array_2d[iterator] = malloc(sizeof(char) * (length_string + 1));
+        ft_cstrcpy(array_2d[iterator], lst->data, length_string);
         lst = lst->next;
         iterator++;
     }

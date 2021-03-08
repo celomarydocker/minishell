@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:35:57 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 12:56:02 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/08 19:33:07 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			display_data(void *data);
 //split
 void			check_special(char c, char *special, int *is_back, char sp);
 char			**csplit(const char *s, char separator);
-void			free_split(char ***sp);
+void			free_split(char **sp);
 //endsplit
 char            *withback(char *str, t_cmap *map, int *iter);
 char            *double_quotes(char *str, int *i, t_cmap *map);

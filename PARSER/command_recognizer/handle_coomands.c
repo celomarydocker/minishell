@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_coomands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/03/12 13:53:52 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/08 19:33:34 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,6 @@ t_clist      *get_command_line(char *cmd, t_cmap *global_vars)
         add_command(commands[iter], &all_cmds, global_vars);
         iter++;
     }
-    free_split(&commands);
+    free_split(commands);
     return (all_cmds);
 }

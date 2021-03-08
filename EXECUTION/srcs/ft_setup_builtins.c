@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setup_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/08 01:21:04 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:41:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void           init_builtins(t_cmap **map)
 
 void            insert_builtins(t_cmap *map, const char *builtin_name, t_builtin_function builtin_funcn)
 {
-    set_value(map, ft_cstrdup((char *)builtin_name), builtin_funcn, ft_cstrlen(builtin_name));
+    set_value(map, builtin_name, builtin_funcn, ft_cstrlen(builtin_name));
 }
 
 t_builtin_function            get_builtins(t_cmap *mp, const char *key)

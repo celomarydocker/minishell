@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 04:16:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/03/11 04:16:53 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:03:46 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char        *single_quotes(char *str, int *iter)
     char    *s;
 
     len = 0;
-    while (str[len + *iter] != '\'' && str[len + *iter])
+    while (str[len + *iter] && str[len + *iter] != '\'')
         len++;
     if (str[len + *iter] != '\'')
     {

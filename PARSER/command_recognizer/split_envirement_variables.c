@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:45:14 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/08 12:57:34 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/08 19:21:59 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char        **split_envirement_variable(const char *line)
     envs = malloc(sizeof(char *) * 3);
     index_equal = found_first_equal(line);
     envs[2] = NULL;
-    envs[0] = ft_substr(line, 0, index_equal);
-    envs[1] = ft_substr(line, index_equal + 1, ft_strlen(line));
+    envs[0] = ft_csubstr((char *)line, index_equal);
+    envs[1] = ft_csubstr((char *)(line + index_equal + 1), ft_strlen(line));
     return (envs);
 }
