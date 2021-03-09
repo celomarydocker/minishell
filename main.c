@@ -9,6 +9,7 @@ void     display(const t_exec *exec, char *path)
     t_permessions   perm;
     t_pair_files    io;
 
+    type = NULL;
     print("cmd %s\n", exec->cmd);
     if (exec->perm == FILE_EXEC || exec->perm == BUILTINS)
         print("COMMAND %s EXIST %s\n", exec->cmd, type);
@@ -54,7 +55,7 @@ void     all_commands(char *s, t_cmap *global_env)
     //get_builtins(g_builtins, "pwd")(ft_csplit(get(global_env, "PWD"), ' ', NULL), 1);
     cmds = csplit(s, ';');
     iter = 0;
-   /*while (cmds[iter])
+   while (cmds[iter])
     {
        //print("%s\n", cmds[iter]);
        parser_pipe = get_command_line(cmds[iter], global_env);
@@ -69,7 +70,6 @@ void     all_commands(char *s, t_cmap *global_env)
        clear_list(&cmd_pipes, free_exec);
        iter++;
     }
-    */
     free_split(cmds);
 }
 

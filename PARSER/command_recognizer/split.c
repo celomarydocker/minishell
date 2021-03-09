@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 21:26:55 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/03/11 11:20:59 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:54:01 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int        count_word(const char *str, char c, int  is_back)
     iter = 0;
     while (str[iter])
     {
-        check_special(str[iter], &special_char, &is_back, str[iter - 1]);
+        check_special(str[iter], &special_char, &is_back, ((iter > 0) ? str[iter - 1] : 0));
         if ((str[iter] == c && !is_back) && !special_char)
             looked = 1;
         if (looked)
         {
-            while (str[iter] == c)
+            while (str[iter] && str[iter] == c)
                 iter++;
             if (!str[iter])
                 break;
