@@ -43,13 +43,14 @@ void     display(const t_exec *exec)
         lst = lst->next;
     }
 }
+
 t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
 {
     t_clist     *exec_list;
     t_clist     *parser_pipe;
 
-    parser_pipe = get_command_line(command, envs);
-    exec_list = from_parsing2exec(parser_pipe, get(envs, "PATH"));
+    parser_pipe = get_command_line((char *)command, (t_cmap *)envs);
+    exec_list = from_parsing2exec(parser_pipe, get((t_cmap *)envs, "PATH"));
     clear_list(&parser_pipe, free_ccommand);
     return (exec_list);
 }
@@ -57,12 +58,18 @@ t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
 void     exec_command(const t_clist *commands)
 {
     t_clist       *iter_lst;
+    int            pipe_ret;
+    int            stdfd[2];
 
-    while (iter_lst)
+    iter_lst = (t_clist *)commands;
+    print("test\n");
+    pipe_ret = ft_pipe(iter_lst, 1, 0);
+    print("endtest\n");
+    /*while (iter_lst)
     {
-        display(iter_lst->data);
+        //display(iter_lst->data);
         iter_lst = iter_lst->next;
-    }
+    }*/
 }
 void     all_commands(char *s, t_cmap *global_env)
 {
@@ -91,10 +98,12 @@ int     main(void)
 
 	line = NULL;
     envs = put_vars(environ);
+    setv(envs, "?", ft_itoa(0));
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
+
     /*** END TEST ***/
 	while (1)
 	{
