@@ -55,16 +55,16 @@ t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
     return (exec_list);
 }
 
-void     exec_command(const t_clist *commands)
+
+void     exec_command(const t_clist *commands, t_cmap *envs)
 {
     t_clist       *iter_lst;
     int            pipe_ret;
     int            stdfd[2];
 
     iter_lst = (t_clist *)commands;
-    print("test\n");
     pipe_ret = ft_pipe(iter_lst, 1, 0);
-    print("endtest\n");
+    setv(envs, "?", ft_itoa(pipe_ret));
     /*while (iter_lst)
     {
         //display(iter_lst->data);
@@ -84,7 +84,7 @@ void     all_commands(char *s, t_cmap *global_env)
     {
        //print("%s\n", cmds[iter]);
        exec_pipe = put_data_into_struct(cmds[iter], global_env);
-       exec_command(exec_pipe);
+       exec_command(exec_pipe, global_env);
        clear_list(&exec_pipe, free_exec);
        iter++;
     }

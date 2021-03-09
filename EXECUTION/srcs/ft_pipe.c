@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/09 19:01:28 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/09 23:11:06 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ static void  ft_child_pipe(t_exec *data, int fd[2], int old_stdin, bool *is)
     int                 status_error;
 
     if (data->perm == NOT_FOUND)
+    {
+        ft_putstr_fd(data->cmd, 2);
+        ft_putstr_fd(": command not found\n", 2);
         exit(127);
+    }
     io = iofile(data->files, &status_error);
     if (status_error == 255)
         exit(status_error);
@@ -67,13 +71,6 @@ static void  ft_child_pipe(t_exec *data, int fd[2], int old_stdin, bool *is)
     exit(127);
 }
 
-static void     ft_status_error(int input, int *status)
-{
-    if (input == 0)
-        close(input);
-    wait(status);   
-}
-/*
 int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
 {
     int     pid;
@@ -81,10 +78,11 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     int     fd[2];
     int     is_first_last[2];
 
+
+    fd[0] = -1;
+    fd[1] = -1;
     if (!pipe_exec)
-    {
         return (EXIT_SUCCESS);
-    }
     is_first_last[0] = is_first;
     is_first_last[1] = ((!pipe_exec->next) ? 1 : 0);
     if (pipe_exec->next)
@@ -96,16 +94,16 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     close(fd[1]);
     if (!is_first)
         close(old_stdin);
-    if ((status = ft_pipe(pipe_exec->next, 0, fd[0])) != EXIT_SUCCESS && !pipe_exec->next)
+    if ((status = ft_pipe(pipe_exec->next, 0, fd[0])) != EXIT_SUCCESS && (pipe_exec->next && !pipe_exec->next->next))
     {
-        ft_status_error(fd[0], NULL);
+        wait(NULL);
         return (status);
     }
-    ft_status_error(fd[0], &status);
+    wait(&status);
     return (ft_pipe_return(status));
 }
-*/
 
+/*
 int         ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
 {
     int     fd[2];
@@ -139,4 +137,4 @@ int         ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     ft_pipe(pipe_exec->next, 0, fd[0]);
     wait(NULL);
     return (0);
-}
+}*/
