@@ -1,7 +1,7 @@
 #include "minishell.h"
 #include <stdio.h>
 
-void     display(const t_exec *exec, char *path)
+void     display(const t_exec *exec)
 {
     t_file          *file;
     char            *type;
@@ -43,31 +43,42 @@ void     display(const t_exec *exec, char *path)
         lst = lst->next;
     }
 }
+t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
+{
+    t_clist     *exec_list;
+    t_clist     *parser_pipe;
 
+    parser_pipe = get_command_line(command, envs);
+    exec_list = from_parsing2exec(parser_pipe, get(envs, "PATH"));
+    clear_list(&parser_pipe, free_ccommand);
+    return (exec_list);
+}
+
+void     exec_command(const t_clist *commands)
+{
+    t_clist       *iter_lst;
+
+    while (iter_lst)
+    {
+        display(iter_lst->data);
+        iter_lst = iter_lst->next;
+    }
+}
 void     all_commands(char *s, t_cmap *global_env)
 {
-    t_clist     *cmd_pipes;
-    t_clist     *parser_pipe;
-    t_clist       *iter_lst;
+    t_clist     *exec_pipe;
     char        **cmds;
     int         iter;
     
     //get_builtins(g_builtins, "pwd")(ft_csplit(get(global_env, "PWD"), ' ', NULL), 1);
     cmds = csplit(s, ';');
     iter = 0;
-   while (cmds[iter])
+    while (cmds[iter])
     {
        //print("%s\n", cmds[iter]);
-       parser_pipe = get_command_line(cmds[iter], global_env);
-       cmd_pipes = from_parsing2exec(parser_pipe, get(global_env, "PATH"));
-       iter_lst = cmd_pipes;
-       clear_list(&parser_pipe, free_ccommand);
-       while (iter_lst)
-       {
-           display(iter_lst->data, get(global_env, "PATH"));
-           iter_lst = iter_lst->next;
-       }
-       clear_list(&cmd_pipes, free_exec);
+       exec_pipe = put_data_into_struct(cmds[iter], global_env);
+       exec_command(exec_pipe);
+       clear_list(&exec_pipe, free_exec);
        iter++;
     }
     free_split(cmds);
@@ -84,7 +95,6 @@ int     main(void)
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
-  
     /*** END TEST ***/
 	while (1)
 	{

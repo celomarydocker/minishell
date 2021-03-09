@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_existance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 16:08:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/06 21:52:47 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:43:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ t_permessions       check_existance(const char *command, const char *path, char 
         if (is_command(cmd) || (cmd = join_command(spath[iterator], &cmd)))
         {
             *line = cmd;
+            free_split(spath);
             return (FILE_EXEC);
         }
         iterator++;
     }
+    free_split(spath);
     return (NOT_FOUND);
 }
