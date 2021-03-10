@@ -94,13 +94,14 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin)
     close(fd[1]);
     if (!is_first)
         close(old_stdin);
-    if ((status = ft_pipe(pipe_exec->next, 0, fd[0])) != EXIT_SUCCESS && (pipe_exec->next && !pipe_exec->next->next))
+    if (!pipe_exec->next)
     {
-        wait(NULL);
-        return (status);
+        waitpid(pid, &status, 0);
+        return (ft_pipe_return(status))                   ;
     }
-    wait(&status);
-    return (ft_pipe_return(status));
+    status = ft_pipe(pipe_exec->next, 0, fd[0]);
+    wait(NULL);
+    return (status);
 }
 
 /*

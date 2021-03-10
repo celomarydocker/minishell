@@ -103,7 +103,7 @@ int     main(void)
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
-    insert_builtins(g_builtins, "cd", ft_exec_cd);
+    //insert_builtins(g_builtins, "cd", ft_exec_cd);
     /*** END TEST ***/
 	while (1)
 	{

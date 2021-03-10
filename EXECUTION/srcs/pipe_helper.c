@@ -14,7 +14,7 @@
 
 int         ft_pipe_return(int status)
 {
-    if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
+    // if (WIFEXITED(status))
         return (WEXITSTATUS(status));
-    return (EXIT_SUCCESS);
+    // return (EXIT_SUCCESS);
 }
