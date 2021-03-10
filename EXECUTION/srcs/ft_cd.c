@@ -17,29 +17,41 @@
 
 int    ft_exec_cd(char **str, int fd, t_cmap *envs)
 {
+    // mohammed initial 'OLDPWD' b "cd: OLDPWD not set" and don't print it in envs untill 'OLDPWD' has another value.
     char    *to_der;
-    char    buffer[200];
-    char    *old_pwd;
-
-    if (!*str)
+    char    *buffer;
+    char    *s;
+    buffer = malloc(64);
+    if (!*str || ft_strncmp(*str, "--", 3) == 0)
     {
         to_der = get(envs, "HOME");
-        old_pwd = ft_strdup(get(envs, "PWD"));
+        //print("old pwd %s\n", get(envs, "PWD"));
         chdir(to_der);
-        getcwd(buffer, 200);
-        setv(envs, "PWD", ft_strdup(buffer));
-        setv(envs, "OLDPWD", old_pwd);
+        getcwd(buffer, 64);
+        setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
+        setv(envs, "PWD", buffer);
+        //print("new pwd %s\n", get(envs, "PWD"));
     }
     else
     {
-        if (!chdir(*str))
+        if (ft_strncmp(*str, "-", 2) == 0)
         {
-            // print("old pwd %s\n", get(envs, "PWD"));
-            getcwd(buffer, 200);
-            old_pwd = ft_strdup(get(envs, "PWD"));
-            setv(envs, "PWD", ft_strdup(buffer));
-            setv(envs, "OLDPWD", old_pwd);
-            // print("new pwd %s\n", get(envs, "PWD"));
+            if (chdir(s = get(envs, "OLDPWD")) == -1)
+                printf("%s\n", s);
+            else
+            {
+                setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
+                setv(envs, "PWD", getcwd(buffer, 64));
+                printf("%s\n", buffer);
+            }
+        }
+        else if (!(chdir(*str)))
+        {
+            //print("old pwd %s\to_dern", get(envs, "PWD"));
+            getcwd(buffer, 64);
+            setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
+            setv(envs, "PWD", buffer);
+            //print("new pwd %s\n", get(envs, "PWD"));
         }
         else
         {
@@ -55,7 +67,7 @@ int    ft_exec_cd(char **str, int fd, t_cmap *envs)
 
 //     printf("%s\n", getcwd(s, 100));  // print current working directory
   
-//     chdir(".."); // change the directory
+//     chdir(".."); // chan        chdir(to_der);ge the directory
 
 //     printf("%s\n", getcwd(s, 100)); // print the change directory
   
