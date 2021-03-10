@@ -12,20 +12,34 @@
 
 #include "../include/execution.h"
 
-void ft_exec_cd(char **str, int fd)
+void ft_exec_cd(char **str, int fd, t_cmap *envs)
 {
-    // hadchi b9i gha tkhrbi9 
     char *to_der;
-
-    if (!str)
+    DIR *tmp_der;
+    
+    if (!*str)
     {
-        to_der = get(, "HOME");
+        to_der = get(envs, "HOME");
+        print("old pwd %s\n", get(envs, "PWD"));
         chdir(to_der);
+        setv(envs, "PWD", ft_strdup(to_der));
+        print("new pwd %s\n", get(envs, "PWD"));
     }
     else
     {
-        chdir(*str);
-        ft_putstr_fd("work fine", fd);
+        tmp_der = opendir(*str);
+        if (tmp_der != NULL)
+        {
+            print("old pwd %s\n", get(envs, "PWD"));
+            setv(envs, "PWD", ft_strdup(*str));
+            chdir(*str);
+            print("new pwd %s\n", get(envs, "PWD"));
+        }
+        else
+        {
+            ft_putstr_fd("cd : no such file or directory ", fd);
+            write(1, "\n", 1);
+        }
     }
 }
 // int main()

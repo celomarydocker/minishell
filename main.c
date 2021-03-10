@@ -1,7 +1,7 @@
 #include "minishell.h"
 #include <stdio.h>
 
-void     display(const t_exec *exec)
+void     display(const t_exec *exec, t_cmap *envs)
 {
     t_file          *file;
     char            *type;
@@ -15,6 +15,8 @@ void     display(const t_exec *exec)
         print("COMMAND %s EXIST %s\n", exec->cmd, type);
     else
         print("COMMAND NOT FOUND\n");
+    // call command cd here temporaire
+    //ft_exec_cd(exec->arguments + 1, 1, envs);
     char **args = exec->arguments;
     print("ARGUMENTS\n");
     while (*args)
@@ -63,11 +65,12 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
     int            stdfd[2];
 
     iter_lst = (t_clist *)commands;
-    pipe_ret = ft_pipe(iter_lst, 1, 0);
-    setv(envs, "?", ft_itoa(pipe_ret));
+    //pipe_ret = ft_pipe(iter_lst, 1, 0);
+    //setv(envs, "?", ft_itoa(pipe_ret));
+    display(iter_lst->data, envs);
     /*while (iter_lst)
     {
-        //display(iter_lst->data);
+       
         iter_lst = iter_lst->next;
     }*/
 }
@@ -105,6 +108,7 @@ int     main(void)
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
     //insert_builtins(g_builtins, "cd", ft_exec_cd);
     /*** END TEST ***/
+
 	while (1)
 	{
 		print(">>> ");

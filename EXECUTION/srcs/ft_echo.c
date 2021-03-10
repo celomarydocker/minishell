@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/10 16:01:56 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:55:20 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void ft_exec_echo(char **str, int fd)
 
     i = -1;
     nl = 1;
+    if (!str)
+          write(fd, "\n", 1);
     if (str[0] == NULL)
         write(fd, "\n", 1);
     while (str[++i])
