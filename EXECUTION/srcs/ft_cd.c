@@ -19,7 +19,7 @@ void ft_exec_cd(char **str, int fd)
 
     if (!str)
     {
-        to_der = get(t_cmap->envs, "HOME");
+        to_der = get(, "HOME");
         chdir(to_der);
     }
     else

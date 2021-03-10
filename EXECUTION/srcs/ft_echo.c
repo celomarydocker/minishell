@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hicham <hicham@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/10 12:53:27 by hicham           ###   ########.fr       */
+/*   Updated: 2021/03/10 16:01:56 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ void ft_exec_echo(char **str, int fd)
     while (str[i])
     {
         ft_putstr_fd(str[i++], fd);
-        if (i != 1 && str[i])
-            write(fd, " ", 1);
+        // if (i != 1 && str[i])
+        //     write(fd, " ", 1);
+        if (!str[i+1])
+            write(1, " ", 1);
     }
-    // if (nl)
+    if (nl)
         write(fd, "\n", 1);
 }
