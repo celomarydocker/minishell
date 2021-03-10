@@ -16,22 +16,22 @@ void     display(const t_exec *exec, t_cmap *envs)
     else
         print("COMMAND NOT FOUND\n");
     // call command cd here temporaire
-    ft_exec_cd(exec->arguments + 1, 1, envs);
+    // ft_exec_cd(exec->arguments + 1, 1, envs);
     char **args = exec->arguments;
-    //print("ARGUMENTS\n");
+    print("ARGUMENTS\n");
     while (*args)
     {
-        //print("-- %s\n", *args);
+        print("-- %s\n", *args);
         args++;
     }
     t_clist *lst = exec->files;
     io = iofile(lst, &error);
-   // print("%d %d\n", io.input, io.output);
+   print("%d %d\n", io.input, io.output);
     if (io.input != -1)
         close(io.input);
     if (io.output != -1)
         close(io.output);
-    //print("FILES\n");
+    print("FILES\n");
     while (lst)
     {
         file = (t_file *)lst->data;
@@ -41,7 +41,7 @@ void     display(const t_exec *exec, t_cmap *envs)
             type = "OUTPUT";
         else
             type = "APPEND";
-       // print("- %s %s\n", file->filename, type);
+       print("- %s %s\n", file->filename, type);
         lst = lst->next;
     }
 }
