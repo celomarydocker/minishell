@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hicham <hicham@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/09 21:06:21 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/10 12:53:27 by hicham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void ft_exec_echo(char **str, int fd)
         if (i != 1 && str[i])
             write(fd, " ", 1);
     }
-    //if (nl)
+    // if (nl)
         write(fd, "\n", 1);
 }

@@ -12,19 +12,20 @@
 
 #include "../include/execution.h"
 
-void ft_exec_cd(char **str)
+void ft_exec_cd(char **str, inf fd)
 {
-    char *der;
+    // hadchi b9i gha tkhrbi9 
+    char *to_der;
 
-    der = opendir(*str);
-    if (der != NULL)
+    if (!str)
     {
-        
+        to_der = get(global_env, "HOME");
+        chdir(to_der);
     }
     else
     {
-        // print error
-        ft_putstr_fd(str,1);
+        chdir(str);
+        ft_putstr_fd(fd, "work fine");
     }
 }
 // int main()
