@@ -12,20 +12,20 @@
 
 #include "../include/execution.h"
 
-void ft_exec_cd(char **str, inf fd)
+void ft_exec_cd(char **str, int fd)
 {
     // hadchi b9i gha tkhrbi9 
     char *to_der;
 
     if (!str)
     {
-        to_der = get(global_env, "HOME");
+        to_der = get(t_cmap->envs, "HOME");
         chdir(to_der);
     }
     else
     {
-        chdir(str);
-        ft_putstr_fd(fd, "work fine");
+        chdir(*str);
+        ft_putstr_fd("work fine", fd);
     }
 }
 // int main()

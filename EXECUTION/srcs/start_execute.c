@@ -6,7 +6,7 @@
 /*   By: hicham <hicham@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:53:16 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/10 11:08:50 by hicham           ###   ########.fr       */
+/*   Updated: 2021/03/10 14:13:11 by hicham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void start_execut()
         else if (ft_strncmp(exec->cmd, "pwd", 4) == 0)
             ft_exec_pwd(exec->arguments, 1);
         else if (ft_strncmp(exec->cmd, "cd", 3) == 0)
-            ft_exec_cd(exec->arguments);
+            ft_exec_cd(exec->arguments, 1);
         // else if (ft_strncmp(exec->cmd, "export", 7) == 0)
         //     ft_exec_export(exec->arguments);
         // else if (ft_strncmp(exec->cmd, "unset", 6) == 0)
