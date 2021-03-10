@@ -13,37 +13,41 @@
 #include "../include/execution.h"
 
 
+// change function return from void to int to check errors
 
-void    ft_exec_cd(char **str, int fd, t_cmap *envs)
+int    ft_exec_cd(char **str, int fd, t_cmap *envs)
 {
     char    *to_der;
-    char    *buffer;
+    char    buffer[200];
+    char    *old_pwd;
 
-    buffer = malloc(64);
     if (!*str)
     {
         to_der = get(envs, "HOME");
-        // print("old pwd %s\n", get(envs, "PWD"));
+        old_pwd = ft_strdup(get(envs, "PWD"));
         chdir(to_der);
-        getcwd(buffer, 64);
-        setv(envs, "PWD", buffer);
-        // print("new pwd %s\n", get(envs, "PWD"));
+        getcwd(buffer, 200);
+        setv(envs, "PWD", ft_strdup(buffer));
+        setv(envs, "OLDPWD", old_pwd);
     }
     else
     {
-        if (!(chdir(*str)))
+        if (!chdir(*str))
         {
             // print("old pwd %s\n", get(envs, "PWD"));
-            getcwd(buffer, 64);
-            setv(envs, "PWD", buffer);
+            getcwd(buffer, 200);
+            old_pwd = ft_strdup(get(envs, "PWD"));
+            setv(envs, "PWD", ft_strdup(buffer));
+            setv(envs, "OLDPWD", old_pwd);
             // print("new pwd %s\n", get(envs, "PWD"));
         }
         else
         {
             ft_putstr_fd("cd : no such file or directory ", fd);
-            write(1, "\n", 1);
+            write(fd, "\n", 1);
         }
     }
+    return (0);
 }
 // int main()
 // {

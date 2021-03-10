@@ -12,7 +12,10 @@
 
 #include "../include/execution.h"
 
-void ft_exec_echo(char **str, int fd)
+
+// change function return from void to int to check errors
+
+int ft_exec_echo(char **str, int fd, t_cmap *envs)
 {
     int i;
     int nl;
@@ -35,6 +38,7 @@ void ft_exec_echo(char **str, int fd)
             break;  
         }
     }
+    --i; // i added this to check return of pipe;
     while (str[i])
     {
         ft_putstr_fd(str[i++], fd);
@@ -45,4 +49,5 @@ void ft_exec_echo(char **str, int fd)
     }
     if (nl)
         write(fd, "\n", 1);
+    return (0);
 }

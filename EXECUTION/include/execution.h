@@ -8,7 +8,7 @@
 
 typedef enum e_enum {INPUT, OUTPUT, APPEND} t_enum;
 typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
-typedef void (*t_builtin_function)(char **str, int fd);
+typedef int (*t_builtin_function)(char **str, int fd, t_cmap *envs);
 typedef struct s_pair_files
 {
     int         input;
@@ -32,9 +32,10 @@ typedef struct      s_exec
 t_cmap              *g_builtins;
 
 int                 check_if_builtins(const char *str);
-void                ft_exec_echo(char **str, int fd);
-void                ft_exec_pwd(char **str, int fd);
-int                 ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin);
+int                 ft_exec_echo(char **str, int fd, t_cmap *envs);
+int                 ft_exec_pwd(char **str, int fd, t_cmap *envs);
+int                 ft_exec_cd(char **str, int fd, t_cmap *envs);
+int                 ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin, t_cmap *envs);
 t_clist		        *from_parsing2exec(const t_clist *lst, const char *path);
 t_permessions       check_existance(const char *command, const char *path, char **line);
 void                free_exec(void *exec);
@@ -44,5 +45,4 @@ void                init_builtins(t_cmap **map);
 void                insert_builtins(t_cmap *map, const char *builtin_name, t_builtin_function builtin_funcn);
 t_builtin_function  get_builtins(t_cmap *mp, const char *key);
 void                free_builtins(void *data);
-void                ft_exec_cd(char **str, int fd, t_cmap *envs);
 #endif

@@ -12,9 +12,12 @@
 
 #include "../include/execution.h"
 
-void ft_exec_pwd(char **str, int fd)
+// change function return from void to int to check errors
+int ft_exec_pwd(char **str, int fd, t_cmap * envs)
 {
-    int i = 0;
-    while (str[i])
-        ft_putstr_fd(str[i++], fd);
+    char pwd[200];
+    getcwd(pwd, 200 * sizeof(char));
+    ft_putstr_fd(pwd, fd);
+    ft_putstr_fd("\n", fd);
+    return (0);
 }

@@ -57,7 +57,25 @@ t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
     return (exec_list);
 }
 
+int      is_equal(const char *s1, const char *s2)
+{
+    unsigned int iterator;
 
+    iterator = 0;
+    while (s1[iterator] && s1[iterator] == s2[iterator])
+        iterator++;
+    if (s1[iterator] != s2[iterator])
+        return (0);
+    return (1);
+}
+bool     is_not_making_change(t_exec *exec)
+{
+    if (exec->perm != BUILTINS)
+        return (1);
+    return (!(is_equal(exec->cmd, "cd") ||
+    is_equal(exec->cmd, "export") ||
+    is_equal(exec->cmd, "unset") || is_equal(exec->cmd, "exit")));
+}
 void     exec_command(const t_clist *commands, t_cmap *envs)
 {
     t_clist       *iter_lst;
@@ -65,9 +83,17 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
     int            stdfd[2];
 
     iter_lst = (t_clist *)commands;
-    //pipe_ret = ft_pipe(iter_lst, 1, 0);
-    //setv(envs, "?", ft_itoa(pipe_ret));
-    display(iter_lst->data, envs);
+    if (iter_lst->next || is_not_making_change(iter_lst->data))
+    {
+        pipe_ret = ft_pipe(iter_lst, 1, 0, envs);
+        setv(envs, "?", ft_itoa(pipe_ret));
+    }
+    else
+    {
+        t_exec *ex = iter_lst->data;
+        get_builtins(g_builtins, ex->cmd)(ex->arguments + 1, 1, envs);
+    }
+    //display(iter_lst->data, envs);
     /*while (iter_lst)
     {
        
@@ -106,9 +132,9 @@ int     main(void)
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
+    insert_builtins(g_builtins, "cd", ft_exec_cd);
     //insert_builtins(g_builtins, "cd", ft_exec_cd);
     /*** END TEST ***/
-
 	while (1)
 	{
 		print(">>> ");
