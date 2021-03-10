@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/09 23:11:06 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:03:17 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void  ft_child_pipe(t_exec *data, int fd[2], int old_stdin, bool *is)
         execve(data->cmd, data->arguments, NULL);
     else if (data->perm == BUILTINS)
     {
-        get_builtins(g_builtins, data->cmd)(data->arguments, 1);
+        get_builtins(g_builtins, data->cmd)(data->arguments + 1, 1);
         exit(0);
     }
     exit(127);

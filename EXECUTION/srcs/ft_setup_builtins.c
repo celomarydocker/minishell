@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setup_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/08 19:39:55 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/10 17:54:01 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_builtin_function            get_builtins(t_cmap *mp, const char *key)
 void        free_builtins(void *data)
 {
     t_key_value *key_value;
+
+    key_value = (t_key_value *)data;
     free(key_value->key);
     free(key_value);
 }

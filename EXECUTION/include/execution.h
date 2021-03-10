@@ -44,5 +44,5 @@ void                init_builtins(t_cmap **map);
 void                insert_builtins(t_cmap *map, const char *builtin_name, t_builtin_function builtin_funcn);
 t_builtin_function  get_builtins(t_cmap *mp, const char *key);
 void                free_builtins(void *data);
-void                ft_exec_cd(char **str, int fd);
+void                ft_exec_cd(char **str, int fd, t_cmap *envs);
 #endif
