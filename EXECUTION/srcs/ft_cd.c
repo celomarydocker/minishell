@@ -12,33 +12,35 @@
 
 #include "../include/execution.h"
 
-void ft_exec_cd(char **str, int fd, t_cmap *envs)
+
+
+void    ft_exec_cd(char **str, int fd, t_cmap *envs)
 {
-    char *to_der;
-    DIR *tmp_der;
-    
+    char    *to_der;
+    char    *buffer;
+
+    buffer = malloc(64);
     if (!*str)
     {
         to_der = get(envs, "HOME");
         print("old pwd %s\n", get(envs, "PWD"));
         chdir(to_der);
-        setv(envs, "PWD", ft_strdup(to_der));
+        getcwd(buffer, 64);
+        setv(envs, "PWD", buffer);
         print("new pwd %s\n", get(envs, "PWD"));
     }
     else
     {
-        tmp_der = opendir(*str);
-        if (tmp_der != NULL)
+        if (!(chdir(*str)))
         {
             print("old pwd %s\n", get(envs, "PWD"));
-            setv(envs, "PWD", ft_strdup(*str));
-            chdir(*str);
+            getcwd(buffer, 64);
+            setv(envs, "PWD", buffer);
             print("new pwd %s\n", get(envs, "PWD"));
         }
         else
         {
             ft_putstr_fd("cd : no such file or directory ", fd);
-            write(1, "\n", 1);
         }
     }
 }
