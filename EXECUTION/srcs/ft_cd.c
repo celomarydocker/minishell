@@ -25,12 +25,10 @@ int    ft_exec_cd(char **str, int fd, t_cmap *envs)
     if (!*str || ft_strncmp(*str, "--", 3) == 0)
     {
         to_der = get(envs, "HOME");
-        //print("old pwd %s\n", get(envs, "PWD"));
         chdir(to_der);
         getcwd(buffer, 64);
         setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
         setv(envs, "PWD", buffer);
-        //print("new pwd %s\n", get(envs, "PWD"));
     }
     else
     {
@@ -47,29 +45,15 @@ int    ft_exec_cd(char **str, int fd, t_cmap *envs)
         }
         else if (!(chdir(*str)))
         {
-            //print("old pwd %s\to_dern", get(envs, "PWD"));
             getcwd(buffer, 64);
             setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
             setv(envs, "PWD", buffer);
-            //print("new pwd %s\n", get(envs, "PWD"));
         }
         else
         {
-            ft_putstr_fd("cd : no such file or directory ", fd);
+            ft_putstr_fd(ft_strjoin("cd: no such file or directory: ", *str) , fd);
             write(fd, "\n", 1);
         }
     }
     return (0);
 }
-// int main()
-// {
-//     char s[1000];
-
-//     printf("%s\n", getcwd(s, 100));  // print current working directory
-  
-//     chdir(".."); // chan        chdir(to_der);ge the directory
-
-//     printf("%s\n", getcwd(s, 100)); // print the change directory
-  
-//     return 0; 
-// }
