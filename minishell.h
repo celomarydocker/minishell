@@ -12,7 +12,8 @@
 # include "PARSER/dt/hash_table/hash_map.h"
 # include "libft/libft.h"
 # include "PARSER/command_recognizer/recognizer.h"
-# include "./EXECUTION/include/execution.h"
+# include "EXECUTION/include/execution.h"
+# include "ERRORS/include/error.h"
 # include <dirent.h>
 
 extern char **environ;

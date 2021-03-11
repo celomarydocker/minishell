@@ -1,7 +1,0 @@
->>> echo hicham | > file
-./run.sh: line 3: 38659 Segmentation fault: 11  ./a.out
-
->>> export $HOME=hicham
-./run.sh: line 3: 58841 Segmentation fault: 11  ./a.out
-
-segfault in command exit

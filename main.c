@@ -137,7 +137,8 @@ int     main(void)
 	{
 		print(">>> ");
 		get_next_line(1, &line);
-		all_commands(line, envs);
+        print("ERROR %d\n", pipe_dup(line));
+		//all_commands(line, envs);
         free(line);
         line = NULL;
 	}
