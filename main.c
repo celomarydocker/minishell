@@ -15,8 +15,6 @@ void     display(const t_exec *exec, t_cmap *envs)
         print("COMMAND %s EXIST %s\n", exec->cmd, type);
     else
         print("COMMAND NOT FOUND\n");
-    // call command cd here temporaire
-    // ft_exec_cd(exec->arguments + 1, 1, envs);
     char **args = exec->arguments;
     print("ARGUMENTS\n");
     while (*args)
