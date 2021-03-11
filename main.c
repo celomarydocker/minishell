@@ -137,7 +137,10 @@ int     main(void)
 	{
 		print(">>> ");
 		get_next_line(1, &line);
-        print("ERROR %d\n", pipe_dup(line));
+        print("ERROR %d\n", semi_colon_dup(line));
+        print("ERROR PIPE %d\n", pipe_dup(line));
+        print("ERROR quotes %d\n", check_quotes(line));
+        print("ERROR backslash: %d\n", check_backslash(line));
 		//all_commands(line, envs);
         free(line);
         line = NULL;
