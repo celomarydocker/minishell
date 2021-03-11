@@ -35,7 +35,7 @@ int    ft_exec_cd(char **str, int fd, t_cmap *envs)
         if (ft_strncmp(*str, "-", 2) == 0)
         {
             if (chdir(s = get(envs, "OLDPWD")) == -1)
-                printf("%s\n", s);
+                printf("cd: OLDPWD not set\n");
             else
             {
                 setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
