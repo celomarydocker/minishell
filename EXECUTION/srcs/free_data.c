@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 21:02:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 19:02:36 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/11 22:44:27 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ void free_exec(void  *exec)
     e->arguments = NULL;
     clear_list(&e->files, free_files);
     free(e);
+}
+
+void        free_envs(t_key_value *kv)
+{
+    free(kv->key);
+    free(kv);
 }

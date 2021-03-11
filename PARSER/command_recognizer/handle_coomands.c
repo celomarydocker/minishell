@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_coomands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 19:33:34 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/11 23:19:20 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char        *single_double_quotes(char *str, int *iter, char c, t_cmap *map)
 char        *get_command(char *str, int *iter, t_cmap *map)
 {
     char       *s;
-
     s = NULL;
     while (str[*iter] == ' ')
         (*iter)++;

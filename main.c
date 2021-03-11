@@ -122,7 +122,7 @@ int     main(void)
 {
 	char 	*line;
     t_cmap *envs;
-
+    t_clist *keys;
 	line = NULL;
     envs = put_vars(environ);
     setv(envs, "?", ft_itoa(0));
@@ -131,6 +131,9 @@ int     main(void)
     insert_builtins(g_builtins, "echo", ft_exec_echo);
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
     insert_builtins(g_builtins, "cd", ft_exec_cd);
+    insert_builtins(g_builtins, "unset", ft_unset);
+    ft_unset(envs, "HOME");
+    //print("getpwd %s\n", get(envs, "PWD"));
     //insert_builtins(g_builtins, "unset", ft_exec_cd);
     /*** END TEST ***/
 	while (1)
