@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 18:45:32 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/12 19:48:56 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
     signal(SIGQUIT, SIG_DFL);
     if (data->perm == NOT_FOUND)
     {
+        ft_putstr_fd("CSHELL: ", 2);
         ft_putstr_fd(data->cmd, 2);
-        ft_putstr_fd(": command not found\n", 2);
+        ft_putstr_fd(" command not found\n", 2);
         exit(127);
     }
     io = iofile(data->files, &status_error);

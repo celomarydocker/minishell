@@ -170,8 +170,8 @@ void signal_handler(int sig)
     print(">>> ");
     if (sig != SIGQUIT)
     {
-            write(1, "\n", 1);
-    print(">>> ");
+        write(1, "\n", 1);
+        print(">>> ");
     }
 }
 
