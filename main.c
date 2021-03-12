@@ -117,12 +117,62 @@ void     all_commands(char *s, t_cmap *global_env)
     }
     free_split(cmds);
 }
+void    ft_print_char(int times, char c)
+{
+    int    iter;
 
-int     main(void)
+    iter = 0;
+    while (iter++ < times)
+        write(2, &c, 1);
+}
+
+int    print_error(int error, char c)
+{
+    
+    if (error)
+    {
+        ft_putstr_fd("CSHELL: syntax error near unexpected token `", 2);
+        ft_print_char(error, c);
+        ft_putstr_fd("'\n", 2);
+    }
+    return (error);
+}
+
+int    print_error_quote(int error)
+{
+    if (error)
+        ft_putstr_fd("CSHELL: syntax error quotes not closed\n", 2);
+    return (error);
+}
+int    print_error_backslash(int error)
+{
+    if (error)
+        ft_putstr_fd("CSHELL: unxpected backslash at the end\n", 2);
+    return (error);
+}
+
+int     error_parsing(const char *line)
+{
+    int error;
+
+    if ((error = print_error(semi_colon_dup(line), ';')))
+        return (258);
+    if ((error = print_error(pipe_dup(line), '|')))
+        return (258);
+    if ((error= print_error_quote(check_quotes(line))))
+        return (1);
+    if ((error= print_error_backslash(check_backslash(line))))
+        return (1);
+    return (0);
+}
+
+int     main()
 {
 	char 	*line;
-    t_cmap *envs;
+    int     error;
 
+    t_cmap *envs;
+    t_clist *keys;
 	line = NULL;
     envs = put_vars(environ);
     setv(envs, "?", ft_itoa(0));
@@ -131,14 +181,19 @@ int     main(void)
     insert_builtins(g_builtins, "echo", ft_exec_echo);
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
     insert_builtins(g_builtins, "cd", ft_exec_cd);
-    //insert_builtins(g_builtins, "cd", ft_exec_cd);
+    insert_builtins(g_builtins, "unset", ft_unset);
+    //ft_unset(NULL, 1, cha);
+    //print("getpwd %s\n", get(envs, "PWD"));
+    //insert_builtins(g_builtins, "unset", ft_exec_cd);
     /*** END TEST ***/
 	while (1)
 	{
 		print(">>> ");
 		get_next_line(1, &line);
-        print("ERROR %d\n", pipe_dup(line));
-		//all_commands(line, envs);
+        if (!(error=error_parsing(line)))
+		    all_commands(line, envs);
+        else
+            setv(envs, "?", ft_itoa(error));
         free(line);
         line = NULL;
 	}

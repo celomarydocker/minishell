@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   check_backslash.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 15:02:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/12 10:32:34 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/03/11 22:25:44 by mel-omar          #+#    #+#             */
+/*   Updated: 2021/03/11 22:31:18 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/execution.h"
 
-
-int     ft_unset(char **arguments, int fd, t_cmap *envs)
+int         check_backslash(const char *line)
 {
-    char                *value;
+    int                 backslash;
     unsigned int        iterator;
 
     iterator = 0;
-    value = pop_value(envs, arguments[0], ft_strlen(arguments[0]), free_envs);
-    print("%s\n", value);
-    free(value);
-    return (0);
+    backslash = 0;
+    while (line[iterator])
+    {
+        if (line[iterator] == '\\')
+            backslash++;
+        else
+            backslash = 0;
+        iterator++;
+    }
+    return (backslash % 2);
 }

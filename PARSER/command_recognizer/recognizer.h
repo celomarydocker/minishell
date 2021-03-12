@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:35:57 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 19:33:07 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/12 11:15:42 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			enter(char  *str, int *iter, t_cmap *map, t_clist **lst);
 void			get_oper(char *str, int *iter, t_clist **operator);
 t_cmap			*put_vars(char **vars);
 char			*single_double_quotes(char *str, int *iter, char c, t_cmap *map);
-char			*get_command(char *str, int *iter, t_cmap *map);
+char			*get_command(char *str, int *iter, t_cmap *map, t_clist **lst);
 t_rec       	*handle_command(char *str, t_cmap *map, int *iter, int is_found);
 void			add_command(char *cmd, t_clist **lst, t_cmap *global_vars);
 t_clist			*get_command_line(char *cmd, t_cmap *global_vars);

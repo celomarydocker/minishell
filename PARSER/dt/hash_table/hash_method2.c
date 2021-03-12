@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_method2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 15:17:26 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/12 16:09:46 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/11 22:56:00 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,27 @@ void		*copy_key(const unsigned char *key, size_t key_size)
 	}
 	dst[iter] = 0;
 	return (dst);
+}
+
+void			*pop_value(t_cmap *map, const void *key, size_t key_size,
+void (*free_key)(t_key_value *data))
+{
+	int		id;
+	t_clist	*list;
+	void	*value;
+	id = get_hash_code(key, key_size);
+	if (!map->lst[id])
+		return (NULL);
+	list = map->lst[id];
+	while (list)
+	{
+		if (compare(((t_key_value *)list->data)->key, key, key_size))
+		{
+			value = ((t_key_value *)list->data)->value;
+			free_key(list->data);
+			return (value);
+		}
+		list = list->next;
+	}
+	return (NULL);
 }

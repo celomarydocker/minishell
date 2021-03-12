@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linkedlist.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:36:38 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/12 16:06:21 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:23:05 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void				*pop(t_clist **list);
 void				iterate_list(const t_clist *list, void func(void *data));
 void				clear_list(t_clist **list, void free_data(void *data));
 size_t				length(const t_clist *lst);
+t_clist				*joined_list(t_clist *lst1, t_clist *lst2);
 #endif

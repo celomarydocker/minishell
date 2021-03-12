@@ -39,10 +39,12 @@ int                 ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin, t_
 t_clist		        *from_parsing2exec(const t_clist *lst, const char *path);
 t_permessions       check_existance(const char *command, const char *path, char **line);
 void                free_exec(void *exec);
+void                free_envs(t_key_value *kv);
 t_pair_files        iofile(t_clist *files, int *error);
 int                 ft_pipe_return(int status);
 void                init_builtins(t_cmap **map);
 void                insert_builtins(t_cmap *map, const char *builtin_name, t_builtin_function builtin_funcn);
 t_builtin_function  get_builtins(t_cmap *mp, const char *key);
 void                free_builtins(void *data);
+int                 ft_unset(char **arguments, int fd, t_cmap *envs);
 #endif
