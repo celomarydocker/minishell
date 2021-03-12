@@ -47,4 +47,5 @@ void                insert_builtins(t_cmap *map, const char *builtin_name, t_bui
 t_builtin_function  get_builtins(t_cmap *mp, const char *key);
 void                free_builtins(void *data);
 int                 ft_unset(char **arguments, int fd, t_cmap *envs);
+int                 ft_exec_exit(char **str, int fd, t_cmap *envs);
 #endif

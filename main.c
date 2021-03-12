@@ -182,7 +182,8 @@ int     main()
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
     insert_builtins(g_builtins, "cd", ft_exec_cd);
     insert_builtins(g_builtins, "unset", ft_unset);
-    //ft_unset(NULL, 1, cha);
+    insert_builtins(g_builtins, "exit", ft_exec_exit);
+    //ft_unset(envs, "HOME");
     //print("getpwd %s\n", get(envs, "PWD"));
     //insert_builtins(g_builtins, "unset", ft_exec_cd);
     /*** END TEST ***/
