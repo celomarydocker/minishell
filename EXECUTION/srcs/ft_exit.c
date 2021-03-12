@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/12 12:55:49 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:23:43 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,25 @@ int     ft_exec_exit(char **str, int fd, t_cmap *envs)
     if (!*str)
     {
         print("exit\n");
-        exit(1);
+        exit(0);
     }
-    else if (ft_isalpha(*str[i]) == 1)
+    else if (ft_isalpha(**str) == 1)
     {
-        i++;
         write(1, "exit\n", 5);
         print("%s: %s: %s: %s\n", "minishell", "exit", *str, "numeric argument required");
         //return (1);
-        exit(1);
+        exit(255);
     }
-    else if (ft_isdigit(*str[i]) == 1)
+    else if (ft_isdigit(**str) == 1)
     {
-        i++;
+        // if ()
         print("exit\n");
-        exit(1);
+        exit(ft_atoi(str[i++]));
     }
     else
     {
         print("exit\n");
-        exit(1);
+        exit(0);
     }
     return (0);
 }
