@@ -132,7 +132,8 @@ int     main(void)
     insert_builtins(g_builtins, "pwd", ft_exec_pwd);
     insert_builtins(g_builtins, "cd", ft_exec_cd);
     insert_builtins(g_builtins, "unset", ft_unset);
-    ft_unset(envs, "HOME");
+    insert_builtins(g_builtins, "exit", ft_exec_exit);
+    //ft_unset(envs, "HOME");
     //print("getpwd %s\n", get(envs, "PWD"));
     //insert_builtins(g_builtins, "unset", ft_exec_cd);
     /*** END TEST ***/
@@ -140,11 +141,11 @@ int     main(void)
 	{
 		print(">>> ");
 		get_next_line(1, &line);
-        print("ERROR %d\n", semi_colon_dup(line));
-        print("ERROR PIPE %d\n", pipe_dup(line));
-        print("ERROR quotes %d\n", check_quotes(line));
-        print("ERROR backslash: %d\n", check_backslash(line));
-		//all_commands(line, envs);
+        // print("ERROR %d\n", semi_colon_dup(line));
+        // print("ERROR PIPE %d\n", pipe_dup(line));
+        // print("ERROR quotes %d\n", check_quotes(line));
+        // print("ERROR backslash: %d\n", check_backslash(line));
+		all_commands(line, envs);
         free(line);
         line = NULL;
 	}
