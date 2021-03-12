@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/12 18:52:51 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/12 18:54:47 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int     ft_exec_exit(char **str, int fd, t_cmap *envs)
     }
     else if (ft_isdigit(**str) == 1)
     {
-        // if ()
         print("exit\n");
         exit(ft_atoi(str[i++]));
     }
