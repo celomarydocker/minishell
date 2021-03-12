@@ -166,13 +166,7 @@ int     error_parsing(const char *line)
 
 void signal_handler(int sig)
 {
-    ft_putstr_fd("\r\33[2K", 1);
-    print(">>> ");
-    if (sig != SIGQUIT)
-    {
-        write(1, "\n", 1);
-        print(">>> ");
-    }
+    write(2, "\r\n", 2);
 }
 
 int     main()
@@ -187,7 +181,7 @@ int     main()
     setv(envs, "?", ft_itoa(0));
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
-    signal(SIGQUIT, signal_handler);
+    signal(SIGQUIT, SIG_IGN);
 
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 19:48:56 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/12 22:14:41 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
     ft_setup_output(fd[1], is[2], io);
     close(fd[0]);
     if (data->perm == FILE_EXEC)
-        execve(data->cmd, data->arguments, NULL);
+        execve(data->cmd, data->arguments, from_map_to_array_2d(envs));
     else if (data->perm == BUILTINS)
     {
         get_builtins(g_builtins, data->cmd)(data->arguments + 1, 1, envs);
@@ -104,6 +104,6 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
         return (ft_pipe_return(status));
     }
     status = ft_pipe(pipe_exec->next, 0, fd[0], envs);
-    wait(NULL);
+    waitpid(pid, NULL, 0);
     return (status);
 }
