@@ -6,17 +6,14 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:58:13 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/11 16:28:31 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/12 10:18:14 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/error.h"
 #include <stdio.h>
 
-/*
--- 1 one pipe
--- 2 pipe on the middle
-*/
+
 int     pipe_dup(const char *line)
 {
     int                 lock;
