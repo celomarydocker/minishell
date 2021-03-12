@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 04:17:19 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/09 15:37:17 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/12 17:21:30 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int       len_name(char *str)
     int     len;
 
     len = 0;
-    if ((str[len] < 'A' || (str[len] > 'Z' && str[len] < 'a') || str[len] > 'z') && !is_inset(str[len], "_?"))
+    if ((str[len] < 'A' || (str[len] > 'Z' && str[len] < 'a') || str[len] > 'z') && !is_inset(str[len], "_?$"))
         return (0);
     len++;
     while (str[len])
@@ -39,7 +39,7 @@ int      var_len(char *str, int *iter, t_cmap *map)
     str++;
     len = len_name(str);
     if (!len)
-        return (0);
+        return (1);
     var = ft_csubstr(str, len);
     *iter += len;
     len = ft_cstrlen(get(map, var));
@@ -57,7 +57,11 @@ int        variables(char *dest, char *str, int *iter, t_cmap *map)
     len = len_name(str + 1);
     *iter += len;
     if (!len)
-        return (0);
+    {
+        dest[0] = '$';
+        dest[1] = 0;
+        return (1);
+    }
     i = 0;
     var_name = ft_csubstr(str + 1, len);
     value = get(map, var_name);

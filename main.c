@@ -103,13 +103,11 @@ void     all_commands(char *s, t_cmap *global_env)
     t_clist     *exec_pipe;
     char        **cmds;
     int         iter;
-    
-    //get_builtins(g_builtins, "pwd")(ft_csplit(get(global_env, "PWD"), ' ', NULL), 1);
+
     cmds = csplit(s, ';');
     iter = 0;
     while (cmds[iter])
     {
-       //print("%s\n", cmds[iter]);
        exec_pipe = put_data_into_struct(cmds[iter], global_env);
        exec_command(exec_pipe, global_env);
        clear_list(&exec_pipe, free_exec);
@@ -176,6 +174,7 @@ int     main()
 	line = NULL;
     envs = put_vars(environ);
     setv(envs, "?", ft_itoa(0));
+    setv(envs, "$", ft_itoa(getpid()));
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
