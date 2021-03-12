@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 15:09:55 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/12 18:45:32 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
     t_pair_files        io;
     int                 status_error;
 
+    signal(SIGINT, SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
     if (data->perm == NOT_FOUND)
     {
         ft_putstr_fd(data->cmd, 2);

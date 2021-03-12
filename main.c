@@ -164,6 +164,17 @@ int     error_parsing(const char *line)
     return (0);
 }
 
+void signal_handler(int sig)
+{
+    ft_putstr_fd("\r\33[2K", 1);
+    print(">>> ");
+    if (sig != SIGQUIT)
+    {
+            write(1, "\n", 1);
+    print(">>> ");
+    }
+}
+
 int     main()
 {
 	char 	*line;
@@ -175,6 +186,9 @@ int     main()
     envs = put_vars(environ);
     setv(envs, "?", ft_itoa(0));
     setv(envs, "$", ft_itoa(getpid()));
+    signal(SIGINT, signal_handler);
+    signal(SIGQUIT, signal_handler);
+
     /*** TEST BUILTINS ***/
     init_builtins(&g_builtins);
     insert_builtins(g_builtins, "echo", ft_exec_echo);
