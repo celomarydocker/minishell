@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/13 17:05:32 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/13 19:00:37 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
     int excod;
 
 	excod = 0;
-    print("is_pipe=%d\n", is_pipe);
 	if (str[0])
 	{
 		if (ft_isnumber(str[0]))
@@ -37,18 +36,19 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
             {
                 if (is_pipe)
 			        print("exit\n");
-                ft_putstr_fd("exit: too many arguments\n", 2);
+				print("exit\n");
+                ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 				return (!is_pipe);
             }
-            if (!is_pipe)
-			    print("exit\n");
+            // if (!is_pipe)
+			print("exit\n");
 			excod = ft_atoi(str[0]);
 		}
 		else
 		{
 			print("exit\n");
 			excod = 255;
-            print("exit: %s: numeric argument required\n", str[0]);
+            print("minishell: exit: %s: numeric argument required\n", str[0]);
 		}
 	}
     else if (!is_pipe)
@@ -56,12 +56,3 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
 	exit(excod);
 	return (1);
 }
-
-/*
-bash-3.2$ exit 546 65453 | echo $?
-bash: exit: too many arguments
-0
-bash-3.2$ exit 534 3546 354
-exit
-bash: exit: too many arguments
-*/
