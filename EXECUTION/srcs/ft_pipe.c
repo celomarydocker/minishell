@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/13 16:55:09 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/13 18:04:29 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
 {
     int     pid;
     int     status;
+    int     sign;
     int     fd[2];
     int     is_first_last[3];
 
@@ -100,10 +101,12 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
         close(old_stdin);
     if (!pipe_exec->next)
     {
+        g_global.g_pid= 1;
         waitpid(pid, &status, 0);
         return (ft_pipe_return(status));
     }
     status = ft_pipe(pipe_exec->next, 0, fd[0], envs);
-    waitpid(pid, NULL, 0);
+    g_global.g_pid= 1;
+    waitpid(pid, &sign, 0);
     return (status);
 }

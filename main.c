@@ -166,15 +166,16 @@ int     error_parsing(const char *line)
 
 void signal_handler(int sig)
 {
+
+    char buffer[100];
     if (sig == SIGINT)
     {
-        if (g_global.g_pid == 1)
+        //print("\n%d %d %d\n", g_global.pid, getpid(), g_global.g_pid);
+        if (g_global.g_pid != 1)
         {
-            write(1, "\b\b  \b\b\n", 7);
-            write(1,">>> ", 4);
+             write(1, "\r\n", 2);
+            print("%s> ", getcwd(buffer, 100));
         }
-        else
-            write(1, "\n", 1);
     }
 }
 
@@ -182,6 +183,7 @@ int     main()
 {
 	char 	*line;
     int     error;
+    char    buffer[200];
 
     t_cmap *envs;
     t_clist *keys;
@@ -203,17 +205,21 @@ int     main()
     //print("getpwd %s\n", get(envs, "PWD"));
     //insert_builtins(g_global.g_builtins, "unset", ft_exec_cd);
     /*** END TEST ***/
-	while (1)
+    g_global.g_pid = 0;
+    g_global.pid = getpid();
+    //print("%d\n", getpid());
+    print("%s> ", getcwd(buffer, 200));
+    while (1)
 	{
-		print(">>> ");
-        g_global.g_pid = 1;
-		get_next_line(1, &line);
+		get_next_line(0, &line);
         if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
         else
             setv(envs, "?", ft_itoa(error));
         free(line);
         line = NULL;
+        g_global.g_pid = 0;
+        print("\r%s> ",getcwd(buffer, 200));
 	}
     clear_map(&g_global.g_builtins, free_builtins);
     clear_map(&envs, free_vars);
