@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/09 23:16:13 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/13 16:53:51 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
 
-void ft_export(t_cmap *envs, const char *line)
+void ft_export(t_cmap *envs, int is_pipe, int fd, const char *line)
 {
     char    **slt;
 

@@ -89,7 +89,7 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
     else
     {
         t_exec *ex = iter_lst->data;
-        get_builtins(g_builtins, ex->cmd)(ex->arguments + 1, 1, envs);
+        get_builtins(g_global.g_builtins, ex->cmd)(ex->arguments + 1, 0 ,1, envs);
     }
     //display(iter_lst->data, envs);
     /*while (iter_lst)
@@ -166,7 +166,16 @@ int     error_parsing(const char *line)
 
 void signal_handler(int sig)
 {
-    write(2, "\r\n", 2);
+    if (sig == SIGINT)
+    {
+        if (g_global.g_pid == 1)
+        {
+            write(1, "\b\b  \b\b\n", 7);
+            write(1,">>> ", 4);
+        }
+        else
+            write(1, "\n", 1);
+    }
 }
 
 int     main()
@@ -184,19 +193,20 @@ int     main()
     signal(SIGQUIT, SIG_IGN);
 
     /*** TEST BUILTINS ***/
-    init_builtins(&g_builtins);
-    insert_builtins(g_builtins, "echo", ft_exec_echo);
-    insert_builtins(g_builtins, "pwd", ft_exec_pwd);
-    insert_builtins(g_builtins, "cd", ft_exec_cd);
-    insert_builtins(g_builtins, "unset", ft_unset);
-    insert_builtins(g_builtins, "exit", ft_exec_exit);
+    init_builtins(&g_global.g_builtins);
+    insert_builtins(g_global.g_builtins, "echo", ft_exec_echo);
+    insert_builtins(g_global.g_builtins, "pwd", ft_exec_pwd);
+    insert_builtins(g_global.g_builtins, "cd", ft_exec_cd);
+    insert_builtins(g_global.g_builtins, "unset", ft_unset);
+    insert_builtins(g_global.g_builtins, "exit", ft_exec_exit);
     //ft_unset(envs, "HOME");
     //print("getpwd %s\n", get(envs, "PWD"));
-    //insert_builtins(g_builtins, "unset", ft_exec_cd);
+    //insert_builtins(g_global.g_builtins, "unset", ft_exec_cd);
     /*** END TEST ***/
 	while (1)
 	{
 		print(">>> ");
+        g_global.g_pid = 1;
 		get_next_line(1, &line);
         if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
@@ -205,7 +215,7 @@ int     main()
         free(line);
         line = NULL;
 	}
-    clear_map(&g_builtins, free_builtins);
+    clear_map(&g_global.g_builtins, free_builtins);
     clear_map(&envs, free_vars);
     return (0);
 }

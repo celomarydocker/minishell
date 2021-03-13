@@ -6,13 +6,13 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/12 17:07:12 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/13 16:53:25 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int     ft_unset(char **arguments, int fd, t_cmap *envs)
+int     ft_unset(char **arguments, int is_pipe, int fd, t_cmap *envs)
 {
     char                *value;
     unsigned int        iterator;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/12 15:53:03 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/13 16:52:55 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static short	ft_chkopt(char **args, int *i)
 	return (nl);
 }
 
-int ft_exec_echo(char **str, int fd, t_cmap *envs)
+int ft_exec_echo(char **str, int  is_pipe, int fd, t_cmap *envs)
 {
     short newline;
     int i;

@@ -17,4 +17,9 @@
 # include <dirent.h>
 
 extern char **environ;
+struct          s_global
+{
+    int                 g_pid;
+    t_cmap              *g_builtins;
+}                       g_global;
 #endif

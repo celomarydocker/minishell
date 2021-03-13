@@ -15,7 +15,7 @@
 
 // change function return from void to int to check errors
 
-int    ft_exec_cd(char **str, int fd, t_cmap *envs)
+int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
 {
     // mohammed initial 'OLDPWD' b "cd: OLDPWD not set" and don't print it in envs untill 'OLDPWD' has another value.
     char    *to_der;

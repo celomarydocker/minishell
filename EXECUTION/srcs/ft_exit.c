@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/13 16:14:44 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/13 17:05:32 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,25 @@ int ft_isnumber(char *str)
     return (1);
 }
 
-int     ft_exec_exit(char **str, int fd, t_cmap *envs)
+int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
 {
     int excod;
 
 	excod = 0;
+    print("is_pipe=%d\n", is_pipe);
 	if (str[0])
 	{
 		if (ft_isnumber(str[0]))
 		{
 			if (ft_strlentwo(str) > 1)
             {
-                if (ilakan pipe)
+                if (is_pipe)
 			        print("exit\n");
                 ft_putstr_fd("exit: too many arguments\n", 2);
-				return (!ilakan pipe);
+				return (!is_pipe);
             }
-			print("exit\n");
+            if (!is_pipe)
+			    print("exit\n");
 			excod = ft_atoi(str[0]);
 		}
 		else
@@ -49,7 +51,7 @@ int     ft_exec_exit(char **str, int fd, t_cmap *envs)
             print("exit: %s: numeric argument required\n", str[0]);
 		}
 	}
-    else
+    else if (!is_pipe)
 	    print("exit\n");
 	exit(excod);
 	return (1);
