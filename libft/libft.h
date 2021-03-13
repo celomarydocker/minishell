@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 16:28:38 by hfadyl            #+#    #+#             */
-/*   Updated: 2020/10/24 17:50:17 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/13 11:52:27 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int nb);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(const char *str, char c);
+size_t	ft_strlentwo(char **str);
 
 #endif

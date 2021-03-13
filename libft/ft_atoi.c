@@ -6,43 +6,47 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:57:56 by hfadyl            #+#    #+#             */
-/*   Updated: 2019/10/30 23:16:38 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/13 16:03:38 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	spaces(char c)
+static int	getsign(const char *str, int *i)
 {
-	if (c == '\f' || c == '\t' || c == '\n' || c == '\v' || c == '\r')
+	if (str[*i] == '-')
+	{
+		*i += 1;
+		return (-1);
+	}
+	else if (str[*i] == '+')
+	{
+		*i += 1;
 		return (1);
-	if (c == ' ')
-		return (1);
-	return (0);
+	}
+	return (1);
 }
-
 int			ft_atoi(const char *str)
 {
-	unsigned long	res;
-	int				sign;
-	int				i;
-
-	res = 0;
-	sign = 0;
+	int		i;
+	int		sign;
+	long	result;
 	i = 0;
-	while (spaces(str[i]) == 1)
+	result = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '+' || str[i] == '-')
+	sign = getsign(str, &i);
+	while (str[i] != '\0')
+	{
+		if (result > 2147483648 && sign == -1)
+			return (0);
+		if (result > 2147483647 && sign == 1)
+			return (-1);
+		if (str[i] >= '0' && str[i] <= '9')
+			result = result * 10 + (str[i] - '0');
+		else
+			return (result * sign);
 		i++;
-	while ((str[i] >= '0') && (str[i] <= '9'))
-		res = res * 10 + ((int)str[i++] - '0');
-	if (res > 2147483648 && sign == -1)
-		return (0);
-	if (res > 2147483647 && sign != -1)
-		return (-1);
-	if (sign == -1)
-		return (res * -1);
-	return (res);
+	}
+	return (result * sign);
 }
