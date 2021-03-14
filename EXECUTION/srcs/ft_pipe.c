@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/13 18:04:29 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/13 21:16:35 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
     ft_setup_output(fd[1], is[2], io);
     close(fd[0]);
     if (data->perm == FILE_EXEC)
-        execve(data->cmd, data->arguments, from_map_to_array_2d(envs));
+        execve(data->cmd, data->arguments,
+        from_map_to_array_2d(envs, data->cmd));
     else if (data->perm == BUILTINS)
     {
         get_builtins(g_global.g_builtins, data->cmd)(data->arguments + 1, 1 , 1, envs);

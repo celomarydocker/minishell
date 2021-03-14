@@ -98,6 +98,7 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
         iter_lst = iter_lst->next;
     }*/
 }
+
 void     all_commands(char *s, t_cmap *global_env)
 {
     t_clist     *exec_pipe;
@@ -115,6 +116,7 @@ void     all_commands(char *s, t_cmap *global_env)
     }
     free_split(cmds);
 }
+
 void    ft_print_char(int times, char c)
 {
     int    iter;
@@ -142,6 +144,7 @@ int    print_error_quote(int error)
         ft_putstr_fd("CSHELL: syntax error quotes not closed\n", 2);
     return (error);
 }
+
 int    print_error_backslash(int error)
 {
     if (error)
@@ -168,14 +171,18 @@ void signal_handler(int sig)
 {
 
     char buffer[100];
+    int  id;
     if (sig == SIGINT)
     {
-        //print("\n%d %d %d\n", g_global.pid, getpid(), g_global.g_pid);
         if (g_global.g_pid != 1)
         {
              write(1, "\r\n", 2);
             print("%s> ", getcwd(buffer, 100));
         }
+    }
+    else if (sig == SIGQUIT)
+    {
+        print("\b\b  \b\b");
     }
 }
 
@@ -184,16 +191,18 @@ int     main()
 	char 	*line;
     int     error;
     char    buffer[200];
-
     t_cmap *envs;
-    t_clist *keys;
+    char   *shelvl;
+
 	line = NULL;
     envs = put_vars(environ);
     setv(envs, "?", ft_itoa(0));
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
-    signal(SIGQUIT, SIG_IGN);
+    signal(SIGQUIT, signal_handler);
 
+
+    //tgetent(NULL, get(envs, "TERM"));
     /*** TEST BUILTINS ***/
     init_builtins(&g_global.g_builtins);
     insert_builtins(g_global.g_builtins, "echo", ft_exec_echo);

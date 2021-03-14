@@ -14,8 +14,7 @@
 # include "PARSER/command_recognizer/recognizer.h"
 # include "EXECUTION/include/execution.h"
 # include "ERRORS/include/error.h"
-# include <dirent.h>
-
+# include <termcap.h>
 extern char **environ;
 struct          s_global
 {
