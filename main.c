@@ -179,12 +179,52 @@ void signal_handler(int sig)
     }
 }
 
+void    backup_stdin()
+{
+    g_global.in_bk = dup(0);
+}
+
+void    restore_stdin()
+{
+    dup2(g_global.in_bk, 0);
+    close(g_global.in_bk);
+    backup_stdin();
+}
+
+void    prompt(void)
+{
+    char buffer[100];
+
+    print("\r%s> ",getcwd(buffer, 100));
+}
+
+char     *get_line(int check_before)
+{
+    char *line;
+    int ret;
+    char    *args[] = {"exit", "1"};
+
+    ret = get_next_line(0, &line);
+    if (!ret)
+    {
+        if (!*line && !check_before)
+            get_builtins(g_global.g_builtins, "exit")(args, 0, 0, NULL);
+        else
+        {
+            line = ft_cstrjoin(line, get_line(1));
+        }
+    }
+    return (line);
+}
+
+
+
+
 int     main()
 {
 	char 	*line;
     int     error;
     char    buffer[200];
-
     t_cmap *envs;
     t_clist *keys;
 	line = NULL;
@@ -192,7 +232,7 @@ int     main()
     setv(envs, "?", ft_itoa(0));
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
-    signal(SIGQUIT, SIG_IGN);
+    signal(SIGQUIT, signal_handler);
 
     /*** TEST BUILTINS ***/
     init_builtins(&g_global.g_builtins);
@@ -209,9 +249,11 @@ int     main()
     g_global.pid = getpid();
     //print("%d\n", getpid());
     print("%s> ", getcwd(buffer, 200));
+    int ret;
+    backup_stdin();
     while (1)
 	{
-		get_next_line(0, &line);
+        line = get_line(0);
         if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
         else
@@ -219,7 +261,7 @@ int     main()
         free(line);
         line = NULL;
         g_global.g_pid = 0;
-        print("\r%s> ",getcwd(buffer, 200));
+        prompt();
 	}
     clear_map(&g_global.g_builtins, free_builtins);
     clear_map(&envs, free_vars);

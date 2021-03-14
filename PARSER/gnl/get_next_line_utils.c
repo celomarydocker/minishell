@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:44:25 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 22:36:49 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/14 18:24:16 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 
 char		*ft_realloc(char **buffer, size_t old_size, size_t new_size)
 {
@@ -57,6 +58,8 @@ int			copy_to_line(char *buffer, char *line, int len)
 	line[len] = 0;
 	if (buffer[len] == '\n')
 		return (1);
+	if (buffer[len] == 0)
+		return (2);
 	return (0);
 }
 
