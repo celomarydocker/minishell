@@ -6,11 +6,86 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/15 12:48:29 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 13:32:41 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
+
+int     ft_cstrcmp(const char *s1, const char *s2)
+{
+    unsigned int        iterator;
+
+    iterator = 0;
+    while (s1[iterator] && s2[iterator] && s1[iterator] == s2[iterator])
+        iterator++;
+    return ((int)(s1[iterator] - s2[iterator]));
+}
+
+void    ft_swap(char **d1, char **d2)
+{
+    char *tmp;
+
+    tmp = *d1;
+    *d1 = *d2;
+    *d2 = tmp;
+}
+
+t_clist *sorted_keys(t_clist *keys)
+{
+    t_clist     *next;
+    t_clist     *current;
+    char        *d1;
+    char        *d2;
+
+    if (!keys)
+        return (NULL);
+    current = keys;
+    while (current->next)
+    {
+        next = current->next;
+        while (next)
+        {
+            if (ft_cstrcmp(current->data, next->data) > 0)
+            {
+                d1 = (char *)current->data;
+                d2 = (char *)next->data;
+                ft_swap(&d1, &d2);
+                current->data = d1;
+                next->data = d2;
+            }
+            next = next->next;
+        }
+        current = current->next;
+    }
+    return (keys);
+}
+
+void    print_variables(t_cmap *envs, int fd)
+{
+    t_clist     *keys;
+    t_clist     *iter_key;
+
+    keys = sorted_keys(get_keys(envs));
+    iter_key = keys;
+    while (iter_key)
+    {
+        if (!ft_strncmp(iter_key->data, "?", 1) ||
+        !ft_strncmp(iter_key->data, "$", 1))
+        {
+            iter_key = iter_key->next;
+            continue;
+        }
+        ft_putstr_fd("declare -x ", fd);
+        ft_putstr_fd(iter_key->data, fd);
+        ft_putstr_fd("=\"", fd);
+        ft_putstr_fd(get(envs, iter_key->data), fd);
+        ft_putstr_fd("\"\n", fd);
+        iter_key = iter_key->next;
+    }
+    clear_list(&keys, NULL);
+
+}
 
 int ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
 {
@@ -21,7 +96,7 @@ int ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
     ret = 0;
     if (!*args)
     {
-        ft_putstr_fd("TODO\n", 1);
+        print_variables(envs, fd);
         return (0);
     }
     iterator = 0;

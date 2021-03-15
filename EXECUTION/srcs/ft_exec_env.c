@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:48:17 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 11:09:14 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 12:53:52 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int        ft_exec_env(char **str, int is_pipe, int fd, t_cmap *envs)
         ft_putstr_fd("\n", fd);
         iter_key = iter_key->next;
     }
+    clear_list(&keys, NULL);
     return (0);
 }
