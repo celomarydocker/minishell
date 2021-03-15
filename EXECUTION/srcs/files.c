@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 22:04:37 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/07 11:39:22 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/15 10:39:37 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static int      input_file(t_file *file)
     return (open(file->filename, O_RDONLY));
 }
 
-t_pair_files    iofile(t_clist *files, int *error)
+t_pair_files    iofile(t_clist *files, int *error, char **file_error)
 {
     t_pair_files pair;
     t_file       *file;
 
     pair.input = -1;
     pair.output = -1;
-    error = 0;
+    *error = 0;
     while (files)
     {
         file = files->data;
@@ -44,7 +44,11 @@ t_pair_files    iofile(t_clist *files, int *error)
                 close(pair.input);
             pair.input = input_file(file);
             if (pair.input == -1)
-                *error = 255;
+            {
+                *error = 47;
+                *file_error = file->filename;
+                break;
+            }
         }
         else
         {
@@ -55,7 +59,11 @@ t_pair_files    iofile(t_clist *files, int *error)
             if (file->redirect == OUTPUT)
                 pair.output = output_file(file);
             if (pair.output == -1)
-                print("FILE NOT CREATED\n");
+            {
+                *error = 74;
+                *file_error = file->filename; 
+                break;
+            }
         }
         files = files->next;
     }

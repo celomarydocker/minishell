@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 21:46:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 01:22:38 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 09:50:44 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ int check_for_redirection(const char *s, unsigned int *iter, char red_char)
 
 int check_for_file(const char *s, unsigned int *i)
 {
-    printf("char %c\n", s[*i]);
     while (s[*i])
     {
         if (s[*i] == '>' || s[*i] == '<')
             return (0);
+        if (s[*i] == '|')
+            return (5);
+        if (s[*i] == ';')
+            return (6);
         if (s[*i] != ' ')
             return (1);
         (*i)++;
@@ -99,8 +102,10 @@ int check_redirection(const char *line)
             {
                 redirect = check_for_redirection(line, &iterator, line[iterator]);
                 file = check_for_file(line, &iterator);
-                if (redirect != 1 || !file)
+                if (redirect != 1 || file != 1)
                 {
+                    if (redirect == 1 && file > 1)
+                        return (file);
                     if (!line[iterator] && redirect==1)
                         return (4);
                     return (redirect);
@@ -115,5 +120,5 @@ int check_redirection(const char *line)
             back_slash++;
         iterator++;
     }
-    return (1);
+    return (0);
 }

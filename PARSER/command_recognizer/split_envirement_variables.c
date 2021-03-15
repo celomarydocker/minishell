@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_envirement_variables.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:45:14 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/09 12:56:08 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/15 12:34:15 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ char        **split_envirement_variable(const char *line)
     index_equal = found_first_equal(line);
     envs[2] = NULL;
     envs[0] = ft_csubstr((char *)line, index_equal);
-    envs[1] = ft_csubstr((char *)(line + index_equal + 1), ft_strlen(line) - index_equal - 1);
+    if (line[index_equal])
+        envs[1] = ft_csubstr((char *)(line + index_equal + 1), ft_strlen(line) - index_equal - 1);
+    else
+        envs[1] = ft_cstrdup(NULL);
+
     return (envs);
 }

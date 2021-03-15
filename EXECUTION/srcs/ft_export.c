@@ -3,21 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/13 16:53:51 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/15 12:48:29 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-
-void ft_export(t_cmap *envs, int is_pipe, int fd, const char *line)
+int ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
 {
-    char    **slt;
+    char            **slt;
+    int             ret;
+    unsigned int    iterator;
 
-    slt = split_envirement_variable(line);
-    setv(envs, slt[0], ft_cstrdup(slt[1]));
-    free_split(slt);
+    ret = 0;
+    if (!*args)
+    {
+        ft_putstr_fd("TODO\n", 1);
+        return (0);
+    }
+    iterator = 0;
+    while (args[iterator])
+    {
+        slt = split_envirement_variable(args[iterator]);
+        if (is_variable_not_valid(slt[0]))
+        {
+            ft_putstr_fd("CSHELL: export: `", 2);
+            ft_putstr_fd(args[iterator], 2);
+            ft_putstr_fd("' not a valid identifier\n", 2);
+            ret = 1;
+        }
+        else
+            setv(envs, slt[0], ft_cstrdup(slt[1]));
+        free_split(slt);
+        iterator++;
+    }
+    return (ret);
 }

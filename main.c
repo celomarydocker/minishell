@@ -23,7 +23,8 @@ void     display(const t_exec *exec, t_cmap *envs)
         args++;
     }
     t_clist *lst = exec->files;
-    io = iofile(lst, &error);
+  io = iofile(lst, &error, &type);
+  print("error %d\n", error);
    print("%d %d\n", io.input, io.output);
     if (io.input != -1)
         close(io.input);
@@ -92,8 +93,9 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
     {
         t_exec *ex = iter_lst->data;
         get_builtins(g_global.g_builtins, ex->cmd)(ex->arguments + 1, 0 ,1, envs);
+        //setv(envs, "_", ft_cstrdup(ex->cmd));
     }
-    //display(iter_lst->data, envs);
+   //display(iter_lst->data, envs);
     /*while (iter_lst)
     {
        
@@ -154,6 +156,24 @@ int    print_error_backslash(int error)
     return (error);
 }
 
+int     print_error_redirection(int error)
+{
+    if (error)
+    {
+        if (error == 4)
+            ft_putstr_fd("CSHELL: syntax error near unexepected token `newline'\n", 2);
+        else if (error == 3)
+            ft_putstr_fd("CSHELL: syntax error near unexepected token `>'\n", 2);
+        else if (error == 2)
+            ft_putstr_fd("CSHELL: syntax error near unexepected token `<'\n", 2);
+        else if (error == 5)
+            ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
+        else if (error == 6)
+            ft_putstr_fd("bash: syntax error near unexpected token `;'\n", 2);
+    }
+    return (error);
+}
+
 int     error_parsing(const char *line)
 {
     int error;
@@ -166,6 +186,8 @@ int     error_parsing(const char *line)
         return (1);
     if ((error= print_error_backslash(check_backslash(line))))
         return (1);
+    if ((error= print_error_redirection(check_redirection(line))))
+        return (2);
     return (0);
 }
 
@@ -200,11 +222,10 @@ char     *get_line(int check_before)
     char    *args[] = {"exit", "1"};
 
     ret = get_next_line(0, &line);
-    if (!ret)
+    if (ret == 0)
     {
-        print(" \b");
         if (!*line && !check_before)
-            get_builtins(g_global.g_builtins, "exit")(args, 0, 0, NULL);
+            get_builtins(g_global.g_builtins, "exit")(args, 0, 1, NULL);
         else
             line = ft_cstrjoin(line, get_line(1));
     }
@@ -232,6 +253,8 @@ int     main()
     insert_builtins(g_global.g_builtins, "cd", ft_exec_cd);
     insert_builtins(g_global.g_builtins, "unset", ft_unset);
     insert_builtins(g_global.g_builtins, "exit", ft_exec_exit);
+    insert_builtins(g_global.g_builtins, "env", ft_exec_env);
+    insert_builtins(g_global.g_builtins, "export", ft_export);
     //ft_unset(envs, "HOME");
     //print("getpwd %s\n", get(envs, "PWD"));
     //insert_builtins(g_global.g_builtins, "unset", ft_exec_cd);
@@ -243,15 +266,13 @@ int     main()
     while (1)
 	{
         line = get_line(0);
-        print("check command %d\n", check_redirection(line));
-        /*if (!(error=error_parsing(line)))
+        if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
         else
             setv(envs, "?", ft_itoa(error));
         free(line);
         line = NULL;
         g_global.g_pid = 0;
-        */
         prompt();
 	}
     clear_map(&g_global.g_builtins, free_builtins);

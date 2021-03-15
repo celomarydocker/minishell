@@ -6,11 +6,12 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/13 21:16:35 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 11:29:57 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
+
 
 static void  ft_setup_output(int output, bool is_last, t_pair_files io)
 {
@@ -44,23 +45,41 @@ static void  ft_setup_input(int old_input, bool is_first, t_pair_files io)
     }   
 }
 
+
+void         command_not_found_error(const char *cmd)
+{
+        ft_putstr_fd("CSHELL: ", 2);
+        ft_putstr_fd((char *)cmd, 2);
+        ft_putstr_fd(": command not found\n", 2);
+        exit(127);
+}
+
+void        file_not_found(const char *file)
+{
+        ft_putstr_fd("CSHELL: ", 2);
+        ft_putstr_fd((char *)file, 2);
+        ft_putstr_fd(": No such file or directory\n", 2);
+        exit(1);
+}
+
+void        init_child_signal()
+{
+    signal(SIGINT, SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
+}
+
 static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
 {
     t_pair_files        io;
     int                 status_error;
+    char                *filename_error;
 
-    signal(SIGINT, SIG_DFL);
-    signal(SIGQUIT, SIG_DFL);
+    init_child_signal();
     if (data->perm == NOT_FOUND)
-    {
-        ft_putstr_fd("CSHELL: ", 2);
-        ft_putstr_fd(data->cmd, 2);
-        ft_putstr_fd(" command not found\n", 2);
-        exit(127);
-    }
-    io = iofile(data->files, &status_error);
-    if (status_error == 255)
-        exit(status_error);
+        command_not_found_error(data->arguments[0]);
+    io = iofile(data->files, &status_error, &filename_error);
+    if (status_error == 47)
+        file_not_found(filename_error);
     ft_setup_input(is[0], is[1], io);
     ft_setup_output(fd[1], is[2], io);
     close(fd[0]);
@@ -82,7 +101,6 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
     int     sign;
     int     fd[2];
     int     is_first_last[3];
-
 
     fd[0] = -1;
     fd[1] = -1;

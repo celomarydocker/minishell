@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   from_parsing2execution.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:32:14 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 17:59:02 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/15 10:22:28 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-static char        **convert_list2array2d(const t_clist *lst)
+static char        **convert_list2array2d(const t_clist *lst, char *cmd)
 {
     char    **array_2d;
     size_t  iterator;
     size_t  length_string;
 
     array_2d = malloc(sizeof(char *) * (length(lst) + 2));
-    array_2d[0] = malloc(sizeof(char));
-    array_2d[0][0] = 0;
+    array_2d[0] = ft_cstrdup(cmd);
     iterator = 1;
     while (lst)
     {
@@ -71,7 +70,7 @@ static t_exec  *parse_exec(const t_ccommand *command, const char *path)
 
     exec = malloc(sizeof(t_exec));
     exec->cmd = ft_cstrdup(command->cmd);
-    exec->arguments = convert_list2array2d(command->data->text);
+    exec->arguments = convert_list2array2d(command->data->text, exec->cmd);
     exec->perm = check_existance(exec->cmd, path, &line);
     if (line)
     {
