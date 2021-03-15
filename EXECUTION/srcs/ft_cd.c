@@ -36,8 +36,8 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         {
             if (chdir(s = get(envs, "OLDPWD")) == -1)
             {
-                // print("cd: OLDPWD not set\n");
-                return (1);
+                ft_putstr_fd("cd: OLDPWD not set\n", 2);
+                //return (1);
             }
             else
             {
