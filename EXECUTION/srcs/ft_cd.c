@@ -35,12 +35,15 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         if (ft_strncmp(*str, "-", 2) == 0)
         {
             if (chdir(s = get(envs, "OLDPWD")) == -1)
-                printf("cd: OLDPWD not set\n");
+            {
+                // print("cd: OLDPWD not set\n");
+                return (1);
+            }
             else
             {
                 setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
                 setv(envs, "PWD", getcwd(buffer, 64));
-                printf("%s\n", buffer);
+                print("%s\n", buffer);
             }
         }
         else if (!(chdir(*str)))
