@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:38:21 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 12:39:01 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:29:08 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ int is_variable_not_valid(const char *variable_name)
     {
         if (!is_lower(variable_name[iter]) && !is_upper(variable_name[iter]) &&
         !is_digits(variable_name[iter]) && variable_name[iter] != '_')
+        {
+            if (variable_name[iter] == ' ')
+                return (2);
             return (1);
+        }
         iter++;
     }
     return (0);

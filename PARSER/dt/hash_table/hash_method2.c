@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 15:17:26 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/11 22:56:00 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:21:31 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ void (*free_key)(t_key_value *data))
 {
 	int		id;
 	t_clist	*list;
+	t_clist *before;
 	void	*value;
+
 	id = get_hash_code(key, key_size);
 	if (!map->lst[id])
 		return (NULL);
+	before = NULL;
 	list = map->lst[id];
 	while (list)
 	{
@@ -67,8 +70,14 @@ void (*free_key)(t_key_value *data))
 		{
 			value = ((t_key_value *)list->data)->value;
 			free_key(list->data);
+			if (!before)
+				map->lst[id] = map->lst[id]->next;
+			else
+				before->next = list->next;
+			free(list);
 			return (value);
 		}
+		before = list;
 		list = list->next;
 	}
 	return (NULL);
