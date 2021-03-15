@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recognizer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:35:57 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 11:15:42 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/15 00:10:36 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char			*ft_csubstr(char *str, int len);
 char			*ft_cstrdup(char *str);
 void			display_data(void *data);
 //split
-void			check_special(char c, char *special, int *is_back, char sp);
+int			check_special(char c, char cs, char *special, int *is_back);
 char			**csplit(const char *s, char separator);
 void			free_split(char **sp);
 //endsplit

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:56:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 22:50:02 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/14 18:23:39 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		get_next_line_helper(int fd, char **line, char *buffer)
 	static long	pos;
 	int			len;
 	size_t		old_size;
-
+	int			r;
 	old_size = 0;
 	while (1)
 	{
@@ -30,9 +30,12 @@ int		get_next_line_helper(int fd, char **line, char *buffer)
 		}
 		len = get_len(buffer, current, pos);
 		*line = ft_realloc(line, old_size, (size_t)len);
-		if (copy_to_line((buffer) + current, (*line) + old_size, len))
+		if ((r = copy_to_line((buffer) + current, (*line) + old_size, len)))
 		{
+			
 			current += len + 1;
+			if (r == 2)
+				return (0);
 			break ;
 		}
 		old_size += (size_t)len;

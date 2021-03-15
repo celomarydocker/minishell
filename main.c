@@ -66,6 +66,7 @@ int      is_equal(const char *s1, const char *s2)
         return (0);
     return (1);
 }
+
 bool     is_not_making_change(t_exec *exec)
 {
     if (exec->perm != BUILTINS)
@@ -74,6 +75,7 @@ bool     is_not_making_change(t_exec *exec)
     is_equal(exec->cmd, "export") ||
     is_equal(exec->cmd, "unset") || is_equal(exec->cmd, "exit")));
 }
+
 void     exec_command(const t_clist *commands, t_cmap *envs)
 {
     t_clist       *iter_lst;
@@ -181,18 +183,39 @@ void signal_handler(int sig)
         }
     }
     else if (sig == SIGQUIT)
-    {
         print("\b\b  \b\b");
+}
+
+void    prompt(void)
+{
+    char buffer[100];
+
+    print("\r%s> ",getcwd(buffer, 100));
+}
+
+char     *get_line(int check_before)
+{
+    char *line;
+    int ret;
+    char    *args[] = {"exit", "1"};
+
+    ret = get_next_line(0, &line);
+    if (!ret)
+    {
+        print(" \b");
+        if (!*line && !check_before)
+            get_builtins(g_global.g_builtins, "exit")(args, 0, 0, NULL);
+        else
+            line = ft_cstrjoin(line, get_line(1));
     }
+    return (line);
 }
 
 int     main()
 {
 	char 	*line;
     int     error;
-    char    buffer[200];
     t_cmap *envs;
-    char   *shelvl;
 
 	line = NULL;
     envs = put_vars(environ);
@@ -200,7 +223,6 @@ int     main()
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
     signal(SIGQUIT, signal_handler);
-
 
     //tgetent(NULL, get(envs, "TERM"));
     /*** TEST BUILTINS ***/
@@ -217,18 +239,20 @@ int     main()
     g_global.g_pid = 0;
     g_global.pid = getpid();
     //print("%d\n", getpid());
-    print("%s> ", getcwd(buffer, 200));
+    prompt();
     while (1)
 	{
-		get_next_line(0, &line);
-        if (!(error=error_parsing(line)))
+        line = get_line(0);
+        print("check command %d\n", check_redirection(line));
+        /*if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
         else
             setv(envs, "?", ft_itoa(error));
         free(line);
         line = NULL;
         g_global.g_pid = 0;
-        print("\r%s> ",getcwd(buffer, 200));
+        */
+        prompt();
 	}
     clear_map(&g_global.g_builtins, free_builtins);
     clear_map(&envs, free_vars);

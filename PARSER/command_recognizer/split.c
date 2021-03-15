@@ -6,11 +6,12 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 21:26:55 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 22:54:01 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/15 00:26:00 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
+#include <stdio.h>
 
 static int        count_word(const char *str, char c, int  is_back)
 {
@@ -23,19 +24,19 @@ static int        count_word(const char *str, char c, int  is_back)
     count = 0;
     special_char = 0;
     iter = 0;
+    int ret;
     while (str[iter])
     {
-        check_special(str[iter], &special_char, &is_back, ((iter > 0) ? str[iter - 1] : 0));
-        if ((str[iter] == c && !is_back) && !special_char)
+        if ((ret = check_special(str[iter], c, &special_char, &is_back)))
             looked = 1;
         if (looked)
         {
+            looked = 0;
+            count++;
             while (str[iter] && str[iter] == c)
                 iter++;
             if (!str[iter])
                 break;
-            looked = 0;
-            count++;
         }
         iter++;
     }
@@ -59,11 +60,11 @@ static int     *get_length_substrings(const char *str, int c, int wc, int is_bac
         len = 0;
         while (str[iter] == c)
             iter++;
-        while ((str[iter] != c || is_back || special) && str[iter])
+        while (!check_special(str[iter],c,&special, &is_back) && str[iter])
         {
             len++;
             iter++;
-            check_special(str[iter], &special, &is_back, str[iter - 1]);
+           
         }
         arr[++iter_arr] = len;
     }
