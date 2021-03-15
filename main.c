@@ -92,8 +92,8 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
     else
     {
         t_exec *ex = iter_lst->data;
-        get_builtins(g_global.g_builtins, ex->cmd)(ex->arguments + 1, 0 ,1, envs);
-        //setv(envs, "_", ft_cstrdup(ex->cmd));
+        pipe_ret = get_builtins(g_global.g_builtins, ex->cmd)(ex->arguments + 1, 0 ,1, envs);
+        setv(envs, "?", ft_itoa(pipe_ret));
     }
    //display(iter_lst->data, envs);
     /*while (iter_lst)
@@ -200,19 +200,19 @@ void signal_handler(int sig)
     {
         if (g_global.g_pid != 1)
         {
-             write(1, "\r\n", 2);
+            write(1, "\r\n", 2);
             print("%s> ", getcwd(buffer, 100));
         }
+        else
+            print("\n");
     }
-    else if (sig == SIGQUIT)
-        print("\b\b  \b\b");
 }
 
 void    prompt(void)
 {
     char buffer[100];
 
-    print("\r%s> ",getcwd(buffer, 100));
+    print("%s> ",getcwd(buffer, 100));
 }
 
 char     *get_line(int check_before)
@@ -222,6 +222,7 @@ char     *get_line(int check_before)
     char    *args[] = {"exit", "1"};
 
     ret = get_next_line(0, &line);
+    //fprintf(stderr, "ret ==> %d\n", ret);
     if (ret == 0)
     {
         if (!*line && !check_before)
@@ -243,7 +244,7 @@ int     main()
     setv(envs, "?", ft_itoa(0));
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
-    signal(SIGQUIT, signal_handler);
+    signal(SIGQUIT, SIG_IGN);
 
     //tgetent(NULL, get(envs, "TERM"));
     /*** TEST BUILTINS ***/
