@@ -202,6 +202,7 @@ void signal_handler(int sig)
         {
             if (!g_global.g_pid)
             {
+                g_global.sigint_ret = 1;
                 write(1, "\b\b  \r\n", 6);
                 print("\033[0;32m$%s> \033[0;37m", getcwd(buffer, 100));
             }
@@ -238,7 +239,7 @@ int     main()
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
     signal(SIGQUIT, signal_handler);
-
+    g_global.sigint_ret = 0;
     //tgetent(NULL, get(envs, "TERM"));
     /*** TEST BUILTINS ***/
     init_builtins(&g_global.g_builtins);
@@ -261,6 +262,9 @@ int     main()
 	{
         if (get_next_line(0, &line) <= 0)
             end_of_line();
+        if (g_global.sigint_ret)
+            setv(envs, "?", ft_itoa(g_global.sigint_ret));
+        g_global.sigint_ret = 0;
         if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
         else

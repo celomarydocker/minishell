@@ -26,6 +26,7 @@ extern char **environ;
 struct          s_global
 {
     int                 g_pid;
+	int					sigint_ret;
     pid_t               pid;
     t_cmap              *g_builtins;
 }                       g_global;
