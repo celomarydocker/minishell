@@ -17,7 +17,7 @@ env
 export test
 env
 
-res====  khasha tkon
+res====  khasha tkon test tma
 ----------------------------
 a.out khas => command not found
 ta tkon ./a.out
