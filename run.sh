@@ -1,4 +1,4 @@
-gcc  -fsanitize=address  PARSER/print/*.c PARSER/gnl/*.c PARSER/dt/hash_table/*.c PARSER/dt/linkedlist/*.c PARSER/command_recognizer/*.c  main.c EXECUTION/srcs/check_existance.c  PARSER/split/*.c EXECUTION/srcs/ft_echo.c libft/*.c EXECUTION/srcs/from_parsing2execution.c \
+gcc  PARSER/print/*.c PARSER/gnl/*.c PARSER/dt/hash_table/*.c PARSER/dt/linkedlist/*.c PARSER/command_recognizer/*.c  main.c EXECUTION/srcs/check_existance.c  PARSER/split/*.c EXECUTION/srcs/ft_echo.c libft/*.c EXECUTION/srcs/from_parsing2execution.c \
 EXECUTION/srcs/files.c EXECUTION/srcs/ft_pipe.c EXECUTION/srcs/ft_unset.c EXECUTION/srcs/pipe_helper.c EXECUTION/srcs/ft_setup_builtins.c EXECUTION/srcs/ft_pwd.c EXECUTION/srcs/free_data.c EXECUTION/srcs/ft_cd.c ERRORS/srcs/*.c EXECUTION/srcs/ft_exit.c EXECUTION/srcs/ft_make_environ.c\
  EXECUTION/srcs/ft_exec_env.c EXECUTION/srcs/ft_export.c  EXECUTION/srcs/ft_checker.c
 ./a.out
