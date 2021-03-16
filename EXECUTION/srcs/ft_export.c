@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/16 15:50:37 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/16 16:10:35 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void    print_variables(t_cmap *envs, int fd)
 {
     t_clist     *keys;
     t_clist     *iter_key;
+    char        *value;
 
     keys = sorted_keys(get_keys(envs));
     iter_key = keys;
@@ -76,11 +77,18 @@ void    print_variables(t_cmap *envs, int fd)
             iter_key = iter_key->next;
             continue;
         }
+        value = get(envs, iter_key->data);
         ft_putstr_fd("declare -x ", fd);
         ft_putstr_fd(iter_key->data, fd);
-        ft_putstr_fd("=\"", fd);
-        ft_putstr_fd(get(envs, iter_key->data), fd);
-        ft_putstr_fd("\"\n", fd);
+        if (value)
+        {
+            ft_putstr_fd("=\"", fd);
+            ft_putstr_fd(value, fd);
+            ft_putstr_fd("\"\n", fd);
+
+      }
+      else
+        ft_putstr_fd("\n", fd);
         iter_key = iter_key->next;
     }
     clear_list(&keys, NULL);
