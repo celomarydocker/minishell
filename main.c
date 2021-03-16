@@ -77,11 +77,10 @@ bool     is_not_making_change(t_exec *exec)
     is_equal(exec->cmd, "unset") || is_equal(exec->cmd, "exit")));
 }
 
-void     exec_command(const t_clist *commands, t_cmap *envs)
+int     exec_command(const t_clist *commands, t_cmap *envs)
 {
     t_clist       *iter_lst;
     int            pipe_ret;
-    int            stdfd[2];
 
     iter_lst = (t_clist *)commands;
     if (iter_lst->next || is_not_making_change(iter_lst->data))
@@ -94,13 +93,10 @@ void     exec_command(const t_clist *commands, t_cmap *envs)
         t_exec *ex = iter_lst->data;
         pipe_ret = get_builtins(g_global.g_builtins, ex->cmd)(ex->arguments + 1, 0 ,1, envs);
         setv(envs, "?", ft_itoa(pipe_ret));
+        if (pipe_ret)
+            return (1);
     }
-   //display(iter_lst->data, envs);
-    /*while (iter_lst)
-    {
-       
-        iter_lst = iter_lst->next;
-    }*/
+    return (0);
 }
 
 void     all_commands(char *s, t_cmap *global_env)
@@ -108,14 +104,17 @@ void     all_commands(char *s, t_cmap *global_env)
     t_clist     *exec_pipe;
     char        **cmds;
     int         iter;
+    int         exit_cmd;
 
     cmds = csplit(s, ';');
     iter = 0;
     while (cmds[iter])
     {
        exec_pipe = put_data_into_struct(cmds[iter], global_env);
-       exec_command(exec_pipe, global_env);
+       exit_cmd = exec_command(exec_pipe, global_env);
        clear_list(&exec_pipe, free_exec);
+       if (exit_cmd)
+            break ;
        iter++;
     }
     free_split(cmds);
@@ -196,15 +195,19 @@ void signal_handler(int sig)
 
     char buffer[100];
     int  id;
+    //fprintf(stderr, "pid %d gpid %d g_pid %d\n", g_global.pid, getpid(), g_global.g_pid);
     if (sig == SIGINT)
     {
-        if (g_global.g_pid != 1)
+        if (g_global.pid == getpid())
         {
-            write(1, "\r\n", 2);
-            print("%s> ", getcwd(buffer, 100));
+            if (!g_global.g_pid)
+            {
+                write(1, "\r\n", 2);
+                print("%s> ", getcwd(buffer, 100));
+            }
+            else
+                print("\n");
         }
-        else
-            print("\n");
     }
 }
 

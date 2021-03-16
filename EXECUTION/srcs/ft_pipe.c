@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 19:18:37 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/16 12:11:05 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void  ft_setup_input(int old_input, bool is_first, t_pair_files io)
     }   
 }
 
-
 void         command_not_found_error(const char *cmd)
 {
         ft_putstr_fd("CSHELL: ", 2);
@@ -68,13 +67,19 @@ void        init_child_signal()
     signal(SIGQUIT, SIG_DFL);
 }
 
-static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
+static void  ft_child_pipe(t_exec *data, int fd[4], bool *is, t_cmap *envs)
 {
     t_pair_files        io;
     int                 status_error;
     char                *filename_error;
 
     init_child_signal();
+    if (!ft_strncmp(data->cmd, "./a.out", 7))
+    {
+        status_error  = getpid();
+        write(fd[3], &status_error, sizeof(int));
+    }
+    close(fd[3]);
     if (data->perm == NOT_FOUND)
         command_not_found_error(data->arguments[0]);
     io = iofile(data->files, &status_error, &filename_error);
@@ -99,7 +104,7 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
     int     pid;
     int     status;
     int     sign;
-    int     fd[2];
+    int     fd[4];
     int     is_first_last[3];
 
     fd[0] = -1;
@@ -109,23 +114,32 @@ int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
     is_first_last[0] = old_stdin;
     is_first_last[1] = is_first;
     is_first_last[2] = ((!pipe_exec->next) ? 1 : 0);
+    pipe(fd + 2);
     if (pipe_exec->next)
         pipe(fd);
     if ((pid=fork()) == 0)
+    {
+        close(fd[2]);
         ft_child_pipe(pipe_exec->data, fd, is_first_last, envs);
+    }
     if (pid < 0)
         exit(EXIT_FAILURE);
     close(fd[1]);
     if (!is_first)
         close(old_stdin);
+    close(fd[3]);
+    read(fd[2], &g_global.pid, sizeof(int));
+    close(fd[2]);
     if (!pipe_exec->next)
     {
         g_global.g_pid= 1;
         waitpid(pid, &status, 0);
+        g_global.pid = getpid();
         return (ft_pipe_return(status));
     }
     status = ft_pipe(pipe_exec->next, 0, fd[0], envs);
     g_global.g_pid= 1;
     waitpid(pid, &sign, 0);
+    g_global.pid = getpid();
     return (status);
 }

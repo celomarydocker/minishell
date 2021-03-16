@@ -1,5 +1,6 @@
 #ifndef MINISHELL
 # define MINISHELL
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -15,7 +16,13 @@
 # include "EXECUTION/include/execution.h"
 # include "ERRORS/include/error.h"
 # include <termcap.h>
+
+# define ICANON 0x00000100
+# define ECHO 0x00000008
+
 extern char **environ;
+
+
 struct          s_global
 {
     int                 g_pid;
