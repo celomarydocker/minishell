@@ -202,13 +202,15 @@ void signal_handler(int sig)
         {
             if (!g_global.g_pid)
             {
-                write(1, "\r\n", 2);
+                write(1, "\b\b  \r\n", 6);
                 print("\033[0;32m$%s> \033[0;37m", getcwd(buffer, 100));
             }
             else
                 print("\n");
         }
     }
+    if (sig == SIGQUIT)
+        write(1, "\b\b  \b\b", 6);
 }
 
 void    prompt(void)
@@ -221,7 +223,7 @@ void    prompt(void)
 void    end_of_line()
 {
     ft_putstr_fd("exit\n", 2);
-    exit(1);
+    exit(0);
 }
 
 int     main()
@@ -235,7 +237,7 @@ int     main()
     setv(envs, "?", ft_itoa(0));
     setv(envs, "$", ft_itoa(getpid()));
     signal(SIGINT, signal_handler);
-    signal(SIGQUIT, SIG_IGN);
+    signal(SIGQUIT, signal_handler);
 
     //tgetent(NULL, get(envs, "TERM"));
     /*** TEST BUILTINS ***/

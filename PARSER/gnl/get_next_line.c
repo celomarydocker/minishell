@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:56:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/16 17:02:59 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/16 18:31:36 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		get_next_line_helper(int fd, char **line, char *buffer)
 		old_size += (size_t)len;
 		current += len;
 	}
-	return (pos);
+	return (1);
 }
 
 int		get_next_line(int fd, char **line)
