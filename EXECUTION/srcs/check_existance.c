@@ -6,16 +6,34 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 16:08:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/09 14:43:21 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/16 17:38:07 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
+
+int                 check_cmd(const char *n)
+{
+    unsigned int iterator;
+
+    iterator = 0;
+    while (n[iterator])
+    {
+        if (n[iterator] == '/')
+            return (0);
+        else if (n[iterator] != '.')
+            break;
+        iterator++;
+    }
+    return (1);
+}
+
 static int          is_command(const char *cmd)
 {
     struct stat     s;
-    if (stat(cmd, &s) == 0 && (s.st_mode & S_IEXEC))
+
+    if (stat(cmd, &s) == 0 && (s.st_mode & S_IEXEC) && !check_cmd(cmd))
         return (1);
     return (0);
 }

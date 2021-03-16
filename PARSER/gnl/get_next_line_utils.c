@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:44:25 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/16 15:30:25 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/16 16:24:12 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int			copy_to_line(char *buffer, char *line, int len)
 	line[len] = 0;
 	if (buffer[len] == '\n')
 		return (1);
-	if (buffer[len] == 0)
-		return (2);
 	return (0);
 }
 

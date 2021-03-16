@@ -203,7 +203,7 @@ void signal_handler(int sig)
             if (!g_global.g_pid)
             {
                 write(1, "\r\n", 2);
-                print("%s> ", getcwd(buffer, 100));
+                print("\033[0;32m$%s> \033[0;37m", getcwd(buffer, 100));
             }
             else
                 print("\n");
@@ -215,25 +215,13 @@ void    prompt(void)
 {
     char buffer[100];
 
-    print("%s> ",getcwd(buffer, 100));
+    print("\033[0;32m$%s> \033[0;37m",getcwd(buffer, 100));
 }
 
-char     *get_line(int check_before)
+void    end_of_line()
 {
-    char *line;
-    int ret;
-    char    *args[] = {"exit", "1"};
-
-    ret = get_next_line(0, &line);
-    //fprintf(stderr, "ret ==> %d\n", ret);
-    if (ret == 0)
-    {
-        if (!*line && !check_before)
-            get_builtins(g_global.g_builtins, "exit")(args, 0, 1, NULL);
-        else
-            line = ft_cstrjoin(line, get_line(1));
-    }
-    return (line);
+    ft_putstr_fd("exit\n", 2);
+    exit(1);
 }
 
 int     main()
@@ -269,7 +257,8 @@ int     main()
     prompt();
     while (1)
 	{
-        line = get_line(0);
+        if (get_next_line(0, &line) <= 0)
+            end_of_line();
         if (!(error=error_parsing(line)))
 		    all_commands(line, envs);
         else

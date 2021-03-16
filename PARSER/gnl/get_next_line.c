@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:56:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/14 18:23:39 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/16 17:02:59 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int		get_next_line_helper(int fd, char **line, char *buffer)
 		if (update_buffer(buffer, &current, &pos, fd) <= 0)
 		{
 			if (!*line)
+			{
 				*line = ft_realloc(NULL, 0, 1);
-			return (pos);
+				return (pos);
+			}
 		}
 		len = get_len(buffer, current, pos);
 		*line = ft_realloc(line, old_size, (size_t)len);
@@ -34,14 +36,12 @@ int		get_next_line_helper(int fd, char **line, char *buffer)
 		{
 			
 			current += len + 1;
-			if (r == 2)
-				return (0);
 			break ;
 		}
 		old_size += (size_t)len;
 		current += len;
 	}
-	return (1);
+	return (pos);
 }
 
 int		get_next_line(int fd, char **line)
