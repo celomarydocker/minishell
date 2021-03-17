@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 17:02:07 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/17 12:29:03 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void       add_command(char *cmd, t_clist **lst, t_cmap *global_vars)
     int             is_found;
     t_ccommand      *command;
     t_clist         *text_front;
+
     is_found = 0;
     i = 0;
     command = malloc(sizeof(t_ccommand));

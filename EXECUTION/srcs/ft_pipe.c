@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/16 12:11:05 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/17 12:59:41 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,15 @@ void         command_not_found_error(const char *cmd)
         exit(127);
 }
 
-void        file_not_found(const char *file)
+void        file_not_found(const char *file, t_pair_files io)
 {
         ft_putstr_fd("CSHELL: ", 2);
         ft_putstr_fd((char *)file, 2);
         ft_putstr_fd(": No such file or directory\n", 2);
+        if (io.input != -1)
+            close(io.input);
+        if (io.output != -1)
+            close(io.output);
         exit(1);
 }
 
@@ -67,27 +71,44 @@ void        init_child_signal()
     signal(SIGQUIT, SIG_DFL);
 }
 
+void        is_ourshell(const char *cmd, int input)
+{
+    int     pid;
+
+    if (!ft_strncmp(cmd, "./a.out", 7))
+    {
+        pid  = getpid();
+        write(input, &pid, sizeof(int));
+    }
+    close(input);
+}
+
+void            ft_setup_io(int fd[4], int input, int is[2], t_pair_files io)
+{
+    ft_setup_input(input, is[0], io);
+    ft_setup_output(fd[1], is[1], io);
+    close(fd[0]);
+}
+
 static void  ft_child_pipe(t_exec *data, int fd[4], bool *is, t_cmap *envs)
 {
     t_pair_files        io;
     int                 status_error;
     char                *filename_error;
 
-    init_child_signal();
-    if (!ft_strncmp(data->cmd, "./a.out", 7))
+    if (data->perm == WITHOUT)
     {
-        status_error  = getpid();
-        write(fd[3], &status_error, sizeof(int));
+        status_error = just_create_files(data->files);
+        exit(status_error);
     }
-    close(fd[3]);
+    init_child_signal();
+    is_ourshell(data->cmd, fd[3]);
     if (data->perm == NOT_FOUND)
         command_not_found_error(data->arguments[0]);
     io = iofile(data->files, &status_error, &filename_error);
     if (status_error == 47)
-        file_not_found(filename_error);
-    ft_setup_input(is[0], is[1], io);
-    ft_setup_output(fd[1], is[2], io);
-    close(fd[0]);
+        file_not_found(filename_error, io);
+    ft_setup_io(fd, is[0], is + 1, io);
     if (data->perm == FILE_EXEC)
         execve(data->cmd, data->arguments,
         from_map_to_array_2d(envs, data->cmd));

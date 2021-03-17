@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 16:08:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/16 17:38:07 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/17 12:38:02 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_permessions       check_existance(const char *command, const char *path, char 
     char                *cmd;
 
     *line = NULL;
+    if (!command)
+        return (WITHOUT);
     if (check_if_builtins(command))
         return (BUILTINS);
     spath = ft_csplit((char *)path, ':', NULL);

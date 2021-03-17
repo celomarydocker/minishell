@@ -7,7 +7,7 @@
 /* END */
 
 typedef enum e_enum {INPUT, OUTPUT, APPEND} t_enum;
-typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC} t_permessions;
+typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC, WITHOUT} t_permessions;
 typedef int (*t_builtin_function)(char **str, int is_pipe, int fd, t_cmap *envs);
 typedef struct s_pair_files
 {
@@ -41,6 +41,8 @@ t_permessions       check_existance(const char *command, const char *path, char 
 void                free_exec(void *exec);
 void                free_envs(t_key_value *kv);
 t_pair_files        iofile(t_clist *files, int *error, char **file_error);
+int                 non_pipe_builtins(const t_exec *ex, t_cmap *envs);
+int                 just_create_files(t_clist *files);
 int                 ft_pipe_return(int status);
 int                 ft_exec_env(char **str, int is_pipe, int fd, t_cmap *envs);
 int                 ft_export(char **args, int is_pipe, int fd, t_cmap *envs);

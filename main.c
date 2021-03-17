@@ -15,7 +15,7 @@ void     display(const t_exec *exec, t_cmap *envs)
         print("COMMAND %s EXIST %s\n", exec->cmd, type);
     else
         print("COMMAND NOT FOUND\n");
-    char **args = exec->arguments;
+   char **args = exec->arguments;
     print("ARGUMENTS\n");
     while (*args)
     {
@@ -23,13 +23,6 @@ void     display(const t_exec *exec, t_cmap *envs)
         args++;
     }
     t_clist *lst = exec->files;
-  io = iofile(lst, &error, &type);
-  print("error %d\n", error);
-   print("%d %d\n", io.input, io.output);
-    if (io.input != -1)
-        close(io.input);
-    if (io.output != -1)
-        close(io.output);
     print("FILES\n");
     while (lst)
     {
@@ -83,6 +76,7 @@ int     exec_command(const t_clist *commands, t_cmap *envs)
     int            pipe_ret;
 
     iter_lst = (t_clist *)commands;
+    //display(iter_lst->data, envs);
     if (iter_lst->next || is_not_making_change(iter_lst->data))
     {
         pipe_ret = ft_pipe(iter_lst, 1, 0, envs);
@@ -90,8 +84,7 @@ int     exec_command(const t_clist *commands, t_cmap *envs)
     }
     else
     {
-        t_exec *ex = iter_lst->data;
-        pipe_ret = get_builtins(g_global.g_builtins, ex->cmd)(ex->arguments + 1, 0 ,1, envs);
+        pipe_ret = non_pipe_builtins(iter_lst->data, envs);
         setv(envs, "?", ft_itoa(pipe_ret));
         if (pipe_ret)
             return (1);
