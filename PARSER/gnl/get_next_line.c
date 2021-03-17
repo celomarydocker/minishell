@@ -32,7 +32,7 @@ int		get_next_line_helper(int fd, char **line, char **buffer)
 	{
 		if (update_buffer(*buffer, &current, &pos, fd) <= 0)
 		{
-			if (!line && !*line)
+			if (!*line)
 			{
 				free_buffer(buffer, line);
 				return (pos);

@@ -36,9 +36,10 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
             {
                 if (!is_pipe)
 			        ft_putstr_fd("exit\n", 2);
-				ft_putstr_fd("exit\n", 2);
                 ft_putstr_fd("CSHELL: exit: too many arguments\n", 2);
-				return (!is_pipe);
+				if (!is_pipe)
+					return (2);
+				return (1);
             }
 			if (!is_pipe)
 				ft_putstr_fd("exit\n", 2);
@@ -52,10 +53,15 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
 			ft_putstr_fd("CSHELL: exit: ", 2);
 			ft_putstr_fd(str[0], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
+			if (is_pipe)
+				return (2);
+			exit(2);
 		}
 	}
     else if (!is_pipe)
+	{
 	    ft_putstr_fd("exit\n", 2);
-	exit(excod);
-	return (1);
+		exit(excod);
+	}
+	return (excod);
 }

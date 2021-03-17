@@ -15,7 +15,6 @@
 # include "PARSER/command_recognizer/recognizer.h"
 # include "EXECUTION/include/execution.h"
 # include "ERRORS/include/error.h"
-# include <termcap.h>
 # include <errno.h>
 
 #define HERE printf("%s:%d\n", __FILE__, __LINE__)

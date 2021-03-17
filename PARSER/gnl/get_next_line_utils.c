@@ -24,7 +24,7 @@ char		*ft_realloc(char **buffer, size_t old_size, size_t new_size)
 		new_buff[iter] = (*buffer)[iter];
 		iter++;
 	}
-	while (iter < new_size)
+	while (iter <= new_size)
 	{
 		new_buff[iter] = 0;
 		iter++;
