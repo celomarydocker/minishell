@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 16:08:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/17 12:38:02 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/17 17:42:55 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@ static int          is_command(const char *cmd)
 {
     struct stat     s;
 
-    if (stat(cmd, &s) == 0 && (s.st_mode & S_IEXEC) && !check_cmd(cmd))
-        return (1);
+    if (stat(cmd, &s) == 0 && !check_cmd(cmd))
+    {
+        if (s.st_mode & S_IEXEC)
+            return (1);
+        else
+            return (2);
+    }
     return (0);
 }
 
@@ -50,11 +55,45 @@ static  char *             join_command(const char *path, char **cmd)
     return (NULL);
 }
 
+int                 check_perm(const char *command, const char *path, char **line)
+{
+    char                *cmd;
+    int                 ret;
+
+    cmd = ft_cstrdup((char *)command);
+    cmd = join_command(path, &cmd);
+    ret = is_command(cmd);
+    if (ret == 1)
+    {
+        *line = cmd; 
+        return (1);
+    }
+    return (0);
+}
+
+t_permessions       sample_command(const char *command, char **line)
+{
+    int     ret;
+
+    ret = is_command(command);
+    if (ret == 1)
+    {
+        *line = ft_cstrdup((char *)command);
+        return (FILE_EXEC);
+    }
+    else if (ret == 2)
+    {
+        *line = NULL;
+        return (PERMISSION_DENIED);
+    }
+    return (NOT_FOUND);
+}
+
 t_permessions       check_existance(const char *command, const char *path, char **line)
 {
     char                **spath;
     unsigned int        iterator;
-    char                *cmd;
+    int                 ret;
 
     *line = NULL;
     if (!command)
@@ -65,15 +104,13 @@ t_permessions       check_existance(const char *command, const char *path, char 
     iterator = 0;
     while (spath[iterator])
     {
-        cmd = ft_cstrdup((char *)command);
-        if (is_command(cmd) || (cmd = join_command(spath[iterator], &cmd)))
+        if (check_perm(command, spath[iterator], line))
         {
-            *line = cmd;
             free_split(spath);
             return (FILE_EXEC);
         }
         iterator++;
     }
-    free_split(spath);
-    return (NOT_FOUND);
+    free_split(spath);    
+    return sample_command(command, line);
 }

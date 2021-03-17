@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/16 15:17:49 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/17 18:00:06 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
 		{
 			if (ft_strlentwo(str) > 1)
             {
-                if (is_pipe)
+                if (!is_pipe)
 			        ft_putstr_fd("exit\n", 2);
-				ft_putstr_fd("exit\n", 2);
+				//ft_putstr_fd("exit\n", 2);
                 ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-				return (!is_pipe);
+				return (is_pipe);
             }
 			if (!is_pipe)
 				ft_putstr_fd("exit\n", 2);

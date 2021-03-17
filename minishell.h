@@ -16,7 +16,9 @@
 # include "EXECUTION/include/execution.h"
 # include "ERRORS/include/error.h"
 # include <termcap.h>
+# include <errno.h>
 
+#define HERE printf("%s:%d\n", __FILE__, __LINE__)
 # define ICANON 0x00000100
 # define ECHO 0x00000008
 

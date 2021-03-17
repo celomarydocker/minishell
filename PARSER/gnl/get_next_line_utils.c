@@ -6,12 +6,11 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:44:25 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/16 16:24:12 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/17 18:50:43 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char		*ft_realloc(char **buffer, size_t old_size, size_t new_size)
 {

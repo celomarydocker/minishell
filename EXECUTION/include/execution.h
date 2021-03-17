@@ -7,7 +7,7 @@
 /* END */
 
 typedef enum e_enum {INPUT, OUTPUT, APPEND} t_enum;
-typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC, WITHOUT} t_permessions;
+typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC, PERMISSION_DENIED, WITHOUT} t_permessions;
 typedef int (*t_builtin_function)(char **str, int is_pipe, int fd, t_cmap *envs);
 typedef struct s_pair_files
 {

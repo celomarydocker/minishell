@@ -54,8 +54,8 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         }
         else
         {
-            // ft_putstr_fd(ft_strjoin("cd: no such file or directory: ", *str) , fd);
-            // write(fd, "\n", 1);
+            ft_putstr_fd(ft_cstrjoin(ft_cstrdup("cd: no such file or directory: "), ft_cstrdup(*str)) , 2);
+            write(2, "\n", 1);
             return (1);
         }
     }
