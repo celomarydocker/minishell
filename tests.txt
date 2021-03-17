@@ -1,30 +1,9 @@
-exit 5564 564; echo hicham  // makhasch i tprinta hicham
-exit 564 | exit 54 // done
-
-
-
-
-
 -----------------------
 export v="hh hhh"
 > $V
 
------------------------
-export test
-env
-export test=
-env
-export test
-env
-
-res====  khasha tkon test tma
-----------------------------
-a.out khas => command not found
-ta tkon ./a.out
-
 ------------------------------
 touch abc
 chmod 000 abc ; ./abc ; echo $?
-
 -----------------------------------
 
