@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   method_helper3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 21:15:15 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/06 18:27:48 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:44:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_rec		*init_rec(void)
 	rec->text = NULL;
 	return (rec);
 }
-
+/*
 void		display_data(void *data)
 {
 	print("%s ", (char *)data);
@@ -41,3 +41,4 @@ void		print_rec(t_rec *rec)
 	iterate_list(rec->text, display_data);
 	print("\n**********************************************\n");
 }
+*/
