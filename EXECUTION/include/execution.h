@@ -62,4 +62,5 @@ void                ft_init_builtins();
 void                init_parent_signals();
 bool                is_not_making_change(t_exec *exec);
 void                all_commands(char *s, t_cmap *global_env);
+void                ft_disable_unused(char ***str, int *is_pipe, int *fd, t_cmap **envs);
 #endif

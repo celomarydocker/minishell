@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 15:19:21 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 16:36:40 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ t_rec       *handle_command(char *str, t_cmap *map, int *iter, int is_found)
 {
     int         is_file;
     t_rec       *rec;
-    char        *cmd;
     char        *s;
 
     is_file = 0;

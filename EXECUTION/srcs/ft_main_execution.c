@@ -6,14 +6,14 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:19:55 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 15:29:21 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 16:38:24 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
 
-/**/
+/*
 void     display(const t_exec *exec, t_cmap *envs)
 {
     t_file          *file;
@@ -50,7 +50,7 @@ void     display(const t_exec *exec, t_cmap *envs)
         lst = lst->next;
     }
 }
-/**/
+*/
 
 static t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
 {

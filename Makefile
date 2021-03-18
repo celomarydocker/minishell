@@ -6,7 +6,7 @@
 #    By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/18 16:24:15 by mel-omar@st      ###   ########.fr        #
+#    Updated: 2021/03/18 16:35:36 by mel-omar@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,13 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  EXECUTION/srcs/ft_main_execution.c EXECUTION/srcs/ft_signals.c \
 	  EXECUTION/srcs/checker2.c ERRORS/srcs/check_backslash.c ERRORS/srcs/check_quotes.c \
 	  ERRORS/srcs/check_redirections.c ERRORS/srcs/ft_check_dupl.c ERRORS/srcs/ft_error_parsing.c \
-	  ERRORS/srcs/ft_error_printer.c
+	  ERRORS/srcs/ft_error_printer.c EXECUTION/srcs/ft_remove_unused.c
 	  
 	  
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 $(NAME): $(SRCS)
-	
-	@gcc  $(SRCS) -o $(NAME)
+	@gcc -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 clean:
 	@rm -f $(OBJ)
 fclean: clean

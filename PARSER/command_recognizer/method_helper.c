@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   method_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:50:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/03/11 09:01:49 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:37:20 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char		*ft_cstrjoin(char *text, char *s)
 	char	*new_text;
 	int		len1;
 	int		len2;
-	int		iter;
 
 	len1 = (text) ? ft_cstrlen(text) : 0;
 	len2 = (s) ? ft_cstrlen(s) : 0;

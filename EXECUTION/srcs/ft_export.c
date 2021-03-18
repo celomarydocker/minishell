@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/16 16:10:35 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 16:33:52 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ int ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
         free_split(slt);
         iterator++;
     }
+    ft_disable_unused(&args, &is_pipe, &fd, &envs);
     return (ret);
 }

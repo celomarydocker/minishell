@@ -64,5 +64,6 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         }
     }
     free(buffer);
+    ft_disable_unused(&str, &is_pipe, &fd, &envs);
     return (0);
 }
