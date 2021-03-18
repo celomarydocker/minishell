@@ -57,4 +57,10 @@ int                 is_variable_not_valid(const char *variable_name);
 int                 is_digits(char c);
 int                 is_upper(char c);
 int                 is_lower(char c);
+void                signal_handler(int sig);
+void                ft_init_builtins();
+void                init_parent_signals();
+bool                is_not_making_change(t_exec *exec);
+void                all_commands(char *s, t_cmap *global_env);
+void                ft_disable_unused(char ***str, int *is_pipe, int *fd, t_cmap **envs);
 #endif

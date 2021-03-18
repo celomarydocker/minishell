@@ -43,5 +43,5 @@ int         non_pipe_builtins(const t_exec *ex, t_cmap *envs)
     if (c_ret)
         return (c_ret);
     return (get_builtins(g_global.g_builtins,
-    ex->cmd)(ex->arguments + 1, 0 ,1, envs));
+    ex->cmd)(ex->arguments + 1, 0 , 1, envs));
 }

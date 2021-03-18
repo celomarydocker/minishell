@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_make_environ.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:28:01 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/13 21:15:00 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:40:24 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char        **from_map_to_array_2d(t_cmap *map, const char *cmd)
     i = 0;
     while(iterator)
     {
-        if (!ft_strncmp(iterator->data, "SHLVL", 5) && !ft_strncmp(cmd, "./a.out", 7))
+        if (!ft_strncmp(iterator->data, "SHLVL", 5) && !ft_strncmp(cmd, "./minishell", 11))
         {
             value = get(map, iterator->data);
             if (value)

@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_remove_unused.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 12:14:47 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/18 16:34:00 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/03/18 16:28:28 by mel-omar@st       #+#    #+#             */
+/*   Updated: 2021/03/18 16:32:10 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-// change function return from void to int to check errors
-int ft_exec_pwd(char **str, int is_pipe, int fd, t_cmap * envs)
+void    ft_disable_unused(char ***str, int *is_pipe, int *fd, t_cmap **envs)
 {
-    char pwd[200];
-    getcwd(pwd, 200 * sizeof(char));
-    ft_putstr_fd(pwd, fd);
-    ft_putstr_fd("\n", fd);
-    ft_disable_unused(&str, &is_pipe, &fd, &envs);
-    return (0);
+    *str = NULL;
+    *is_pipe = 0;
+    *fd = -1;
+    *envs = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/17 19:05:57 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 14:40:43 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void        is_ourshell(const char *cmd, int input)
 {
     int     pid;
 
-    if (!ft_strncmp(cmd, "./a.out", 7))
+    if (!ft_strncmp(cmd, "./minishell", 11))
     {
         pid  = getpid();
         write(input, &pid, sizeof(int));

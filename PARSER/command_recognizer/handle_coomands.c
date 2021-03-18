@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_coomands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/17 12:29:03 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 21:12:58 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,9 @@ t_rec       *handle_command(char *str, t_cmap *map, int *iter, int is_found)
 {
     int         is_file;
     t_rec       *rec;
-    char        *cmd;
-    char        *s;
 
     is_file = 0;
     rec = init_rec();
-    s = NULL;
     while (str[*iter])
     {
        if (str[*iter] == '>' || str[*iter] == '<')

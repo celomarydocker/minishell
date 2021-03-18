@@ -21,6 +21,7 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
     char    *to_der;
     char    *buffer;
     char    *s;
+
     buffer = malloc(64);
     if (!*str || ft_strncmp(*str, "--", 3) == 0)
     {
@@ -28,7 +29,7 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         chdir(to_der);
         getcwd(buffer, 64);
         setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
-        setv(envs, "PWD", buffer);
+        setv(envs, "PWD", ft_cstrdup(buffer));
     }
     else
     {
@@ -50,18 +51,19 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         {
             getcwd(buffer, 64);
             setv(envs, "OLDPWD", ft_strdup(get(envs, "PWD")));
-            setv(envs, "PWD", buffer);
+            setv(envs, "PWD", ft_cstrdup(buffer));
         }
         else
         {
-            char *r = ft_cstrjoin(ft_cstrdup("cd: no such file or directory: "), ft_cstrdup(*str));
-            ft_putstr_fd(r, 2);
+            s = ft_cstrjoin(ft_cstrdup("CSHELL: cd: no such file or directory: "), ft_cstrdup(*str));
+            ft_putstr_fd(s, 2);
             write(2, "\n", 1);
-            free(r);
+            free(s);
             free(buffer);
             return (1);
         }
     }
     free(buffer);
+    ft_disable_unused(&str, &is_pipe, &fd, &envs);
     return (0);
 }

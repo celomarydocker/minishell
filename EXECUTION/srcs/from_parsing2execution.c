@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   from_parsing2execution.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:32:14 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 10:22:28 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:38:03 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static t_clist      *combine_files_and_redirections(const t_clist *files, const 
 static t_exec  *parse_exec(const t_ccommand *command, const char *path)
 {
     t_exec      *exec;
-    t_rec       *rec;
     char        *line;
 
     exec = malloc(sizeof(t_exec));

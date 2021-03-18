@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/17 21:01:21 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 21:07:41 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
                 if (!is_pipe)
 			        ft_putstr_fd("exit\n", 2);
                 ft_putstr_fd("CSHELL: exit: too many arguments\n", 2);
-				return (is_pipe);
+				if (is_pipe)
+					return (1);
+				return (10001);
             }
 			if (!is_pipe)
 				ft_putstr_fd("exit\n", 2);
@@ -51,10 +53,17 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
 			ft_putstr_fd("CSHELL: exit: ", 2);
 			ft_putstr_fd(str[0], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
+			if (is_pipe)
+				return (excod);
+			else
+				exit(255);
 		}
 	}
     else if (!is_pipe)
+	{
 	    ft_putstr_fd("exit\n", 2);
-	exit(excod);
-	return (1);
+		exit(excod);
+	}
+	ft_disable_unused(&str, &is_pipe, &fd, &envs);
+	return (excod);
 }

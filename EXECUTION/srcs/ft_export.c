@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/16 16:10:35 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 21:12:02 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void    print_variables(t_cmap *envs, int fd)
       }
       else
         ft_putstr_fd("\n", fd);
-        iter_key = iter_key->next;
+      iter_key = iter_key->next;
     }
     clear_list(&keys, NULL);
 
@@ -126,5 +126,6 @@ int ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
         free_split(slt);
         iterator++;
     }
+    ft_disable_unused(&args, &is_pipe, &fd, &envs);
     return (ret);
 }

@@ -3,37 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 21:46:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 09:50:44 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:40:38 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/error.h"
 
-static int      check_before(const char *line, int pos)
-{
-    int     is_space; 
-
-    if (pos > 1 && line[pos] == '\0')
-        is_space = 1;
-    else
-        is_space = 0;
-    
-    while (--pos >= 0)
-    {
-        if (line[pos] != ' ' && line[pos] != '>' && line[pos] != '<')
-            return (0);
-        if (line[pos] == ' ')
-            is_space = 1;
-        else if ((line[pos] == '>' || line[pos] == '<') && is_space)
-            return (1);
-    }
-    return (0);
-}
-
-int check_for_redirection(const char *s, unsigned int *iter, char red_char)
+static int check_for_redirection(const char *s, unsigned int *iter, char red_char)
 {
     int    count_red;
 
@@ -56,7 +35,7 @@ int check_for_redirection(const char *s, unsigned int *iter, char red_char)
     return (1);
 }
 
-int check_for_file(const char *s, unsigned int *i)
+static int check_for_file(const char *s, unsigned int *i)
 {
     while (s[*i])
     {
@@ -86,7 +65,6 @@ int check_redirection(const char *line)
     back_slash = 0;
     file = 0;
     redirect = 0;
-
     while (line[iterator])
     {
         if (back_slash % 2 == 0)

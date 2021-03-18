@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/15 14:58:26 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:34:15 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int     ft_unset(char **arguments, int is_pipe, int fd, t_cmap *envs)
         free_split(inside);
         iterator++;
     }
+    ft_disable_unused(&arguments, &is_pipe, &fd, &envs);
     return (ret);
 }

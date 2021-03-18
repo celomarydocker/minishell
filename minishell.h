@@ -6,7 +6,7 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "PARSER/gnl/get_next_line.h"
+# include "PARSER/readline/readline.h"
 # include "PARSER/print/print.h"
 # include "PARSER/split/ft_split.h"
 # include "PARSER/dt/linkedlist/linkedlist.h"
@@ -15,10 +15,8 @@
 # include "PARSER/command_recognizer/recognizer.h"
 # include "EXECUTION/include/execution.h"
 # include "ERRORS/include/error.h"
-# include <termcap.h>
 # include <errno.h>
 
-#define HERE printf("%s:%d\n", __FILE__, __LINE__)
 # define ICANON 0x00000100
 # define ECHO 0x00000008
 
