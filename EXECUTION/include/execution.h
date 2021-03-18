@@ -60,5 +60,6 @@ int                 is_lower(char c);
 void                signal_handler(int sig);
 void                ft_init_builtins();
 void                init_parent_signals();
+bool                is_not_making_change(t_exec *exec);
 void                all_commands(char *s, t_cmap *global_env);
 #endif

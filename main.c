@@ -47,7 +47,7 @@ void    prompt(void)
     print("\033[0;32m$%s> \033[0;37m",getcwd(buffer, 100));
 }
 
-void    init_bash(char *line, t_cmap **envs)
+void    init_bash(char **line, t_cmap **envs)
 {
     *line = NULL;
     *envs = put_vars(environ);
