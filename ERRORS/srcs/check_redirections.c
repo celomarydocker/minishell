@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 21:46:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 09:50:44 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:38:17 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int check_redirection(const char *line)
     back_slash = 0;
     file = 0;
     redirect = 0;
-
     while (line[iterator])
     {
         if (back_slash % 2 == 0)

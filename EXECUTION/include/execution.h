@@ -57,4 +57,8 @@ int                 is_variable_not_valid(const char *variable_name);
 int                 is_digits(char c);
 int                 is_upper(char c);
 int                 is_lower(char c);
+void                signal_handler(int sig);
+void                ft_init_builtins();
+void                init_parent_signals();
+void                all_commands(char *s, t_cmap *global_env);
 #endif
