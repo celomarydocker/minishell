@@ -6,7 +6,7 @@
 #    By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/18 14:59:43 by mel-omar@st      ###   ########.fr        #
+#    Updated: 2021/03/18 15:34:17 by mel-omar@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  PARSER/dt/linkedlist/linkedlist_method.c PARSER/dt/linkedlist/linkedlist_method2.c \
 	  PARSER/command_recognizer/double_quotes.c PARSER/command_recognizer/free_data.c \
 	  PARSER/command_recognizer/getter_methods.c PARSER/command_recognizer/handle_coomands.c \
-	  PARSER/command_recognizer/handle_coomands2.c
+	  PARSER/command_recognizer/handle_coomands2.c  PARSER/command_recognizer/handle_coomands2.c \
+	  PARSER/command_recognizer/method_helper.c PARSER/command_recognizer/method_helper.c
 	  
 	  
 
@@ -31,7 +32,7 @@ OBJ = apply_flags.o checker_flags.o display.o \
 	  
 
 all: $(NAME)
-	@gcc -Wall -Wextra -Werror $(SRC) -o $(NAME)
+	@gcc -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 clean:
 	@rm -f $(OBJ)
 fclean: clean

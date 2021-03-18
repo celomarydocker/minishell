@@ -55,7 +55,7 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         }
         else
         {
-            s = ft_cstrjoin(ft_cstrdup("cd: no such file or directory: "), ft_cstrdup(*str));
+            s = ft_cstrjoin(ft_cstrdup("CSHELL: cd: no such file or directory: "), ft_cstrdup(*str));
             ft_putstr_fd(s, 2);
             write(2, "\n", 1);
             free(s);
