@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_backslash.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:25:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/11 22:31:18 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:25:02 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/error.h"
 
 int         check_backslash(const char *line)
 {
