@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 03:48:49 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/06 15:47:29 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/18 21:47:09 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char            *double_quotes(char *str, int *i, t_cmap *map)
     int         lock;
 
     len = double_quotes_back(str + *i, map);
-    s = malloc(sizeof(char) * (len + 1));
+    s = malloc(sizeof(char) * (len + 3));
     init_vars(&iter2, &iter, &lock);
     while (str[++iter + *i] != 0)
     {
