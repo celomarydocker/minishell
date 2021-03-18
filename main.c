@@ -270,6 +270,7 @@ int     main()
         g_global.g_pid = 0;
         prompt();
 	}
+    free(line);
     clear_map(&g_global.g_builtins, free_builtins);
     clear_map(&envs, free_vars);
     return (0);

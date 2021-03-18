@@ -54,10 +54,14 @@ int    ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
         }
         else
         {
-            ft_putstr_fd(ft_cstrjoin(ft_cstrdup("cd: no such file or directory: "), ft_cstrdup(*str)) , 2);
+            char *r = ft_cstrjoin(ft_cstrdup("cd: no such file or directory: "), ft_cstrdup(*str));
+            ft_putstr_fd(r, 2);
             write(2, "\n", 1);
+            free(r);
+            free(buffer);
             return (1);
         }
     }
+    free(buffer);
     return (0);
 }

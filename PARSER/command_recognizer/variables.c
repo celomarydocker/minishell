@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 04:17:19 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 17:21:30 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/17 21:04:42 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int      var_len(char *str, int *iter, t_cmap *map)
         return (1);
     var = ft_csubstr(str, len);
     *iter += len;
-    len = ft_cstrlen(get(map, var));
+    len = ft_cstrlen(get(map, var)) + 1;
     free(var);
     return (len);
 }
