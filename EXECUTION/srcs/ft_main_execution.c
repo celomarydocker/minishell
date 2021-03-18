@@ -6,11 +6,51 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:19:55 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 12:28:16 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 15:29:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
+
+
+/**/
+void     display(const t_exec *exec, t_cmap *envs)
+{
+    t_file          *file;
+    char            *type;
+    int             error;
+    t_permessions   perm;
+    t_pair_files    io;
+
+    type = NULL;
+    print("cmd %s\n", exec->cmd);
+    if (exec->perm == FILE_EXEC || exec->perm == BUILTINS)
+        print("COMMAND %s EXIST %s\n", exec->cmd, type);
+    else
+        print("COMMAND NOT FOUND\n");
+   char **args = exec->arguments;
+    print("ARGUMENTS\n");
+    while (*args)
+    {
+        print("-- %s\n", *args);
+        args++;
+    }
+    t_clist *lst = exec->files;
+    print("FILES\n");
+    while (lst)
+    {
+        file = (t_file *)lst->data;
+        if (file->redirect == INPUT)
+            type = "INPUT";
+        else if (file->redirect == OUTPUT)
+            type = "OUTPUT";
+        else
+            type = "APPEND";
+       print("- %s %s\n", file->filename, type);
+        lst = lst->next;
+    }
+}
+/**/
 
 static t_clist     *put_data_into_struct(const char *command, const t_cmap *envs)
 {

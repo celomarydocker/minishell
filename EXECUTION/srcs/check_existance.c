@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 16:08:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/17 17:42:55 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 15:28:25 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static  char *             join_command(const char *path, char **cmd)
 
     joined = ft_cstrjoin(ft_cstrdup((char *)path), ft_cstrdup("/"));
     joined = ft_cstrjoin(joined, *cmd);
-    if (is_command(joined))
+    if (is_command(joined) == 1)
         return (joined);
     free(joined);
     return (NULL);
@@ -98,9 +98,11 @@ t_permessions       check_existance(const char *command, const char *path, char 
     *line = NULL;
     if (!command)
         return (WITHOUT);
+    if (!*command)
+        return (NOT_FOUND);
     if (check_if_builtins(command))
         return (BUILTINS);
-    spath = ft_csplit((char *)path, ':', NULL);
+    spath = csplit((char *)path, ':');
     iterator = 0;
     while (spath[iterator])
     {

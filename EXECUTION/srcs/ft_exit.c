@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/18 14:08:55 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:10:20 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int     ft_exec_exit(char **str, int is_pipe,  int fd, t_cmap *envs)
 			ft_putstr_fd(": numeric argument required\n", 2);
 			if (is_pipe)
 				return (excod);
-			return (10255);
+			else
+				exit(255);
 		}
 	}
     else if (!is_pipe)
