@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_dupl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:58:13 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/12 16:35:34 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 14:24:53 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/error.h"
 
 int     pipe_dup(const char *line)
 {

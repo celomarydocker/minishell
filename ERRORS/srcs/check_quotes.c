@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:15:48 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 16:16:23 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 14:24:58 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/error.h"
 
 int         check_quotes(const char *line)
 {
