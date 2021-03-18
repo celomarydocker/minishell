@@ -87,8 +87,13 @@ int     exec_command(const t_clist *commands, t_cmap *envs)
     {
         pipe_ret = non_pipe_builtins(iter_lst->data, envs);
         setv(envs, "?", ft_itoa(pipe_ret));
-        if (pipe_ret)
+        if (pipe_ret > 10000)
+        {
+            setv(envs, "?", ft_itoa(pipe_ret - 10000));
             return (1);
+        }
+        else
+            setv(envs, "?", ft_itoa(pipe_ret));
     }
     }
     return (0);
@@ -108,9 +113,8 @@ void     all_commands(char *s, t_cmap *global_env)
        exec_pipe = put_data_into_struct(cmds[iter], global_env);
        exit_cmd = exec_command(exec_pipe, global_env);
        clear_list(&exec_pipe, free_exec);
-       /*if (exit_cmd)
+       if (exit_cmd)
             break ;
-        */
        iter++;
     }
     free_split(cmds);
@@ -207,7 +211,15 @@ void signal_handler(int sig)
         }
     }
     if (sig == SIGQUIT)
-        write(1, "\b\b  \b\b", 6);
+    {
+        if (g_global.pid == getpid())
+        {
+            if (!g_global.g_pid)
+                write(2, "\b\b  \b\b", 6);
+            else
+                write(2, "Quit: 3\n", 8);
+        }
+    }
 }
 
 void    prompt(void)
@@ -221,6 +233,42 @@ void    end_of_line()
 {
     ft_putstr_fd("exit\n", 2);
     exit(0);
+}
+
+char    get_char()
+{
+    char    c;
+
+    c = 0;
+    read(0, &c, sizeof(char));
+    return (c);
+}
+
+int     readline(char **line)
+{
+    unsigned int        iter;
+    char                c;
+
+    *line = NULL;
+    iter = 0;
+    c = get_char();
+    if (c == '\0')
+        return (1);
+    while (c != '\n')
+    {
+        if (c != 0)
+        {
+            *line = ft_realloc(line, iter, iter + 1);
+            (*line)[iter] = c;
+            iter++;
+        }
+        else
+            write(2, "  \b\b", 4);
+        c = get_char();
+    }
+    if(*line)
+        (*line)[iter] = 0;
+    return (0);
 }
 
 int     main()
@@ -256,15 +304,19 @@ int     main()
     prompt();
     while (1)
 	{
-        if (get_next_line(0, &line) <= 0)
+        
+        if (readline(&line))
             end_of_line();
         if (g_global.sigint_ret)
             setv(envs, "?", ft_itoa(g_global.sigint_ret));
         g_global.sigint_ret = 0;
-        if (!(error=error_parsing(line)))
-		    all_commands(line, envs);
-        else
-            setv(envs, "?", ft_itoa(error));
+        if(line)
+        {
+            if (!(error=error_parsing(line)))
+		        all_commands(line, envs);
+            else
+                setv(envs, "?", ft_itoa(error));
+        }
         free(line);
         line = NULL;
         g_global.g_pid = 0;
