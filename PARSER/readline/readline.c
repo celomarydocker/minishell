@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:11:40 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 12:19:14 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/18 21:57:29 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int     readline(char **line)
         c = get_char();
     }
     if(*line)
+    {
+        *line = ft_realloc(line, iter, iter + 1);
         (*line)[iter] = 0;
+    }
     return (0);
 }
