@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/19 14:50:46 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/19 15:01:51 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static short	ft_chkopt(char **args, int *i)
 		else
 			break ;
 	}
+	
 	return (nl);
 }
 

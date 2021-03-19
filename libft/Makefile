@@ -6,7 +6,7 @@
 #    By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:08:41 by hfadyl            #+#    #+#              #
-#    Updated: 2021/03/19 14:58:10 by hfadyl           ###   ########.fr        #
+#    Updated: 2021/03/19 15:01:06 by hfadyl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,15 @@ ft_strjoin.o ft_strmapi.o ft_strtrim.o
 all: $(NAME)
 
 $(NAME): $(SOURCES)
-	gcc -Wall -Wextra -Werror -c $(SOURCES)
-	ar rc $(NAME) $(OBJECTS)
-	ranlib $(NAME)
+	@gcc -Wall -Wextra -Werror -c $(SOURCES)
+	@ar rc $(NAME) $(OBJECTS)
+	@ranlib $(NAME)
 
 clean:
-	rm -rf *.o
+	@rm -rf *.o
 
 fclean: clean
-	rm -rf *.a
+	@rm -rf *.a
 
 re: fclean all
 

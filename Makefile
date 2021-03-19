@@ -6,7 +6,7 @@
 #    By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/19 14:45:20 by hfadyl           ###   ########.fr        #
+#    Updated: 2021/03/19 15:02:05 by hfadyl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,28 @@ LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_split.o ft_isalnum.o  \
 		ft_strjoin.o ft_strmapi.o ft_strtrim.o
 	  
 	  
-OBJS = $(SRCS:.c=.o)
+OBJS = PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/display.o\
+	  PARSER/print/ft_atoi.o PARSER/print/ft_putnbr.o PARSER/print/print.o PARSER/print/print_utils.o\
+	  PARSER/print/display_flags.o PARSER/readline/readline.o PARSER/dt/hash_table/additional_method.o \
+	  PARSER/dt/hash_table/hash_map_method.o PARSER/dt/hash_table/hash_method2.o \
+	  PARSER/dt/linkedlist/linkedlist_method.o PARSER/dt/linkedlist/linkedlist_method2.o \
+	  PARSER/command_recognizer/double_quotes.o PARSER/command_recognizer/free_data.o \
+	  PARSER/command_recognizer/getter_methods.o PARSER/command_recognizer/handle_coomands.o \
+	  PARSER/command_recognizer/handle_coomands2.o  \
+	  PARSER/command_recognizer/method_helper.o PARSER/command_recognizer/method_helper3.o \
+	  PARSER/command_recognizer/rec_method.o PARSER/command_recognizer/single_quotes.o \
+	  PARSER/command_recognizer/split_envirement_variables.o PARSER/command_recognizer/split_utiils.o \
+	  PARSER/command_recognizer/split.o PARSER/command_recognizer/variables.o PARSER/command_recognizer/withback.o \
+	  EXECUTION/srcs/ft_echo.o  EXECUTION/srcs/from_parsing2execution.o EXECUTION/srcs/files.o \
+	  EXECUTION/srcs/ft_pipe.o EXECUTION/srcs/ft_unset.o EXECUTION/srcs/pipe_helper.o \
+	  EXECUTION/srcs/ft_setup_builtins.o EXECUTION/srcs/ft_pwd.o EXECUTION/srcs/free_data.o \
+	  EXECUTION/srcs/ft_cd.o  EXECUTION/srcs/ft_exit.o EXECUTION/srcs/ft_make_environ.o\
+	  EXECUTION/srcs/ft_exec_env.o EXECUTION/srcs/ft_export.o  EXECUTION/srcs/ft_checker.o \
+	  EXECUTION/srcs/ft_builtins_handler.o EXECUTION/srcs/ft_init_builtins.o \
+	  EXECUTION/srcs/ft_main_execution.o EXECUTION/srcs/ft_signals.o \
+	  EXECUTION/srcs/checker2.o ERRORS/srcs/check_backslash.o ERRORS/srcs/check_quotes.o \
+	  ERRORS/srcs/check_redirections.o ERRORS/srcs/ft_check_dupl.o ERRORS/srcs/ft_error_parsing.o \
+	  ERRORS/srcs/ft_error_printer.o EXECUTION/srcs/ft_remove_unused.o main.o EXECUTION/srcs/check_existance.o
 
 all: $(NAME)
 
