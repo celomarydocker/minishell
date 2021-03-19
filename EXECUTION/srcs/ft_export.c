@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 21:12:02 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/19 19:58:14 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ void    ft_swap(char **d1, char **d2)
     tmp = *d1;
     *d1 = *d2;
     *d2 = tmp;
+}
+
+void    print_value(const char *value)
+{
+    int iter;
+
+    iter = 0;
+    while (value[iter])
+    {
+        if (is_inset(value[iter], "\"\\$"))
+            ft_putchar_fd('\\', 1);
+        ft_putchar_fd(value[iter], 1);
+        iter++;
+    }
 }
 
 t_clist *sorted_keys(t_clist *keys)
@@ -83,7 +97,7 @@ void    print_variables(t_cmap *envs, int fd)
         if (value)
         {
             ft_putstr_fd("=\"", fd);
-            ft_putstr_fd(value, fd);
+            print_value(value);
             ft_putstr_fd("\"\n", fd);
 
       }

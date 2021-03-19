@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_coomands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/19 18:52:43 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/19 20:00:21 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ int         check_for_variables(const char *str, unsigned int iterator)
 char        *get_command(char *str, int *iter, t_cmap *map)
 {
     char                *s;
-    unsigned int        iterator;
 
     s = NULL;
-    iterator = *iter;
     while (str[*iter] == ' ')
         (*iter)++;
     while (str[*iter] && !in_set(str[*iter]," ><"))
