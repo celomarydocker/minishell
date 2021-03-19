@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 21:05:42 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:14:15 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void    init_bash(char **line, t_cmap **envs)
     prompt();
 }
 
+
 void    clear_all(t_cmap **envs)
 {
     clear_map(&g_global.g_builtins, free_builtins);
@@ -49,27 +50,27 @@ void    reset_vars(char **line)
 
 int     main()
 {
-	char 	*line;
     int     error;
     t_cmap *envs;
-
-    init_bash(&line, &envs);
+    init_bash(&g_global.g_line, &envs);
     while (1)
 	{
-        if (readline(&line))
+        if (readline(&g_global.g_line))
             end_of_line();
         if (g_global.sigint_ret)
-            setv(envs, "?", ft_itoa(g_global.sigint_ret));
-        g_global.sigint_ret = 0;
-        if(line)
         {
-            error = error_parsing(line);
+            setv(envs, "?", ft_itoa(g_global.sigint_ret));
+        }
+        g_global.sigint_ret = 0;
+        if(g_global.g_line)
+        {
+            error = error_parsing(g_global.g_line);
             if (!error)
-		        all_commands(line, envs);
+		        all_commands(g_global.g_line, envs);
             else
                 setv(envs, "?", ft_itoa(error));
         }
-        reset_vars(&line);
+        reset_vars(&g_global.g_line);
 	}
     clear_all(&envs);
     return (0);

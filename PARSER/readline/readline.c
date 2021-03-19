@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:11:40 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 21:57:29 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:51:56 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,41 +40,32 @@ void    end_of_line()
     exit(0);
 }
 
-static char    get_char()
+static int    get_char(char *c)
 {
-    char    c;
-
-    c = 0;
-    read(0, &c, sizeof(char));
-    return (c);
+    return (read(0, c, sizeof(char)));
 }
 
 int     readline(char **line)
 {
-    unsigned int        iter;
     char                c;
 
     *line = 0;
-    iter = 0;
-    c = get_char();
-    if (c == '\0')
+    g_global.g_len_line = 0;
+    if (!get_char(&c))
         return (1);
     while (c != '\n')
     {
         if (c != 0)
         {
-            *line = ft_realloc(line, iter, iter + 1);
-            (*line)[iter] = c;
-            iter++;
+            *line = ft_realloc(line, g_global.g_len_line, g_global.g_len_line + 2);
+            (*line)[g_global.g_len_line + 1] = 0;
+            (*line)[g_global.g_len_line] = c;
+            c = 0;
+            g_global.g_len_line++;
         }
         else
             write(2, "  \b\b", 4);
-        c = get_char();
-    }
-    if(*line)
-    {
-        *line = ft_realloc(line, iter, iter + 1);
-        (*line)[iter] = 0;
+        get_char(&c);
     }
     return (0);
 }
