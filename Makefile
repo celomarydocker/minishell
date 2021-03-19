@@ -6,7 +6,7 @@
 #    By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/19 15:02:05 by hfadyl           ###   ########.fr        #
+#    Updated: 2021/03/19 15:06:43 by hfadyl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	@make -f libft/Makefile
 	@gcc -Wall -Wextra -Werror libft.a $(SRCS)  -o $(NAME)
+	@rm -f $(LIBFTOBJ)
 	
 clean:
 	@rm -rf libft.a
