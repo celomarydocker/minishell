@@ -6,7 +6,7 @@
 #    By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/19 14:39:05 by hfadyl           ###   ########.fr        #
+#    Updated: 2021/03/19 14:45:20 by hfadyl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  ERRORS/srcs/check_redirections.c ERRORS/srcs/ft_check_dupl.c ERRORS/srcs/ft_error_parsing.c \
 	  ERRORS/srcs/ft_error_printer.c EXECUTION/srcs/ft_remove_unused.c main.c EXECUTION/srcs/check_existance.c
 
-LIBFTOBJ = ft_isalnum.o ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_split.o  \
+LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_split.o ft_isalnum.o  \
 		ft_strlcat.o ft_strncmp.o ft_substr.o ft_atoi.o ft_isalpha.o ft_itoa.o \
 		ft_memcpy.o ft_putendl_fd.o ft_strchr.o ft_strlcpy.o ft_strnstr.o \
 		ft_tolower.o ft_bzero.o ft_isascii.o ft_memccpy.o ft_memmove.o   \
