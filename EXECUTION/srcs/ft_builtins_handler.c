@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:48:09 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/17 12:54:23 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/19 18:59:38 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int         non_pipe_builtins(const t_exec *ex, t_cmap *envs)
 {
     int     c_ret;
 
+    if (ex->error)
+    {
+        return (1);   
+    }
     c_ret = just_create_files(ex->files);
     if (c_ret)
         return (c_ret);

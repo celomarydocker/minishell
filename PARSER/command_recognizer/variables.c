@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 04:17:19 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/17 21:04:42 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:11:09 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
+#include <stdio.h>
 
 int       len_name(char *str)
 {
@@ -38,11 +39,11 @@ int      var_len(char *str, int *iter, t_cmap *map)
 
     str++;
     len = len_name(str);
+    *iter += len + 1;
     if (!len)
         return (1);
     var = ft_csubstr(str, len);
-    *iter += len;
-    len = ft_cstrlen(get(map, var)) + 1;
+    len = ft_cstrlen(get(map, var)) - 1;
     free(var);
     return (len);
 }
@@ -55,7 +56,7 @@ int        variables(char *dest, char *str, int *iter, t_cmap *map)
     char    *value;
 
     len = len_name(str + 1);
-    *iter += len;
+    *iter += len + 1;
     if (!len)
     {
         dest[0] = '$';

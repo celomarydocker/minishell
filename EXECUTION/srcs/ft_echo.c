@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/18 16:33:20 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/19 15:01:51 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static short	ft_chkopt(char **args, int *i)
 {
 	short	nl;
 	int		j;
+
 	*i = -1;
 	nl = 1;
 	while (args[++(*i)])
@@ -34,6 +35,7 @@ static short	ft_chkopt(char **args, int *i)
 		else
 			break ;
 	}
+	
 	return (nl);
 }
 

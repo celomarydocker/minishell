@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/19 12:14:15 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/19 18:44:28 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void    init_bash(char **line, t_cmap **envs)
     ft_init_builtins();
     g_global.g_pid = 0;
     g_global.pid = getpid();
+    g_global.cerrno = 0;
     prompt();
 }
 
@@ -52,7 +53,9 @@ int     main()
 {
     int     error;
     t_cmap *envs;
+
     init_bash(&g_global.g_line, &envs);
+    error = 0;
     while (1)
 	{
         if (readline(&g_global.g_line))
@@ -64,7 +67,7 @@ int     main()
         g_global.sigint_ret = 0;
         if(g_global.g_line)
         {
-            error = error_parsing(g_global.g_line);
+          error = error_parsing(g_global.g_line);
             if (!error)
 		        all_commands(g_global.g_line, envs);
             else

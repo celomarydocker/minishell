@@ -12,4 +12,5 @@ int     print_error_quote(int error);
 int     print_error_backslash(int error);
 int     print_error_redirection(int error);
 int     error_parsing(const char *line);
+int     export_am(const char *line, t_cmap *envs);
 #endif

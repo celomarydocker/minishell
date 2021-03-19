@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:32:14 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 16:38:03 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/19 18:54:49 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static t_exec  *parse_exec(const t_ccommand *command, const char *path)
     exec->cmd = ft_cstrdup(command->cmd);
     exec->arguments = convert_list2array2d(command->data->text, exec->cmd);
     exec->perm = check_existance(exec->cmd, path, &line);
+    exec->error = command->error;
     if (line)
     {
         free(exec->cmd);

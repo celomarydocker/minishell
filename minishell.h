@@ -27,6 +27,7 @@ struct          s_global
 {
     int                 g_pid;
 	int					sigint_ret;
+    int                 cerrno;
     char                *g_line;
     size_t              g_len_line;
     pid_t               pid;

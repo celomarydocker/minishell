@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recognizer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:35:57 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 00:10:36 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:52:56 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct  s_ccommand
 {
 	char		*cmd;
     	t_rec		*data;
+	int			error;
 }               t_ccommand;
 
 t_rec			*init_rec();
@@ -54,15 +55,17 @@ void			enter(char  *str, int *iter, t_cmap *map, t_clist **lst);
 void			get_oper(char *str, int *iter, t_clist **operator);
 t_cmap			*put_vars(char **vars);
 char			*single_double_quotes(char *str, int *iter, char c, t_cmap *map);
-char			*get_command(char *str, int *iter, t_cmap *map, t_clist **lst);
+char			*get_command(char *str, int *iter, t_cmap *map);
 t_rec       	*handle_command(char *str, t_cmap *map, int *iter, int is_found);
-void			add_command(char *cmd, t_clist **lst, t_cmap *global_vars);
+void			add_command(char *cmd, t_clist **lst, t_cmap *global_vars, int err);
 t_clist			*get_command_line(char *cmd, t_cmap *global_vars);
 //t_clist			*all_commands(char *s, char **envs);
 int				variables(char *dest, char *str, int *iter, t_cmap *map);
 char			*single_quotes(char *str, int *iter);
 void			free_ccommand(void *cmd);
+int				len_name(char *str);
 void			free_all_commands(t_clist **lst);
+char			*ft_replace_envs(char *line, t_cmap *envs);
 void			free_vars(void *vars);
 char			**split_envirement_variable(const char *line);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_coomands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 21:12:58 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:52:43 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int         check_for_variables(const char *str, unsigned int iterator)
     return (0);
 }
 
-char        *get_command(char *str, int *iter, t_cmap *map, t_clist **text_lst)
+char        *get_command(char *str, int *iter, t_cmap *map)
 {
     char                *s;
     unsigned int        iterator;
-    char                **export_case;
+
     s = NULL;
     iterator = *iter;
     while (str[*iter] == ' ')
@@ -68,19 +68,6 @@ char        *get_command(char *str, int *iter, t_cmap *map, t_clist **text_lst)
             s = ft_cstrjoin(s, single_double_quotes(str, iter, str[*iter], map));
         else
             s = ft_cstrjoin(s, withback(str, map, iter));
-    }
-    if (check_for_variables(str, iterator))
-    {
-        export_case = csplit(s, ' ');
-        free(s);
-        s = export_case[0];
-        iterator = 1;
-        while (export_case[iterator])
-        {
-            append(text_lst, export_case[iterator]);
-            iterator++;
-        }
-        free(export_case);
     }
     return (s);
 }
@@ -155,32 +142,30 @@ t_clist       *join_command(t_clist **first, t_clist **second)
     return (lst);
 }
 
-void       add_command(char *cmd, t_clist **lst, t_cmap *global_vars)
+void       add_command(char *cmd, t_clist **lst, t_cmap *global_vars, int error)
 {
     int             i;
     int             is_found;
     t_ccommand      *command;
-    t_clist         *text_front;
 
     is_found = 0;
     i = 0;
     command = malloc(sizeof(t_ccommand));
     command->cmd = NULL;
     command->data = NULL;
-    text_front = NULL;
     while (cmd[i] == ' ')
         i++;
     while (!is_found)
     {
         if (!in_set(cmd[i], "><"))
         {
-            command->cmd =  get_command(cmd, &i, global_vars, &text_front);
+            command->cmd =  get_command(cmd, &i, global_vars);
             is_found = 1;
         }
         command->data = join_rec(command->data,
         handle_command(cmd, global_vars, &i, is_found));
     }
-    command->data->text = join_command(&text_front, &command->data->text);
+    command->error = error;
     append(lst, command);
 }
 
@@ -189,13 +174,17 @@ t_clist      *get_command_line(char *cmd, t_cmap *global_vars)
     t_clist         *all_cmds;
     char            **commands;
     int             iter;
+    char            *replaced;
 
     all_cmds = NULL;
     commands = csplit(cmd,'|');
     iter = 0;
     while (commands[iter])
     {
-        add_command(commands[iter], &all_cmds, global_vars);
+        replaced = ft_replace_envs(commands[iter], global_vars);
+        add_command(replaced, &all_cmds, global_vars,
+        export_am(commands[iter], global_vars));
+        free(replaced);
         iter++;
     }
     free_split(commands);

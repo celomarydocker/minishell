@@ -27,9 +27,8 @@ typedef struct      s_exec
     char            **arguments;
     t_permessions   perm;
     t_clist         *files;
+    int             error;
 }                   t_exec;
-
-
 
 int                 check_if_builtins(const char *str);
 int                 ft_exec_echo(char **str, int is_pipe, int fd, t_cmap *envs);
