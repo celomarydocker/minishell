@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   replace_envirement.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:18:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/19 18:11:39 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 23:57:57 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
+
+static void     init_v(int *a, int *b, size_t *c, int *d)
+{
+    *a = 0;
+    *b = 0;
+    *c = 0;
+    *d = 0;
+}
+
+static void     init_v2(int *a, int *b, int *c, int *d)
+{
+    *a = 0;
+    *b = 0;
+    *c = 0;
+    *d = 0;
+}
 
 static size_t  count_length(char *line, t_cmap *envs)
 {
@@ -19,10 +35,7 @@ static size_t  count_length(char *line, t_cmap *envs)
     int         quote;
     int         back;
 
-    length = 0;
-    iterator = 0;
-    back  = 0;
-    quote = 0;
+    init_v(&iterator, &quote, &length, &back);
     while (line[iterator])
     {
         if (line[iterator] == '$' && back % 2 == 0 && !quote)
@@ -31,10 +44,7 @@ static size_t  count_length(char *line, t_cmap *envs)
         {
             if (line[iterator] == '\'' && back % 2 == 0)
                 quote = 1;
-            if (line[iterator] == '\\')
-                back++;
-            else
-                back = 0;
+            check_back(&back, line, (unsigned int)iterator);
             length++;
             iterator++;
         }
@@ -51,10 +61,7 @@ char    *ft_replace_envs(char *line, t_cmap *envs)
     int         len;
 
     cmd = malloc(sizeof(char) * (count_length(line, envs) + 1));
-    back = 0;
-    iterator = 0;
-    quote = 0;
-    len = 0;
+    init_v2(&back, &iterator, &quote, &len);
     while (line[iterator])
     {
         if (line[iterator] == '$' && back % 2 == 0 && !quote)
@@ -63,10 +70,7 @@ char    *ft_replace_envs(char *line, t_cmap *envs)
         {
             if (line[iterator] == '\'' && back % 2 == 0)
                 quote = 1;
-            if (line[iterator] == '\\')
-                back++;
-            else
-                back = 0;
+            check_back(&back, line, (unsigned int)iterator);
             cmd[len] = line[iterator];
             len++;
             iterator++;
