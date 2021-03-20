@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   getter_methods.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:08:12 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/03/12 13:46:43 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/20 23:21:58 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
 
-void        enter(char  *str, int *iter, t_cmap *map, t_clist **lst)
+void        enter(char  *str, int *iter, t_clist **lst)
 {
     char       *s;
 
@@ -20,9 +20,9 @@ void        enter(char  *str, int *iter, t_cmap *map, t_clist **lst)
     while (str[*iter] && !in_set(str[*iter]," ><"))
     {
         if (str[*iter] == '\'' || str[*iter] == '"')
-            s = ft_cstrjoin(s, single_double_quotes(str, iter, str[*iter], map));
+            s = ft_cstrjoin(s, single_double_quotes(str, iter, str[*iter]));
         else
-            s = ft_cstrjoin(s, withback(str, map, iter));
+            s = ft_cstrjoin(s, withback(str, iter));
     }
     append(lst, s);
 }

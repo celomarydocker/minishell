@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 21:46:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 16:40:38 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 22:51:14 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,50 +52,55 @@ static int check_for_file(const char *s, unsigned int *i)
     return (0);
 }
 
+
+int     norminette_problems(int which_case, int vars[5],
+unsigned int *iterator, const char *line)
+{
+    if (which_case == 1)
+    {
+        if (!vars[3])
+            vars[3] = line[*iterator];
+        else if(line[*iterator] == vars[3])
+            vars[3] = 0; 
+    }
+    else if (which_case == 2)
+    {
+        vars[0] = check_for_redirection(line, iterator, line[*iterator]);
+        vars[1] = check_for_file(line, iterator);
+        if (vars[0] != 1 || vars[1] != 1)
+        {
+            if (vars[0] == 1 && vars[1] > 1)
+                return (vars[1]);
+            if (!line[*iterator] && vars[0]==1)
+                return (4);
+            return (vars[0]);
+        }
+    }
+    return (0);
+}
+
 int check_redirection(const char *line)
 {
     unsigned int        iterator;
-    int                 redirect;
-    int                 file;
-    int                 back_slash;
-    int                 is_quote;
+    int                 vars[5];
 
-    iterator = 0;
-    is_quote = 0;
-    back_slash = 0;
-    file = 0;
-    redirect = 0;
+    init_vars_errors(&iterator, vars);
     while (line[iterator])
     {
-        if (back_slash % 2 == 0)
+        if (vars[2] % 2 == 0)
         {
             if (line[iterator] == '\'' || line[iterator] == '"')
+                norminette_problems(1, vars, &iterator, line);
+            if ((line[iterator] == '>' || line[iterator] == '<') && !vars[3])
             {
-                if (!is_quote)
-                    is_quote = line[iterator];
-                else if(line[iterator] == is_quote)
-                    is_quote = 0;
-            }
-            if ((line[iterator] == '>' || line[iterator] == '<') && !is_quote)
-            {
-                redirect = check_for_redirection(line, &iterator, line[iterator]);
-                file = check_for_file(line, &iterator);
-                if (redirect != 1 || file != 1)
-                {
-                    if (redirect == 1 && file > 1)
-                        return (file);
-                    if (!line[iterator] && redirect==1)
-                        return (4);
-                    return (redirect);
-                }
+                vars[4] = norminette_problems(2, vars, &iterator, line);
+                if (vars[4])
+                    return (vars[4]);
                 if (!line[iterator])
                     break;
             }
         }
-        if (line[iterator] != '\\')
-            back_slash = 0;
-        else
-            back_slash++;
+        check_back(&vars[2], line, iterator);
         iterator++;
     }
     return (0);

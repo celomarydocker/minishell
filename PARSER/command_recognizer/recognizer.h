@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recognizer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:35:57 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/19 18:52:56 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 23:30:02 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RECOGNIZER_H
 
 # include "../../minishell.h"
-
 typedef struct	s_rec
 {
 	t_clist		*text;
@@ -42,8 +41,8 @@ int			check_special(char c, char cs, char *special, int *is_back);
 char			**csplit(const char *s, char separator);
 void			free_split(char **sp);
 //endsplit
-char            *withback(char *str, t_cmap *map, int *iter);
-char            *double_quotes(char *str, int *i, t_cmap *map);
+char            *withback(char *str, int *iter);
+char            *double_quotes(char *str, int *i);
 void			print_rec(t_rec *rec);
 void			free_keys(t_clist	**keys);
 void			free_cmd_data(t_cmap **cmd_data);
@@ -51,13 +50,14 @@ void			free_rec(t_rec **rec);
 int      		var_len(char *str, int *iter, t_cmap *map);
 char			*get(t_cmap *map, const char *key);
 void			setv(t_cmap *map, const char *key, char *value);
-void			enter(char  *str, int *iter, t_cmap *map, t_clist **lst);
+void			enter(char  *str, int *iter, t_clist **lst);
 void			get_oper(char *str, int *iter, t_clist **operator);
 t_cmap			*put_vars(char **vars);
-char			*single_double_quotes(char *str, int *iter, char c, t_cmap *map);
-char			*get_command(char *str, int *iter, t_cmap *map);
-t_rec       	*handle_command(char *str, t_cmap *map, int *iter, int is_found);
-void			add_command(char *cmd, t_clist **lst, t_cmap *global_vars, int err);
+t_rec			*join_rec(t_rec *rec1, t_rec *rec2);
+char			*single_double_quotes(char *str, int *iter, char c);
+char			*get_command(char *str, int *iter);
+t_rec       	*handle_command(char *str, int *iter, int is_found);
+void			add_command(char *cmd, t_clist **lst, int err);
 t_clist			*get_command_line(char *cmd, t_cmap *global_vars);
 //t_clist			*all_commands(char *s, char **envs);
 int				variables(char *dest, char *str, int *iter, t_cmap *map);

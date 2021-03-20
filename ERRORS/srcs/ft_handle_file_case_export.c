@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_file_case_export.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:56 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/19 18:43:02 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 22:34:50 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int         check_for_space(const char *line, int *iterator, t_cmap *envs)
     int len;
     char *name;
     char *value;
+
     len = len_name((char *)(line + *iterator + 1));
     name = ft_csubstr((char *)(line + *iterator + 1), len);
     *iterator += len + 1;

@@ -6,13 +6,13 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 03:48:49 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 21:47:09 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/20 23:14:21 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
 
-static int        double_quotes_back(char *s, t_cmap *map)
+static int        double_quotes_back(char *s)
 {
     int     len;
     int     iter;
@@ -29,10 +29,7 @@ static int        double_quotes_back(char *s, t_cmap *map)
             lock = 0;
             continue;
         }
-        if (s[iter] == '$' && lock)
-            len += var_len(s + iter, &iter, map);
-        else
-            len++;
+        len++;
         lock = 1;
     }
     return (len);
@@ -58,7 +55,7 @@ static char     *double_quotes_helper2(char *s, int *i, int iter2, int iter)
     return (s);
 }
 
-char            *double_quotes(char *str, int *i, t_cmap *map)
+char            *double_quotes(char *str, int *i)
 {
     char        *s;
     int         len;
@@ -66,7 +63,7 @@ char            *double_quotes(char *str, int *i, t_cmap *map)
     int         iter2;
     int         lock;
 
-    len = double_quotes_back(str + *i, map);
+    len = double_quotes_back(str + *i);
     s = malloc(sizeof(char) * (len + 3));
     init_vars(&iter2, &iter, &lock);
     while (str[++iter + *i] != 0)
@@ -77,10 +74,7 @@ char            *double_quotes(char *str, int *i, t_cmap *map)
             lock = 0;
         else
         {
-            if (str[iter + *i] == '$' && lock)
-                iter2 += variables(s  + iter2, str + iter + *i, &iter, map);
-            else
-                double_quotes_helper(s, &iter2, str[iter + *i]);
+            double_quotes_helper(s, &iter2, str[iter + *i]);
             lock = 1;
         }
     }

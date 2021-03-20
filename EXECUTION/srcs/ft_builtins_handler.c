@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtins_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:48:09 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/19 18:59:38 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 22:58:37 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
-
-
 
 int        just_create_files(t_clist   *files)
 {

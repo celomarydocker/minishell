@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   withback.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 03:37:08 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 18:44:46 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 23:15:40 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
 
 
-static int        back_slash_len(char *str, t_cmap *map)
+static int        back_slash_len(char *str)
 {
     int     len;
     int     iter;
@@ -33,8 +33,6 @@ static int        back_slash_len(char *str, t_cmap *map)
         }
         else if (back_slash % 2 == 0 &&  in_set(str[iter], "\"'>< "))
             break;
-        else if (back_slash % 2 == 0 && str[iter] == '$')
-            len += var_len(str + iter, &iter, map);
         else if (back_slash % 2 == 0)
             len++;
         iter++;
@@ -55,7 +53,7 @@ static void     withback_helper2(char *s, char c, int *i)
     (*i)++;
 }
 
-char            *withback(char *str, t_cmap *map, int *iter)
+char            *withback(char *str, int *iter)
 {
     int     i;
     int     len;
@@ -63,7 +61,7 @@ char            *withback(char *str, t_cmap *map, int *iter)
     char    *s;
 
     i = 0;
-    len = back_slash_len(str + *iter, map);
+    len = back_slash_len(str + *iter);
     s = malloc(sizeof(char) * (len + 1));
     back_slash = 0;
     while (str[*iter])
@@ -74,8 +72,6 @@ char            *withback(char *str, t_cmap *map, int *iter)
             withback_helper(s, str[*iter], &i, &back_slash);
         else if (back_slash % 2 == 0 && in_set(str[*iter], "\"'>< "))
             break;
-        else if (back_slash % 2 == 0 && str[*iter] == '$')
-            i += variables(s + i, str + *iter, iter, map);
         else if (back_slash % 2 == 0)
             withback_helper2(s, str[*iter], &i);
         (*iter)++;

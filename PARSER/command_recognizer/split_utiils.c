@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 23:13:40 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 00:23:24 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/20 23:36:14 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void        free_split(char **sp)
     while (sp[iter])
     {
         free(sp[iter]);
-        //sp[iter] = NULL;
         iter++;
     }
     free(sp);

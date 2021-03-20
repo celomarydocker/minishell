@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/19 18:44:28 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 18:35:14 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@ void    init_bash(char **line, t_cmap **envs)
     *line = NULL;
     *envs = put_vars(environ);
     setv(*envs, "?", ft_itoa(0));
-    setv(*envs, "$", ft_itoa(getpid()));
     init_parent_signals();
     g_global.sigint_ret = 0;
     ft_init_builtins();
     g_global.g_pid = 0;
-    g_global.pid = getpid();
-    g_global.cerrno = 0;
     prompt();
 }
 

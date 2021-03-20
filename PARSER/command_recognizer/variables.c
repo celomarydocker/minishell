@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 04:17:19 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/19 18:11:09 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 23:10:53 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int       len_name(char *str)
     int     len;
 
     len = 0;
-    if ((str[len] < 'A' || (str[len] > 'Z' && str[len] < 'a') || str[len] > 'z') && !is_inset(str[len], "_?$"))
+    if ((str[len] < 'A' || (str[len] > 'Z' && str[len] < 'a')
+    || str[len] > 'z') && !is_inset(str[len], "_?"))
         return (0);
     len++;
     while (str[len])
@@ -51,7 +52,6 @@ int      var_len(char *str, int *iter, t_cmap *map)
 int        variables(char *dest, char *str, int *iter, t_cmap *map)
 {
     int     len;
-    int     i;
     char    *var_name;
     char    *value;
 
@@ -63,20 +63,14 @@ int        variables(char *dest, char *str, int *iter, t_cmap *map)
         dest[1] = 0;
         return (1);
     }
-    i = 0;
     var_name = ft_csubstr(str + 1, len);
     value = get(map, var_name);
     free(var_name);
     if (!value)
         return (0);
     len = ft_cstrlen(value);
-    while (i < len)
-    {
-        dest[i] = value[i];
-        i++;
-    }
-    dest[i] = 0;
-    return (i);
+    ft_cstrcpy(dest, value, len);
+    return (len);
 }
 
 t_cmap     *put_vars(char **vars)

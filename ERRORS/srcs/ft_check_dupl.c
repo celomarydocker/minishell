@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_dupl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:58:13 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/18 14:24:53 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/20 22:50:44 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,89 +14,55 @@
 
 int     pipe_dup(const char *line)
 {
-    int                 lock;
+    int                 vars[4];
     unsigned int        iterator;
-    int                 backslash;
-    int                 pipe_count;
-    int                 other_char;
 
-    lock = 0;
-    iterator = 0;
-    backslash = 0;
-    other_char = 0;
-    pipe_count = 0;
+    init_vars_errors(&iterator, vars);
     while (line[iterator])
     {
-        if (pipe_count > 1)
+        if (vars[2] > 1)
             return (2);
-        if (!other_char && pipe_count == 1 && line[iterator] != '|')
+        if (!vars[3] && vars[2] == 1 && line[iterator] != '|')
             return (1);
-        if (backslash % 2 == 0 && (line[iterator] == '"' || line[iterator] == '\''))
-        {
-            if (lock == line[iterator])
-                lock = 0;
-            else if(!lock)
-                lock = line[iterator];
-            other_char = 1;
-        }
-        if (line[iterator] == '|' && !lock && backslash % 2 == 0)
-            pipe_count++;
+        ds_quotes_checker(vars[1], line[iterator],&vars[3], &vars[0]);
+        if (line[iterator] == '|' && !vars[0] && vars[1] % 2 == 0)
+            vars[2]++;
         else
         {
-            other_char = 1;
-            pipe_count = 0;
+            vars[3] = 1;
+            vars[2] = 0;
         }
-        if (line[iterator] == '\\')
-            backslash++;
-        else
-            backslash = 0;
+        check_back(&vars[1], line, iterator);
         iterator++;
     }
-    return (pipe_count);
+    return (vars[2]);
 }
 
 int    semi_colon_dup(const char *line)
 {
-    int                 lock;
     unsigned int        iterator;
-    int                 backslash;
-    int                 pipe_count;
-    int                 other_char;
+    int                 vars[4];
 
-    lock = 0;
-    iterator = 0;
-    backslash = 0;
-    other_char = 0;
-    pipe_count = 0;
+    init_vars_errors(&iterator, vars);
     while (line[iterator])
     {
-        if (backslash % 2 == 0 && (line[iterator] == '"' || line[iterator] == '\''))
-        {
-            if (lock == line[iterator])
-                lock = 0;
-            else if(!lock)
-                lock = line[iterator];
-            other_char = 1;
-        }
-        if (line[iterator] == ';' && !lock && backslash % 2 == 0)
-            pipe_count++;
+        ds_quotes_checker(vars[1], line[iterator], &vars[3], &vars[0]);
+        if (line[iterator] == ';' && !vars[0] && vars[1] % 2 == 0)
+            vars[2]++;
         else
         {
-            if (!other_char && pipe_count == 1 && line[iterator] != ';')
+            if (!vars[3] && vars[2] == 1 && line[iterator] != ';')
                 return (1);
             if (line[iterator] != ' ')
-                other_char = 1;
-            pipe_count = 0;
+                vars[3] = 1;
+            vars[2] = 0;
         }
-        if (pipe_count > 1)
+        if (vars[2] > 1)
             return (2);
-        if (line[iterator] == '\\')
-            backslash++;
-        else
-            backslash = 0;
+        check_back(&vars[1], line, iterator);
         iterator++;
     }
-    if (!other_char && pipe_count == 1 && line[iterator] != ';')
+    if (!vars[3] && vars[2] == 1 && line[iterator] != ';')
         return (1);
     return (0);
 }

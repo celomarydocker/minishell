@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 14:40:43 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/20 21:16:09 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,61 +45,14 @@ static void  ft_setup_input(int old_input, bool is_first, t_pair_files io)
     }   
 }
 
-void         command_not_found_error(const char *cmd)
-{
-        ft_putstr_fd("CSHELL: ", 2);
-        ft_putstr_fd((char *)cmd, 2);
-        ft_putstr_fd(": command not found\n", 2);
-        exit(127);
-}
-
-void        file_not_found(const char *file, t_pair_files io)
-{
-        ft_putstr_fd("CSHELL: ", 2);
-        ft_putstr_fd((char *)file, 2);
-        ft_putstr_fd(": ", 2);
-        ft_putstr_fd(strerror(errno), 2);
-        ft_putstr_fd("\n", 2);
-        if (io.input != -1)
-            close(io.input);
-        if (io.output != -1)
-            close(io.output);
-        exit(1);
-}
-
-void        init_child_signal()
-{
-    signal(SIGINT, SIG_DFL);
-    signal(SIGQUIT, SIG_DFL);
-}
-
-void        is_ourshell(const char *cmd, int input)
-{
-    int     pid;
-
-    if (!ft_strncmp(cmd, "./minishell", 11))
-    {
-        pid  = getpid();
-        write(input, &pid, sizeof(int));
-    }
-    close(input);
-}
-
-void            ft_setup_io(int fd[4], int input, int is[2], t_pair_files io)
+void            ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
 {
     ft_setup_input(input, is[0], io);
     ft_setup_output(fd[1], is[1], io);
     close(fd[0]);
 }
-void         command_perm_denied(const char *command)
-{
-    ft_putstr_fd("CSHELL: ", 2);
-    ft_putstr_fd((char *)command, 2);
-    ft_putstr_fd(": Permission denied\n", 2);
-    exit(126);
-}
 
-static void  ft_child_pipe(t_exec *data, int fd[4], bool *is, t_cmap *envs)
+static void  ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
 {
     t_pair_files        io;
     int                 status_error;
@@ -111,7 +64,6 @@ static void  ft_child_pipe(t_exec *data, int fd[4], bool *is, t_cmap *envs)
         exit(status_error);
     }
     init_child_signal();
-    is_ourshell(data->cmd, fd[3]);
     if (data->perm == NOT_FOUND)
         command_not_found_error(data->arguments[0]);
     else if (data->perm == PERMISSION_DENIED)
@@ -120,60 +72,34 @@ static void  ft_child_pipe(t_exec *data, int fd[4], bool *is, t_cmap *envs)
     if (status_error)
         file_not_found(filename_error, io);
     ft_setup_io(fd, is[0], is + 1, io);
-    if (data->perm == FILE_EXEC)
-    {
-        execve(data->cmd, data->arguments,
-        from_map_to_array_2d(envs, data->cmd));
-        exit(0);
-    }
-    else if (data->perm == BUILTINS)
-    {
-        status_error = get_builtins(g_global.g_builtins, data->cmd)(data->arguments + 1, 1 , 1, envs);
-        exit(status_error);
-    }
+    ft_child_helper(data, envs);
 }
 
 int    ft_pipe(t_clist  *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
 {
-    int     pid;
-    int     status;
-    int     sign;
-    int     fd[4];
-    int     is_first_last[3];
+    int     vars[7];
 
-    fd[0] = -1;
-    fd[1] = -1;
     if (!pipe_exec)
         return (EXIT_SUCCESS);
-    is_first_last[0] = old_stdin;
-    is_first_last[1] = is_first;
-    is_first_last[2] = ((!pipe_exec->next) ? 1 : 0);
-    pipe(fd + 2);
+    init_ft_pipe_vars(vars, is_first, pipe_exec, old_stdin);
     if (pipe_exec->next)
-        pipe(fd);
-    if ((pid=fork()) == 0)
-    {
-        close(fd[2]);
-        ft_child_pipe(pipe_exec->data, fd, is_first_last, envs);
-    }
-    if (pid < 0)
+        pipe(vars + 2);
+    vars[0]= fork();
+    if (vars[0] == 0)
+        ft_child_pipe(pipe_exec->data, vars + 2, vars + 4, envs);
+    if (vars[0] < 0)
         exit(EXIT_FAILURE);
-    close(fd[1]);
+    close(vars[3]);
     if (!is_first)
         close(old_stdin);
-    close(fd[3]);
-    read(fd[2], &g_global.pid, sizeof(int));
-    close(fd[2]);
     if (!pipe_exec->next)
     {
         g_global.g_pid= 1;
-        waitpid(pid, &status, 0);
-        g_global.pid = getpid();
-        return (ft_pipe_return(status));
+        waitpid(vars[0], &vars[1], 0);
+        return (ft_pipe_return(vars[1]));
     }
-    status = ft_pipe(pipe_exec->next, 0, fd[0], envs);
+    vars[1] = ft_pipe(pipe_exec->next, 0, vars[2], envs);
     g_global.g_pid= 1;
-    waitpid(pid, &sign, 0);
-    g_global.pid = getpid();
-    return (status);
+    waitpid(vars[0], NULL, 0);
+    return (vars[1]);
 }

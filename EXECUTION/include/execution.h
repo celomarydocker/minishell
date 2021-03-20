@@ -5,10 +5,10 @@
 /* TESTING STUFF */
 # include <stdio.h>
 /* END */
-
 typedef enum e_enum {INPUT, OUTPUT, APPEND} t_enum;
 typedef enum e_permessions {NOT_FOUND = -1, BUILTINS, FILE_EXEC, PERMISSION_DENIED, WITHOUT} t_permessions;
 typedef int (*t_builtin_function)(char **str, int is_pipe, int fd, t_cmap *envs);
+
 typedef struct s_pair_files
 {
     int         input;
@@ -29,6 +29,8 @@ typedef struct      s_exec
     t_clist         *files;
     int             error;
 }                   t_exec;
+
+
 
 int                 check_if_builtins(const char *str);
 int                 ft_exec_echo(char **str, int is_pipe, int fd, t_cmap *envs);
@@ -61,5 +63,10 @@ void                ft_init_builtins();
 void                init_parent_signals();
 bool                is_not_making_change(t_exec *exec);
 void                all_commands(char *s, t_cmap *global_env);
+void                file_not_found(const char *file, t_pair_files io);
 void                ft_disable_unused(char ***str, int *is_pipe, int *fd, t_cmap **envs);
+void                init_child_signal();
+void                init_ft_pipe_vars(int vars[7], int is_first, const t_clist *pipe_exec, int old);
+void                ft_child_helper(t_exec *data, t_cmap *envs);
+int                 is_command(const char *cmd);
 #endif
