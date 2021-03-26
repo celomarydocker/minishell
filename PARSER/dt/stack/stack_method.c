@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 16:00:31 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/09 16:03:04 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:04:46 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,9 @@
 void	push(t_stack **stack, void *data)
 {
 	t_stack	*temp;
-	void	*d;
-	size_t	len;
 
 	temp = malloc(sizeof(t_stack));
-	len = length(data);
-	d = malloc(((len > 8) ? len : 8));
-	copy_data(d, data, ((len > 8) ? len : 8));
-	temp->data = d;
+	temp->data = data;
 	temp->next = NULL;
 	if (!(*stack))
 		*stack = temp;
@@ -33,7 +28,7 @@ void	push(t_stack **stack, void *data)
 	}
 }
 
-void	*pop(t_stack **stack)
+void	*pop_st(t_stack **stack)
 {
 	void	*data;
 	t_stack	*next;

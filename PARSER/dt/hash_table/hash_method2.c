@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 15:17:26 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/15 15:21:31 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:21:38 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,26 @@ void		*copy_key(const unsigned char *key, size_t key_size)
 	return (dst);
 }
 
+void			*getting_value(t_clist *before, t_clist *list,
+t_clist **first, void (*free_key)(t_key_value *data))
+{
+	void		*value;
+	value = ((t_key_value *)list->data)->value;
+	free_key(list->data);
+	if (!before)
+				*first = list->next;
+	else
+		before->next = list->next;
+	free(list);
+	return (value);	
+}
+
 void			*pop_value(t_cmap *map, const void *key, size_t key_size,
 void (*free_key)(t_key_value *data))
 {
 	int		id;
 	t_clist	*list;
 	t_clist *before;
-	void	*value;
 
 	id = get_hash_code(key, key_size);
 	if (!map->lst[id])
@@ -67,16 +80,7 @@ void (*free_key)(t_key_value *data))
 	while (list)
 	{
 		if (compare(((t_key_value *)list->data)->key, key, key_size))
-		{
-			value = ((t_key_value *)list->data)->value;
-			free_key(list->data);
-			if (!before)
-				map->lst[id] = map->lst[id]->next;
-			else
-				before->next = list->next;
-			free(list);
-			return (value);
-		}
+			return (getting_value(before, list, &map->lst[id], free_key));
 		before = list;
 		list = list->next;
 	}

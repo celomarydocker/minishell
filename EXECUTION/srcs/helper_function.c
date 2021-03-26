@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_method2.c                                    :+:      :+:    :+:   */
+/*   helper_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 16:01:49 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/25 16:04:11 by mel-omar         ###   ########.fr       */
+/*   Created: 2021/03/21 13:46:58 by mel-omar          #+#    #+#             */
+/*   Updated: 2021/03/21 13:47:06 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
-
-void	print_stack(const t_stack *stack, void display_data(void *data))
+int     ft_cstrcmp(const char *s1, const char *s2)
 {
-	if (stack)
-	{
-		display_data(stack->data);
-		print_stack(stack->next, display_data);
-	}
+    unsigned int        iterator;
+
+    iterator = 0;
+    while (s1[iterator] && s2[iterator] && s1[iterator] == s2[iterator])
+        iterator++;
+    return ((int)(s1[iterator] - s2[iterator]));
 }

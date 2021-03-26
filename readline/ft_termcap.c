@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   readline.h                                         :+:      :+:    :+:   */
+/*   ft_temcap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/18 12:11:50 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/19 12:19:20 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/03/25 13:46:02 by mel-omar          #+#    #+#             */
+/*   Updated: 2021/03/25 13:46:35 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READLINE_H
-# define READLINE_H
-# include <stdlib.h>
-# include <unistd.h>
-# include "../../minishell.h"
+#include "readline.h"
 
-void    end_of_line();
-int     readline(char **line);
-#endif
+void            tcapply(const char *id)
+{
+        char    *s;
+
+        s = tgetstr(id, NULL);
+        tputs(s, 1, ft_puts);
+}

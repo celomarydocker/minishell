@@ -69,4 +69,6 @@ void                init_child_signal();
 void                init_ft_pipe_vars(int vars[7], int is_first, const t_clist *pipe_exec, int old);
 void                ft_child_helper(t_exec *data, t_cmap *envs);
 int                 is_command(const char *cmd);
+t_clist             *sorted_keys(t_clist *keys);
+int                 ft_cstrcmp(const char *s1, const char *s2);
 #endif

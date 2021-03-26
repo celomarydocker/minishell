@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/20 18:35:14 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:59:47 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void    prompt(void)
     print("\033[0;32m$%s> \033[0;37m",getcwd(buffer, 100));
 }
 
-void    init_bash(char **line, t_cmap **envs)
+void    init_bash(t_cmap **envs)
 {
-    *line = NULL;
     *envs = put_vars(environ);
     setv(*envs, "?", ft_itoa(0));
     init_parent_signals();
@@ -50,27 +49,25 @@ int     main()
 {
     int     error;
     t_cmap *envs;
+    char    *line;
 
-    init_bash(&g_global.g_line, &envs);
+    init_bash(&envs);
     error = 0;
     while (1)
 	{
-        if (readline(&g_global.g_line))
-            end_of_line();
+        line = readline(envs);
         if (g_global.sigint_ret)
-        {
             setv(envs, "?", ft_itoa(g_global.sigint_ret));
-        }
         g_global.sigint_ret = 0;
-        if(g_global.g_line)
+        if(line)
         {
-          error = error_parsing(g_global.g_line);
+          error = error_parsing(line);
             if (!error)
-		        all_commands(g_global.g_line, envs);
+		        all_commands(line, envs);
             else
                 setv(envs, "?", ft_itoa(error));
         }
-        reset_vars(&g_global.g_line);
+        reset_vars(&line);
 	}
     clear_all(&envs);
     return (0);

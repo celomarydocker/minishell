@@ -6,7 +6,7 @@
 #    By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/20 22:47:51 by mel-omar         ###   ########.fr        #
+#    Updated: 2021/03/21 13:50:31 by mel-omar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  EXECUTION/srcs/checker2.c ERRORS/srcs/check_backslash.c ERRORS/srcs/check_quotes.c \
 	  ERRORS/srcs/check_redirections.c ERRORS/srcs/ft_check_dupl.c ERRORS/srcs/ft_error_parsing.c \
 	  ERRORS/srcs/ft_error_printer.c EXECUTION/srcs/ft_remove_unused.c main.c EXECUTION/srcs/check_existance.c \
-	  ERRORS/srcs/ft_pipe_errors.c ERRORS/srcs/additional_function_error.c
+	  ERRORS/srcs/ft_pipe_errors.c ERRORS/srcs/additional_function_error.c EXECUTION/srcs/ft_sort_export.c \
+	  EXECUTION/srcs/helper_function.c
 
 LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_split.o ft_isalnum.o  \
 		ft_strlcat.o ft_strncmp.o ft_substr.o ft_atoi.o ft_isalpha.o ft_itoa.o \
@@ -67,7 +68,8 @@ OBJS = PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/disp
 	  EXECUTION/srcs/checker2.o ERRORS/srcs/check_backslash.o ERRORS/srcs/check_quotes.o \
 	  ERRORS/srcs/check_redirections.o ERRORS/srcs/ft_check_dupl.o ERRORS/srcs/ft_error_parsing.o \
 	  ERRORS/srcs/ft_error_printer.o EXECUTION/srcs/ft_remove_unused.o main.o EXECUTION/srcs/check_existance.o \
-	  ERRORS/srcs/ft_pipe_errors.o ERRORS/srcs/additional_function_error.o
+	  ERRORS/srcs/ft_pipe_errors.o ERRORS/srcs/additional_function_error.o EXECUTION/srcs/ft_sort_export.o \
+	  EXECUTION/srcs/helper_function.o
 
 all: $(NAME)
 

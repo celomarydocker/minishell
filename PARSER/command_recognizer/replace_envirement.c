@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:18:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/20 23:57:57 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:26:04 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char    *ft_replace_envs(char *line, t_cmap *envs)
     int         back;
     int         len;
 
-    cmd = malloc(sizeof(char) * (count_length(line, envs) + 1));
+    cmd = malloc(sizeof(char) * (count_length(line, envs) + 2));
     init_v2(&back, &iterator, &quote, &len);
     while (line[iterator])
     {
