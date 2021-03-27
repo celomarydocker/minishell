@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:14:17 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/26 12:32:31 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/27 22:58:38 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static int     some_logic(int d, char **line)
                 enter_key(line);
                 return (1);
         }
+        else if (d == CTRL_L)
+                ctrl_l();
         return (0);
 }
 
