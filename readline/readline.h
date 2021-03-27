@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:10 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/27 23:05:24 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/28 00:09:42 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void                set_char(int c);
 void                init_history();
 void                clear_history();
 void                froma2b(t_stack **a, t_stack **b);
+void                reset_history(t_stack **up, t_stack **down);
 void                reset_line(struct s_line *line);
 void                display_history_line();
 void                tcapply(const char *id);

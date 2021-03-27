@@ -6,11 +6,18 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:48 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/27 23:34:49 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/27 23:41:46 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
+
+struct s_line           copy_line()
+{
+        struct  s_line          *line;
+
+        line = malloc(sizeof(struct s_line));
+}
 
 void        key_up()
 {
