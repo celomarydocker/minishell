@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:48 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/26 13:53:02 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/27 23:34:49 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void        key_down()
                 push(&g_global.g_history.down, g_global.g_line);
                 g_global.g_line = pop_st(&g_global.g_history.up);
                 display_history_line();
-        }   
+        }
 }
 
 void        key_left()

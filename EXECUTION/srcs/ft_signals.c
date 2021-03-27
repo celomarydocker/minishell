@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:41:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/26 13:20:58 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/27 23:00:59 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void signal_int()
     if (!g_global.g_pid)
     {
         clear_line(g_global.g_line);
+        g_global.g_line = init_line();
         g_global.sigint_ret = 1;
         write(1, "\n", 1);
         print("\033[0;32m$%s> \033[0;37m", getcwd(buffer, 100));

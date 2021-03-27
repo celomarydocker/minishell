@@ -6,7 +6,7 @@
 /*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:10 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/27 22:58:02 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/27 23:05:24 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define KEY_REMOVE 127
 # define KEY_TAB 9
 # define CTRL_D 4
-# define CTRL_L 13
+# define CTRL_L 12
 
 void                from_second_to_first(t_stack **first, t_stack **second);
 size_t              length_st(const t_stack *st);
