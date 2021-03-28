@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_functions2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/26 13:55:00 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:42:53 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void     ctrl_d(t_stack *left, t_stack *right)
         write(2, "exit\n", 5);
         exit(0);
     }
+}
+
+void    ctrl_l(void)
+{
+    tcapply("cl");
+    prompt();
+    display_history_line();
 }

@@ -30,8 +30,6 @@ typedef struct      s_exec
     int             error;
 }                   t_exec;
 
-
-
 int                 check_if_builtins(const char *str);
 int                 ft_exec_echo(char **str, int is_pipe, int fd, t_cmap *envs);
 int                 ft_exec_pwd(char **str, int is_pipe, int fd, t_cmap *envs);

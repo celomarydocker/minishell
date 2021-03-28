@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:14:17 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/26 12:32:31 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:25:27 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void     set_char(int c)
 {
+        int     total;
+
         insert_char(&g_global.g_line->left, c);
+        total = g_global.g_line->len + 4 + g_global.count_prompt;
+        if (total % tgetnum("co") == 0)
+                write(1, "\n", 1);
         write(1, &c, sizeof(int));
         tcapply("sc");
         print_stack(g_global.g_line->right, ft_putchar);
@@ -46,6 +51,8 @@ static int     some_logic(int d, char **line)
                 enter_key(line);
                 return (1);
         }
+        else if (d == CTRL_L)
+                ctrl_l();
         return (0);
 }
 
@@ -55,6 +62,7 @@ char        *readline(t_cmap *envs)
         char    *string;
 
         g_global.g_line = init_line();
+        copyhistory();
         string = getenv("TERM");
         if (!string)
         {
@@ -70,5 +78,6 @@ char        *readline(t_cmap *envs)
                 if (some_logic(d, &string))
                         break;
         }
+        cleartemp();
         return (string);
 }

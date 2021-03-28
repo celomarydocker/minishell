@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_temcap.c                                        :+:      :+:    :+:   */
+/*   ft_termcap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:46:02 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/25 13:46:35 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/27 11:31:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void            tcapply(const char *id)
 {
         char    *s;
 
-        s = tgetstr(id, NULL);
+        s = tgetstr((NCURSES_CONST char *)id, NULL);
         tputs(s, 1, ft_puts);
 }

@@ -1,7 +1,6 @@
 #ifndef MINISHELL
 # define MINISHELL
 
-
 extern char **environ;
 
 # include <stdlib.h>
@@ -19,7 +18,7 @@ extern char **environ;
 # include "EXECUTION/include/execution.h"
 # include "ERRORS/include/error.h"
 # include <errno.h>
-# include <termio.h>
+# include <termios.h>
 # include <termcap.h>
 
 struct s_line
@@ -41,6 +40,9 @@ struct          s_global
     int                 g_pid;
     struct s_line       *g_line;
     struct s_history    g_history;
+    struct s_history    g_temp;
+    int                 count_prompt;
+    int                 is_prompt;
     int                 sigint_ret;
     t_cmap              *g_builtins;
 }                       g_global;

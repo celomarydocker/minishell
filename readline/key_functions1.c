@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_functions1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:48 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/26 13:53:02 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:45:25 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void        key_up()
 {
-        if (peek(g_global.g_history.down))
+        if (peek(g_global.g_temp.down))
         {
                 reset_line(g_global.g_line);
-                push(&g_global.g_history.up, g_global.g_line);
-                g_global.g_line = pop_st(&g_global.g_history.down); 
+                push(&g_global.g_temp.up, g_global.g_line);
+                g_global.g_line = pop_st(&g_global.g_temp.down); 
                 display_history_line();
         }
 }
 
 void        key_down()
 {
-        if (peek(g_global.g_history.up))
+        if (peek(g_global.g_temp.up))
         {
                 reset_line(g_global.g_line);
-                push(&g_global.g_history.down, g_global.g_line);
-                g_global.g_line = pop_st(&g_global.g_history.up);
+                push(&g_global.g_temp.down, g_global.g_line);
+                g_global.g_line = pop_st(&g_global.g_temp.up);
                 display_history_line();
         }   
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/26 11:59:47 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:34:10 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void    prompt(void)
     char buffer[100];
 
     print("\033[0;32m$%s> \033[0;37m",getcwd(buffer, 100));
+    g_global.count_prompt = ft_cstrlen(buffer);
 }
 
 void    init_bash(t_cmap **envs)
@@ -35,6 +36,7 @@ void    clear_all(t_cmap **envs)
 {
     clear_map(&g_global.g_builtins, free_builtins);
     clear_map(envs, free_vars);
+    clear_history();
 }
 
 void    reset_vars(char **line)

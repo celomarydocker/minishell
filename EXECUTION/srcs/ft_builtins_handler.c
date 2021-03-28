@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtins_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:48:09 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/20 22:58:37 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/28 10:56:47 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int         non_pipe_builtins(const t_exec *ex, t_cmap *envs)
     int     c_ret;
 
     if (ex->error)
-    {
-        return (1);   
-    }
+        return (1);
     c_ret = just_create_files(ex->files);
     if (c_ret)
         return (c_ret);

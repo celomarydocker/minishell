@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:28:01 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/18 14:40:24 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/28 17:18:03 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ char        **from_map_to_array_2d(t_cmap *map, const char *cmd)
     i = 0;
     while(iterator)
     {
+        if (!ft_strncmp(iterator->data, "?", 1))
+        {
+            iterator = iterator->next;
+            continue;
+        }
         if (!ft_strncmp(iterator->data, "SHLVL", 5) && !ft_strncmp(cmd, "./minishell", 11))
         {
             value = get(map, iterator->data);
