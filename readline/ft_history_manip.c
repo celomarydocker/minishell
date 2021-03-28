@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:43:20 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/28 15:14:02 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/28 17:42:16 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ void    froma2b(t_stack **a, t_stack **b)
         push(b, data);
 }
 
+void    reset_history(t_stack **up, t_stack **down)
+{
+    struct s_line *line;
+
+    line = pop_st(up);
+    while (line)
+    {
+        if (length_st(line->left) || length_st(line->right))
+            push(down, line);
+        else
+            clear_line(line);
+        line = pop_st(up);
+    }
+}
 void reset_line(struct s_line *line)
 {
     if (line)

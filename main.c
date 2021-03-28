@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/28 17:34:10 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/28 17:44:36 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void    init_bash(t_cmap **envs)
     g_global.g_pid = 0;
     prompt();
 }
-
 
 void    clear_all(t_cmap **envs)
 {

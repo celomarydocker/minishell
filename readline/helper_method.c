@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:34 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/28 15:38:24 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/28 17:43:16 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int             get_char()
         tcsetattr(0, TCSANOW, &init);
         return (total);
 }
-
 
 int             ft_puts(int d)
 {
