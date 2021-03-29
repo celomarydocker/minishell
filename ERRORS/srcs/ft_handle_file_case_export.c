@@ -3,74 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_file_case_export.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:56 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/20 22:34:50 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:28:55 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/error.h"
 
-int         check_for_space(const char *line, int *iterator, t_cmap *envs)
+int	check_for_space(const char *line, int *iterator, t_cmap *envs)
 {
-    int len;
-    char *name;
-    char *value;
+	int		len;
+	char	*name;
+	char	*value;
 
-    len = len_name((char *)(line + *iterator + 1));
-    name = ft_csubstr((char *)(line + *iterator + 1), len);
-    *iterator += len + 1;
-    len = 0;
-    value = get(envs, name);
-    free(name);
-    if (!value)
-        return (0);
-    while (value[len])
-    {
-        if (value[len] == ' ')
-            return (1);
-        len++;
-    }
-    return (0);
+	len = len_name((char *)(line + *iterator + 1));
+	name = ft_csubstr((char *)(line + *iterator + 1), len);
+	*iterator += len + 1;
+	len = 0;
+	value = get(envs, name);
+	free(name);
+	if (!value)
+		return (0);
+	while (value[len])
+	{
+		if (value[len] == ' ')
+			return (1);
+		len++;
+	}
+	return (0);
 }
 
-int         export_am(const char *line, t_cmap *envs)
+static void	init_vars(int vars[4])
 {
-    int     red;
-    int     quote;
-    int     back;
-    int     iterator;
+	vars[0] = 0;
+	vars[1] = 0;
+	vars[2] = 0;
+	vars[3] = 0;
+}
 
-    red = 0;
-    quote = 0;
-    back = 0;
-    iterator = 0;
-    while (line[iterator])
-    {
-        if (line[iterator] == '$' && red && back % 2 == 0 && !quote)
-        {
-            if(check_for_space(line, &iterator, envs))
-                return (1);
-            red = 0;
-        }
-        else
-        {
-            if ((line[iterator] == '>' || line[iterator] == '<') && back % 2 == 0 && !quote)
-                red = 1;
-            if ((line[iterator] == '\'' || line[iterator] == '"') && back % 2 == 0)
-            {
-                if (!quote)
-                    quote = line[iterator];
-                else if (quote == line[iterator])
-                    quote = 0;
-            }
-            if (line[iterator] == '\\')
-                back++;
-            else
-                back = 0;
-            iterator++;
-        }
-    }
-    return (0);
+static void	export_amm(const char *line, int vars[4])
+{
+	if ((line[vars[3]] == '>' || line[vars[3]] == '<')
+		&& vars[2] % 2 == 0 && !vars[1])
+		vars[0] = 1;
+	if ((line[vars[3]] == '\'' || line[vars[3]] == '"')
+		&& vars[2] % 2 == 0)
+	{
+		if (!vars[1])
+			vars[1] = line[vars[3]];
+		else if (vars[1] == line[vars[3]])
+			vars[1] = 0;
+	}
+	if (line[vars[3]] == '\\')
+		vars[2]++;
+	else
+		vars[2] = 0;
+	vars[3]++;
+}
+
+int	export_am(const char *line, t_cmap *envs)
+{
+	int		vars[4];
+
+	init_vars(vars);
+	while (line[vars[3]])
+	{
+		if (line[vars[3]] == '$' && vars[0]
+			&& vars[2] % 2 == 0 && !vars[1])
+		{
+			if (check_for_space(line, &vars[3], envs))
+				return (1);
+			vars[0] = 0;
+		}
+		else
+			export_amm(line, vars);
+	}
+	return (0);
 }
