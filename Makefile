@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+         #
+#    By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/21 13:50:31 by mel-omar         ###   ########.fr        #
+#    Updated: 2021/03/29 11:05:22 by mel-omar@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  EXECUTION/srcs/ft_builtins_handler.c EXECUTION/srcs/ft_init_builtins.c \
 	  EXECUTION/srcs/ft_main_execution.c EXECUTION/srcs/ft_signals.c ERRORS/srcs/ft_handle_file_case_export.c \
 	  EXECUTION/srcs/checker2.c ERRORS/srcs/check_backslash.c ERRORS/srcs/check_quotes.c \
+	  readline/key_functions1.c readline/key_functions2.c readline/stack_manip.c readline/helper_method.c \
+	  readline/readline.c readline/ft_termcap.c readline/ft_history_manip.c PARSER/dt/stack/*.c \
 	  ERRORS/srcs/check_redirections.c ERRORS/srcs/ft_check_dupl.c ERRORS/srcs/ft_error_parsing.c \
 	  ERRORS/srcs/ft_error_printer.c EXECUTION/srcs/ft_remove_unused.c main.c EXECUTION/srcs/check_existance.c \
 	  ERRORS/srcs/ft_pipe_errors.c ERRORS/srcs/additional_function_error.c EXECUTION/srcs/ft_sort_export.c \
@@ -66,6 +68,8 @@ OBJS = PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/disp
 	  EXECUTION/srcs/ft_builtins_handler.o EXECUTION/srcs/ft_init_builtins.o \
 	  EXECUTION/srcs/ft_main_execution.o EXECUTION/srcs/ft_signals.o ERRORS/srcs/ft_handle_file_case_export.o \
 	  EXECUTION/srcs/checker2.o ERRORS/srcs/check_backslash.o ERRORS/srcs/check_quotes.o \
+	  readline/key_functions1.o readline/key_functions2.o readline/stack_manip.o readline/helper_method.o \
+	  readline/readline.o readline/ft_termcap.o readline/ft_history_manip.o PARSER/dt/stack/*.o \
 	  ERRORS/srcs/check_redirections.o ERRORS/srcs/ft_check_dupl.o ERRORS/srcs/ft_error_parsing.o \
 	  ERRORS/srcs/ft_error_printer.o EXECUTION/srcs/ft_remove_unused.o main.o EXECUTION/srcs/check_existance.o \
 	  ERRORS/srcs/ft_pipe_errors.o ERRORS/srcs/additional_function_error.o EXECUTION/srcs/ft_sort_export.o \

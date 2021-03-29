@@ -6,13 +6,13 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 19:05:47 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/08 18:52:48 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/29 14:53:56 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "recognizer.h"
 
-void		free_rec(t_rec **rec)
+void	free_rec(t_rec **rec)
 {
 	if (*rec)
 	{
@@ -23,9 +23,9 @@ void		free_rec(t_rec **rec)
 	}
 }
 
-void	 free_ccommand(void *cmd)
+void	free_ccommand(void *cmd)
 {
-	t_ccommand *command;
+	t_ccommand	*command;
 
 	command = (t_ccommand *)cmd;
 	free(command->cmd);
@@ -37,15 +37,15 @@ void	free_vars(void *vars)
 {
 	t_key_value	*k_v;
 
-     k_v = (t_key_value *)vars;
-	 free(k_v->key);
-	 free(k_v->value);
-	 free(k_v);
+	k_v = (t_key_value *)vars;
+	free(k_v->key);
+	free(k_v->value);
+	free(k_v);
 }
 
 void	free_all_commands(t_clist **lst)
 {
-	t_clist 	*list;
+	t_clist		*list;
 
 	if (*lst)
 	{
