@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:53:21 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/12 15:43:46 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:51:23 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
 
-static void		ft_hex(long number, char type)
+static void	ft_hex(long number, char type)
 {
 	if (type == 'X')
 		ft_cputchar(number + 55);
@@ -20,7 +20,7 @@ static void		ft_hex(long number, char type)
 		ft_cputchar(number + 87);
 }
 
-static void		ft_putnbr_helper(long number, int base, char type)
+static void	ft_putnbr_helper(long number, int base, char type)
 {
 	if (number)
 	{
@@ -32,7 +32,7 @@ static void		ft_putnbr_helper(long number, int base, char type)
 	}
 }
 
-void			ft_cputnbr(long number, int base, char type)
+void	ft_cputnbr(long number, int base, char type)
 {
 	if (number < 0)
 	{

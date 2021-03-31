@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:56:22 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/10 19:38:26 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/03/31 17:51:37 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
 
-int		print(char *format, ...)
+int	print(char *format, ...)
 {
 	va_list		ap;
 	t_flags		flag;

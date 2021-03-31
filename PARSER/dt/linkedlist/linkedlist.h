@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:36:38 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/12 11:23:05 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/31 17:26:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-typedef struct		s_clist
+typedef struct s_clist
 {
 	void			*data;
 	struct s_clist	*next;

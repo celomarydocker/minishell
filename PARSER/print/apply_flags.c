@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar <mel-omar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:30:28 by mel-omar          #+#    #+#             */
-/*   Updated: 2020/02/12 16:00:41 by mel-omar         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:34:52 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	is_negative(int *number)
 void	get_str_data(char **str, long *len, va_list *ap)
 {
 	*str = va_arg(*ap, char *);
-	*str = (!*str) ? "(null)" : *str;
+	if (!*str)
+		*str = "(null)";
 	*len = lenstr(*str);
 }
 
@@ -35,14 +36,18 @@ char	get_number_data(int *number, long *length, va_list *ap, t_flags *f)
 
 	*number = va_arg(*ap, int);
 	sign = is_negative(number);
-	*length = len_num(*number, 10) + ((!*number && !f->is_perc) ? 1 : 0);
+	*length = len_num(*number, 10);
+	if (!*number && !f->is_perc)
+		*length += 1;
 	return (sign);
 }
 
 void	get_hex_data(unsigned int *hex, long *length, va_list *ap, t_flags *f)
 {
 	*hex = va_arg(*ap, unsigned int);
-	*length = len_num(*hex, 16) + ((!*hex && !f->is_perc) ? 1 : 0);
+	*length = len_num(*hex, 16);
+	if (!*hex && !f->is_perc)
+		*length += 1;
 }
 
 void	apply_flags(t_flags *f, va_list *ap)

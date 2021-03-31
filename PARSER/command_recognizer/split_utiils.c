@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 23:13:40 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/29 18:08:46 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/03/31 17:57:19 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_special(char c, char cs, char *special, int *is_back)
 
 void	free_split(char **sp)
 {
-    int		iter;
+	int		iter;
 
 	iter = 0;
 	while (sp[iter])
