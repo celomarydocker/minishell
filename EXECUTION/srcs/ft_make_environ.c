@@ -6,45 +6,51 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:28:01 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 19:16:41 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 13:05:26 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-char        **from_map_to_array_2d(t_cmap *map, const char *cmd)
+static char	*concate_line(t_cmap *map,
+t_clist *iterator, const char *cmd)
 {
-    char            **array_2d;
-    t_clist         *lst;
-    t_clist         *iterator;
-    char            *value;
-    unsigned int    i;
+	char			*value;
 
-    lst = get_keys(map);
-    array_2d = malloc((length(lst) + 1) * sizeof(char *));
-    iterator = lst;
-    i = 0;
-    while(iterator)
-    {
-        if (!ft_strncmp(iterator->data, "?", 1))
-        {
-            iterator = iterator->next;
-            continue;
-        }
-        if (!ft_strncmp(iterator->data, "SHLVL", 5) && !ft_strncmp(cmd, "./minishell", 11))
-        {
-            value = get(map, iterator->data);
-            if (value)
-                value = ft_itoa(ft_atoi(value) + 1);
-        }
-        else
-            value = ft_cstrdup(get(map, iterator->data));
-        array_2d[i] = ft_cstrjoin(ft_cstrjoin(ft_cstrdup(iterator->data),
-        ft_cstrdup("=")), value);
-        i++;
-        iterator = iterator->next;
-    }
-    clear_list(&lst, NULL);
-    array_2d[i] = NULL;
-    return (array_2d);
+	if (!ft_strncmp(iterator->data, "SHLVL", 5)
+		&& !ft_strncmp(cmd, "./minishell", 11))
+	{
+		value = get(map, iterator->data);
+		if (value)
+			value = ft_itoa(ft_atoi(value) + 1);
+	}
+	else
+		value = ft_cstrdup(get(map, iterator->data));
+	return (ft_cstrjoin(ft_cstrjoin(ft_cstrdup(iterator->data),
+				ft_cstrdup("=")), value));
+}
+
+char	**from_map_to_array_2d(t_cmap *map, const char *cmd)
+{
+	char			**array_2d;
+	t_clist			*lst;
+	t_clist			*iterator;
+	unsigned int	i;
+
+	lst = get_keys(map);
+	array_2d = malloc((length(lst) + 1) * sizeof(char *));
+	iterator = lst;
+	i = 0;
+	while (iterator)
+	{
+		if (ft_strncmp(iterator->data, "?", 1))
+		{
+			array_2d[i] = concate_line(map, iterator, cmd);
+			i++;
+		}
+		iterator = iterator->next;
+	}
+	clear_list(&lst, NULL);
+	array_2d[i] = NULL;
+	return (array_2d);
 }
