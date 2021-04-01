@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:24:31 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 15:43:04 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 16:28:57 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ int	print_error_backslash(int error)
 
 int	print_error_redirection(int error)
 {
+	char	*es;
+
+	es = "CSHELL: syntax error near unexepected token `newline'\n";
 	if (error)
 	{
 		if (error == 4)
-			ft_putstr_fd("CSHELL: syntax error near unexepected token\
-			 `newline'\n", 2);
+			ft_putstr_fd(es, 2);
 		else if (error == 3)
 			ft_putstr_fd("CSHELL: syntax error near unexepected token `>'\n", 2);
 		else if (error == 2)
