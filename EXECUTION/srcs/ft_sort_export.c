@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:34:55 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/01 14:22:06 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 15:40:47 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	ft_swap(void *pda, void *pdb)
 
 	d1 = (char *)pda;
 	d2 = (char *)pdb;
-	tmp = *d1;
-	*d1 = *d2;
-	*d2 = tmp;
+	tmp = d1;
+	d1 = d2;
+	d2 = tmp;
 }
 
 t_clist	*sorted_keys(t_clist *keys)

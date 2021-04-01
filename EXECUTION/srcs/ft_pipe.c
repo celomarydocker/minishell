@@ -6,13 +6,13 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/01 13:12:33 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 15:39:21 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-static void	ft_setup_output(int output, bool is_last, t_pair_files io)
+static void	ft_setup_output(int output, BOOL is_last, t_pair_files io)
 {
 	if (io.output != -1)
 	{
@@ -29,7 +29,7 @@ static void	ft_setup_output(int output, bool is_last, t_pair_files io)
 	}
 }
 
-static void	ft_setup_input(int old_input, bool is_first, t_pair_files io)
+static void	ft_setup_input(int old_input, BOOL is_first, t_pair_files io)
 {
 	if (io.input != -1)
 	{
@@ -51,7 +51,7 @@ void	ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
 	close(fd[0]);
 }
 
-static void	ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
+static void	ft_child_pipe(t_exec *data, int fd[2], BOOL *is, t_cmap *envs)
 {
 	 t_pair_files			io;
 	 int					status_error;
@@ -74,7 +74,7 @@ static void	ft_child_pipe(t_exec *data, int fd[2], bool *is, t_cmap *envs)
 	ft_child_helper(data, envs);
 }
 
-int	ft_pipe(t_clist *pipe_exec, bool is_first, int old_stdin, t_cmap *envs)
+int	ft_pipe(t_clist *pipe_exec, BOOL is_first, int old_stdin, t_cmap *envs)
 {
 	int		vars[7];
 

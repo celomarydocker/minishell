@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:22:14 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/31 18:12:13 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 15:21:34 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_equal(const char *s1, const char *s2)
 	return (1);
 }
 
-bool	is_not_making_change(t_exec *exec)
+BOOL	is_not_making_change(t_exec *exec)
 {
 	if (exec->perm != BUILTINS)
 		return (1);

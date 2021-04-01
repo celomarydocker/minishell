@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:44:11 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 15:15:19 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 15:21:49 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int					is_lower(char c);
 void				signal_handler(int sig);
 void				ft_init_builtins(void);
 void				init_parent_signals(void);
-bool				is_not_making_change(t_exec *exec);
+BOOL				is_not_making_change(t_exec *exec);
 void				all_commands(char *s, t_cmap *global_env);
 void				file_not_found(const char *file, t_pair_files io);
 void				ft_disable_unused(char ***str, int *is_pipe,
