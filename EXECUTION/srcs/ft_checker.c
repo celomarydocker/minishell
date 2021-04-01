@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 12:38:21 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 18:52:42 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:22:33 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:23:23 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/execution.h"
 
 int	is_lower(char c)
 {

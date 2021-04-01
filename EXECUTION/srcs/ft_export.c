@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/31 19:12:33 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:24:56 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:26:13 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-void	print_value(const char *value)
+void		print_value(const char *value)
 {
 	int		iter;
 
@@ -26,7 +26,7 @@ void	print_value(const char *value)
 	}
 }
 
-void	helper_function(t_clist	*iter_key, t_cmap *envs, int fd)
+void		helper_function(t_clist *iter_key, t_cmap *envs, int fd)
 {
 	char		*value;
 
@@ -47,7 +47,7 @@ void	helper_function(t_clist	*iter_key, t_cmap *envs, int fd)
 	}
 }
 
-void	print_variables(t_cmap *envs, int fd)
+void		print_variables(t_cmap *envs, int fd)
 {
 	t_clist		*keys;
 	t_clist		*iter_key;
@@ -87,7 +87,7 @@ static int	check_varibales(char *s, t_cmap *envs)
 	return (ret);
 }
 
-int	ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
+int			ft_export(char **args, int is_pipe, int fd, t_cmap *envs)
 {
 	int				ret;
 	unsigned int	iterator;

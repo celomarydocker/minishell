@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_make_environ.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 21:28:01 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/01 13:05:26 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:29:02 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:29:20 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_clist *iterator, const char *cmd)
 				ft_cstrdup("=")), value));
 }
 
-char	**from_map_to_array_2d(t_cmap *map, const char *cmd)
+char		**from_map_to_array_2d(t_cmap *map, const char *cmd)
 {
 	char			**array_2d;
 	t_clist			*lst;

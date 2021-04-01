@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 21:02:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 18:40:06 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:18:28 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:18:55 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	free_files(void *data)
 	free(file);
 }
 
-void	free_exec(void *exec)
+void		free_exec(void *exec)
 {
 	t_exec		*e;
 	size_t		iterator;
@@ -40,7 +40,7 @@ void	free_exec(void *exec)
 	free(e);
 }
 
-void	free_envs(t_key_value *kv)
+void		free_envs(t_key_value *kv)
 {
 	free(kv->key);
 	free(kv);

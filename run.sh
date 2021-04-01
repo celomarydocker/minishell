@@ -1,5 +1,5 @@
 #!/bin/bash
-gcc -fsanitize=address libft/*.c PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/display.c\
+gcc -Wall -Wextra -Werror -fsanitize=address libft/*.c PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/display.c\
 	  PARSER/print/ft_atoi.c PARSER/print/ft_putnbr.c PARSER/print/print.c PARSER/print/print_utils.c\
 	  PARSER/print/display_flags.c PARSER/dt/hash_table/additional_method.c \
 	  PARSER/dt/hash_table/hash_map_method.c PARSER/dt/hash_table/hash_method2.c \

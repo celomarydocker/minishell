@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 10:48:17 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 18:56:19 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:24:00 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:24:21 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	printer(char *s1, char *s2, int fd)
 	ft_putstr_fd("\n", fd);
 }
 
-int	ft_exec_env(char **str, int is_pipe, int fd, t_cmap *envs)
+int			ft_exec_env(char **str, int is_pipe, int fd, t_cmap *envs)
 {
 	t_clist			*keys;
 	t_clist			*iter_key;

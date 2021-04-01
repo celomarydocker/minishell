@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   from_parsing2execution.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 12:32:14 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 18:44:58 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:19:22 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:21:02 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-static char	**convert_list2array2d(const t_clist *lst, char *cmd)
+static char		**convert_list2array2d(const t_clist *lst, char *cmd)
 {
 	char	**array_2d;
 	size_t	iterator;
@@ -83,7 +83,7 @@ static t_exec	*parse_exec(const t_ccommand *command, const char *path)
 	return (exec);
 }
 
-t_clist	*from_parsing2exec(const t_clist *lst, const char *path)
+t_clist			*from_parsing2exec(const t_clist *lst, const char *path)
 {
 	t_clist		*execution;
 

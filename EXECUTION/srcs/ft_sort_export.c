@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/21 13:34:55 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/01 15:40:47 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:36:21 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:36:30 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_swap(void *pda, void *pdb)
 	d2 = tmp;
 }
 
-t_clist	*sorted_keys(t_clist *keys)
+t_clist		*sorted_keys(t_clist *keys)
 {
 	t_clist		*next;
 	t_clist		*current;

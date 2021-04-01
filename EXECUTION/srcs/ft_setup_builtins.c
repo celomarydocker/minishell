@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setup_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/07 12:45:51 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 13:54:04 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:33:16 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:34:57 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int	check_if_builtins(const char *str)
+int					check_if_builtins(const char *str)
 {
 	if (!str)
 		return (0);
@@ -26,12 +26,12 @@ int	check_if_builtins(const char *str)
 	return (0);
 }
 
-void	init_builtins(t_cmap **map)
+void				init_builtins(t_cmap **map)
 {
 	*map = init_map();
 }
 
-void	insert_builtins(t_cmap *map, const char *builtin_name,
+void				insert_builtins(t_cmap *map, const char *builtin_name,
 t_builtin_function builtin_funcn)
 {
 	set_value(map, builtin_name, builtin_funcn, ft_cstrlen(builtin_name));
@@ -42,7 +42,7 @@ t_builtin_function	get_builtins(t_cmap *mp, const char *key)
 	return ((t_builtin_function)get_value(mp, key, ft_cstrlen(key)));
 }
 
-void	free_builtins(void *data)
+void				free_builtins(void *data)
 {
 	t_key_value	*key_value;
 

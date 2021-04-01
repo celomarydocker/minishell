@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 12:25:06 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/01 15:39:21 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:09:06 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:10:37 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_setup_input(int old_input, BOOL is_first, t_pair_files io)
 	}
 }
 
-void	ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
+void		ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
 {
 	ft_setup_input(input, is[0], io);
 	ft_setup_output(fd[1], is[1], io);
@@ -53,9 +53,9 @@ void	ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
 
 static void	ft_child_pipe(t_exec *data, int fd[2], BOOL *is, t_cmap *envs)
 {
-	 t_pair_files			io;
-	 int					status_error;
-	 char					*filename_error;
+	t_pair_files	io;
+	int				status_error;
+	char			*filename_error;
 
 	if (data->perm == WITHOUT)
 	{
@@ -74,9 +74,10 @@ static void	ft_child_pipe(t_exec *data, int fd[2], BOOL *is, t_cmap *envs)
 	ft_child_helper(data, envs);
 }
 
-int	ft_pipe(t_clist *pipe_exec, BOOL is_first, int old_stdin, t_cmap *envs)
+int			ft_pipe(t_clist *pipe_exec, BOOL is_first, int old_stdin,
+		t_cmap *envs)
 {
-	int		vars[7];
+	int				vars[7];
 
 	if (!pipe_exec)
 		return (EXIT_SUCCESS);

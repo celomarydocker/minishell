@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checker2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/18 12:22:14 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 15:21:34 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:14:29 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:14:55 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int	is_equal(const char *s1, const char *s2)
+int			is_equal(const char *s1, const char *s2)
 {
 	unsigned int	iterator;
 
@@ -24,7 +24,7 @@ int	is_equal(const char *s1, const char *s2)
 	return (1);
 }
 
-BOOL	is_not_making_change(t_exec *exec)
+BOOL		is_not_making_change(t_exec *exec)
 {
 	if (exec->perm != BUILTINS)
 		return (1);
@@ -52,7 +52,7 @@ static int	check_cmd(const char *n)
 	return (1);
 }
 
-int	is_command(const char *cmd)
+int			is_command(const char *cmd)
 {
 	struct stat		s;
 

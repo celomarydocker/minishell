@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 15:02:25 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 14:29:57 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:11:45 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:12:16 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	nested_unset(char *s, t_cmap *envs)
 	return (ret);
 }
 
-int	ft_unset(char **arguments, int is_pipe, int fd, t_cmap *envs)
+int			ft_unset(char **arguments, int is_pipe, int fd, t_cmap *envs)
 {
 	unsigned int		iterator;
 	int					ret;

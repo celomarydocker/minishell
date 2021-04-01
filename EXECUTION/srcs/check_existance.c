@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_existance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 16:08:03 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 18:06:36 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:13:12 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:13:53 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-static char	*join_command(const char *path, char **cmd)
+static char		*join_command(const char *path, char **cmd)
 {
 	char	*joined;
 
@@ -24,7 +24,7 @@ static char	*join_command(const char *path, char **cmd)
 	return (NULL);
 }
 
-int	check_perm(const char *command, const char *path, char **line)
+int				check_perm(const char *command, const char *path, char **line)
 {
 	char	*cmd;
 	int		ret;

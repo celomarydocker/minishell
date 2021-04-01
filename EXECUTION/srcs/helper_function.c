@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   helper_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/21 13:46:58 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/01 14:31:24 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:37:07 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:37:47 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/execution.h"
 
 int	ft_cstrcmp(const char *s1, const char *s2)
 {

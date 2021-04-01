@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/07 12:37:56 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 14:34:19 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:38:21 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/01 18:38:50 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int	ft_pipe_return(int status)
+int		ft_pipe_return(int status)
 {
 	if (WIFSIGNALED(status))
 		return (WTERMSIG(status) + 128);
