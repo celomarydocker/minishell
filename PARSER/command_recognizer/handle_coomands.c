@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:10:13 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/29 15:16:19 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/01 15:47:49 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_rec	*handle_command(char *str, int *iter, int is_found)
 			break ;
 		else if (str[*iter] != ' ')
 			enter(str, iter, &rec->text);
-		while (str[++(*iter)] == ' ')
+		while (str[*iter] && str[++(*iter)] == ' ')
 			;
 	}
 	return (rec);
