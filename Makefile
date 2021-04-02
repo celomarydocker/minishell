@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+         #
+#    By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/03/29 11:05:22 by mel-omar@st      ###   ########.fr        #
+#    Updated: 2021/04/02 17:52:14 by hfadyl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,13 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  ERRORS/srcs/ft_pipe_errors.c ERRORS/srcs/additional_function_error.c EXECUTION/srcs/ft_sort_export.c \
 	  EXECUTION/srcs/helper_function.c
 
-LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_split.o ft_isalnum.o  \
+LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_isalnum.o  \
 		ft_strlcat.o ft_strncmp.o ft_substr.o ft_atoi.o ft_isalpha.o ft_itoa.o \
 		ft_memcpy.o ft_putendl_fd.o ft_strchr.o ft_strlcpy.o ft_strnstr.o \
 		ft_tolower.o ft_bzero.o ft_isascii.o ft_memccpy.o ft_memmove.o   \
 		ft_putnbr_fd.o ft_strdup.o ft_strlen.o ft_strrchr.o ft_toupper.o \
 		ft_calloc.o ft_isdigit.o ft_memchr.o ft_memset.o ft_putstr_fd.o \
-		ft_strjoin.o ft_strmapi.o ft_strtrim.o
+		ft_strjoin.o ft_strmapi.o 
 	  
 	  
 OBJS = PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/display.o\

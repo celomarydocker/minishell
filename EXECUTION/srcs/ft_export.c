@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 15:02:22 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/03/31 19:12:33 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:24:56 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/02 16:11:05 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_value(const char *value)
 	}
 }
 
-void	helper_function(t_clist	*iter_key, t_cmap *envs, int fd)
+void	helper_function(t_clist *iter_key, t_cmap *envs, int fd)
 {
 	char		*value;
 

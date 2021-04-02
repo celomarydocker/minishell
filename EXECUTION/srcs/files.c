@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 22:04:37 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/31 18:37:47 by mel-omar@st      ###   ########.fr       */
+/*   Created: 2021/04/01 18:15:29 by hfadyl            #+#    #+#             */
+/*   Updated: 2021/04/02 15:58:02 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static int	input_file(t_file *file)
 	return (open(file->filename, O_RDONLY));
 }
 
-static int	io_manip(t_file	*file,
-t_pair_files *pair, char **file_error, int *error)
+static int	io_manip(t_file *file, t_pair_files *pair, char **file_error,
+		int *error)
 {
 	if (file->redirect == INPUT)
 	{

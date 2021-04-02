@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 01:40:15 by hfadyl            #+#    #+#             */
-/*   Updated: 2019/10/30 23:05:14 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:25:42 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	*ft_calloc(size_t count, size_t size)
 	char	*s;
 
 	i = 0;
-	if (!(s = malloc(count * size)))
-		return (0);
+	s = malloc(count * size);
 	while (i < size * count)
 	{
 		s[i] = '\0';
