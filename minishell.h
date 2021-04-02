@@ -1,7 +1,17 @@
-#ifndef MINISHELL
-# define MINISHELL
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/02 17:47:33 by mel-omar@st       #+#    #+#             */
+/*   Updated: 2021/04/02 18:46:18 by mel-omar@st      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-extern char **environ;
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -23,29 +33,29 @@ extern char **environ;
 
 struct s_line
 {
-        t_stack         *left;
-        t_stack         *right;
-        int             len;
-        int             iterator;
+	t_stack			*left;
+	t_stack			*right;
+	int				len;
+	int				iterator;
 };
 
 struct s_history
 {
-    t_stack             *up;
-    t_stack             *down;
+	t_stack				*up;
+	t_stack				*down;
 };
 
-struct          s_global
+struct s_global
 {
-    int                 g_pid;
-    struct s_line       *g_line;
-    struct s_history    g_history;
-    struct s_history    g_temp;
-    int                 count_prompt;
-    int                 is_prompt;
-    int                 sigint_ret;
-    t_cmap              *g_builtins;
-}                       g_global;
+	int					g_pid;
+	struct s_line		*g_line;
+	struct s_history	g_history;
+	struct s_history	g_temp;
+	int					count_prompt;
+	int					is_prompt;
+	int					sigint_ret;
+	t_cmap				*g_builtins;
+}	g_global;
 
-void    prompt(void);
+void	prompt(void);
 #endif

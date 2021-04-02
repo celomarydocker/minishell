@@ -6,56 +6,57 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:48 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/28 17:45:51 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/02 12:20:30 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 
-void        key_up()
+void	key_up(void)
 {
-        if (peek(g_global.g_temp.down))
-        {
-                reset_line(g_global.g_line);
-                push(&g_global.g_temp.up, g_global.g_line);
-                g_global.g_line = pop_st(&g_global.g_temp.down); 
-                display_history_line();
-        }
+	if (peek(g_global.g_temp.down))
+	{
+		reset_line(g_global.g_line);
+		push(&g_global.g_temp.up, g_global.g_line);
+		g_global.g_line = pop_st(&g_global.g_temp.down);
+		print_stack(g_global.g_line->left, ft_putchar);
+		display_history_line();
+	}
 }
 
-void        key_down()
+void	key_down(void)
 {
-        if (peek(g_global.g_temp.up))
-        {
-                reset_line(g_global.g_line);
-                push(&g_global.g_temp.down, g_global.g_line);
-                g_global.g_line = pop_st(&g_global.g_temp.up);
-                display_history_line();
-        }   
+	if (peek(g_global.g_temp.up))
+	{
+		reset_line(g_global.g_line);
+		push(&g_global.g_temp.down, g_global.g_line);
+		g_global.g_line = pop_st(&g_global.g_temp.up);
+		display_history_line();
+	}
 }
 
-void        key_left()
+void	key_left(void)
 {
-        transfer_one_char(&g_global.g_line->right, &g_global.g_line->left);
-        tcapply("le");
-        g_global.g_line->iterator--;
+	transfer_one_char(&g_global.g_line->right, &g_global.g_line->left);
+	tcapply("le");
+	g_global.g_line->iterator--;
 }
 
-void        key_right()
+void	key_right(void)
 {
-        transfer_one_char(&g_global.g_line->left, &g_global.g_line->right);
-        tcapply("nd");
-        g_global.g_line->iterator++;
+	transfer_one_char(&g_global.g_line->left, &g_global.g_line->right);
+	tcapply("nd");
+	g_global.g_line->iterator++;
 }
 
-void        key_remove_char()
+void	key_remove_char(void)
 {
-        delete_one_char(&g_global.g_line->left);
-        tcapply("le");
-        tcapply("sc");
-        tcapply("ce");
-        print_stack(g_global.g_line->right, ft_putchar);
-        tcapply("rc");
-        g_global.g_line->iterator--;
-        g_global.g_line->len--;
+	delete_one_char(&g_global.g_line->left);
+	tcapply("le");
+	tcapply("sc");
+	tcapply("ce");
+	print_stack(g_global.g_line->right, ft_putchar);
+	tcapply("rc");
+	g_global.g_line->iterator--;
+	g_global.g_line->len--;
 }

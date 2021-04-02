@@ -6,13 +6,14 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:10 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/03/28 17:42:47 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/02 17:40:50 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READLINE
-# define READLINE
-#include   "../minishell.h"
+#ifndef READLINE_H
+# define READLINE_H
+
+# include "../minishell.h"
 # define KEY_UP 183
 # define KEY_DOWN 184
 # define KEY_LEFT  186
@@ -23,35 +24,35 @@
 # define CTRL_D 4
 # define CTRL_L 12
 
-void                from_second_to_first(t_stack **first, t_stack **second);
-size_t              length_st(const t_stack *st);
-void                ctrl_d(t_stack *left, t_stack *right);
-void                transfer_one_char(t_stack **first, t_stack **second);
-void                delete_one_char(t_stack **st);
-void                insert_char(t_stack **stack, int c);
-struct s_line       *init_line(void);
-void                clear_line(struct s_line *line);
-int                 get_char();
-void                key_up();
-void                key_down();
-void                key_left();
-void                key_right();
-void                enter_key(char **line);
-void                key_remove_char();
-int                 ft_puts(int d);
-void                ft_putchar(void *dt);
-void                set_char(int c);
-void                init_history();
-void                clear_history();
-void                froma2b(t_stack **a, t_stack **b);
-void                reset_history(t_stack **up, t_stack **down);
-void                reset_line(struct s_line *line);
-void                display_history_line();
-void                tcapply(const char *id);
-void                clear_st_line(void *data);
-void                copyhistory();
-void                cleartemp();
-void                reverse_stack(t_stack **st);
-void                ctrl_l(void);
-char                *readline(t_cmap *envs);
+void				from_second_to_first(t_stack **first, t_stack **second);
+size_t				length_st(const t_stack *st);
+void				ctrl_d(t_stack *left, t_stack *right);
+void				transfer_one_char(t_stack **first, t_stack **second);
+void				delete_one_char(t_stack **st);
+void				insert_char(t_stack **stack, int c);
+struct s_line		*init_line(void);
+void				clear_line(struct s_line *line);
+int					get_char(void);
+void				key_up(void);
+void				key_down(void);
+void				key_left(void);
+void				key_right(void);
+void				enter_key(char **line);
+void				key_remove_char(void);
+int					ft_puts(int d);
+void				ft_putchar(void *dt);
+void				set_char(int c);
+void				init_history(void);
+void				clear_history(void);
+void				froma2b(t_stack **a, t_stack **b);
+void				reset_history(t_stack **up, t_stack **down);
+void				reset_line(struct s_line *line);
+void				display_history_line(void);
+void				tcapply(const char *id);
+void				clear_st_line(void *data);
+void				copyhistory(void);
+void				cleartemp(void);
+void				reverse_stack(t_stack **st);
+void				ctrl_l(void);
+char				*readline(t_cmap *envs);
 #endif
