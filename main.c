@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/02 17:53:38 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/02 18:54:07 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	prompt(void)
 	g_global.count_prompt = ft_cstrlen(buffer);
 }
 
-void	init_bash(t_cmap **envs, char **environ)
+void	init_bash(t_cmap **envs, char **environ, int argc, char *argv[])
 {
 	*envs = put_vars(environ);
 	setv(*envs, "?", ft_itoa(0));
@@ -28,6 +28,8 @@ void	init_bash(t_cmap **envs, char **environ)
 	g_global.sigint_ret = 0;
 	ft_init_builtins();
 	g_global.g_pid = 0;
+	argv = NULL;
+	argc = 0;
 	prompt();
 }
 
@@ -52,7 +54,7 @@ int	main(int argc, char *argv[], char **environ)
 	t_cmap	*envs;
 	char	*line;
 
-	init_bash(&envs, environ);
+	init_bash(&envs, environ, argc, argv);
 	error = 0;
 	while (1)
 	{
