@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 21:35:01 by hfadyl            #+#    #+#             */
-/*   Updated: 2019/10/30 23:06:27 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:33:50 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	while (s2[j] != '\0')
 		j++;
-	if (!(r = malloc(sizeof(char) * (i + j + 1))))
+	r = malloc(sizeof(char) * (i + j + 1));
+	if (!r)
 		return (0);
 	while (*s1 != '\0')
 		r[k++] = *s1++;

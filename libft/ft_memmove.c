@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:04:35 by hfadyl            #+#    #+#             */
-/*   Updated: 2019/10/23 00:48:47 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:31:29 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			d[len - i] = s[len - i];
 	}
 	else
+	{
 		while (i < len)
 		{
 			d[i] = s[i];
 			i++;
 		}
+	}
 	return (dst);
 }

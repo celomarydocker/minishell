@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 10:40:55 by hfadyl            #+#    #+#             */
-/*   Updated: 2019/10/30 22:54:34 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:30:02 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ static int	len(int nb)
 
 static char	*ft_zero(void)
 {
-	char *str;
+	char	*str;
 
-	if (!(str = malloc(sizeof(char) * 2)))
-		return (0);
+	str = malloc(sizeof(char) * 2);
 	str[0] = '0';
 	str[1] = '\0';
 	return (str);
@@ -52,8 +51,7 @@ static char	*limit(char *src)
 	while (src[i] != '\0')
 		i++;
 	i += 1;
-	if (!(p = malloc(i * sizeof(char))))
-		return (0);
+	p = malloc(i * sizeof(char));
 	if (p == 0)
 		return (0);
 	while (src[j] != '\0')
@@ -65,7 +63,7 @@ static char	*limit(char *src)
 	return (p);
 }
 
-char		*ft_itoa(int nb)
+char	*ft_itoa(int nb)
 {
 	char	*str;
 	int		i;
@@ -75,8 +73,7 @@ char		*ft_itoa(int nb)
 	if (nb == 0)
 		return (ft_zero());
 	i = len(nb) + 1;
-	if (!(str = (char*)malloc(sizeof(char) * i)))
-		return (0);
+	str = (char*)malloc(sizeof(char) * i);
 	i -= 1;
 	str[i] = '\0';
 	i -= 1;

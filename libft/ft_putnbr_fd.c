@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:37:44 by hfadyl            #+#    #+#             */
-/*   Updated: 2019/10/30 12:33:04 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:31:53 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int help;
+	unsigned int	help;
 
 	help = n;
 	if (n < 0)
