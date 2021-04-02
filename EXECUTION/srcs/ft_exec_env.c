@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:24:00 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:24:21 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:09:44 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	printer(char *s1, char *s2, int fd)
 	ft_putstr_fd("\n", fd);
 }
 
-int			ft_exec_env(char **str, int is_pipe, int fd, t_cmap *envs)
+int	ft_exec_env(char **str, int is_pipe, int fd, t_cmap *envs)
 {
 	t_clist			*keys;
 	t_clist			*iter_key;

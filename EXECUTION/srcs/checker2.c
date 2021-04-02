@@ -6,13 +6,13 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:14:29 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:14:55 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 15:57:29 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int			is_equal(const char *s1, const char *s2)
+int	is_equal(const char *s1, const char *s2)
 {
 	unsigned int	iterator;
 
@@ -24,7 +24,7 @@ int			is_equal(const char *s1, const char *s2)
 	return (1);
 }
 
-BOOL		is_not_making_change(t_exec *exec)
+BOOL	is_not_making_change(t_exec *exec)
 {
 	if (exec->perm != BUILTINS)
 		return (1);
@@ -52,7 +52,7 @@ static int	check_cmd(const char *n)
 	return (1);
 }
 
-int			is_command(const char *cmd)
+int	is_command(const char *cmd)
 {
 	struct stat		s;
 

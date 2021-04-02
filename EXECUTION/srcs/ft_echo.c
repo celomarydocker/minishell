@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:34 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/03/19 17:46:28 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:09:14 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static short	ft_chkopt(char **args, int *i)
 	return (nl);
 }
 
-int				ft_exec_echo(char **str, int is_pipe, int fd, t_cmap *envs)
+int	ft_exec_echo(char **str, int is_pipe, int fd, t_cmap *envs)
 {
 	short	newline;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 10:48:36 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:05:55 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:08:24 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 static void	ft_hack1_cd(t_cmap *envs, char *s, char *buffer)
 {
-	if (chdir(s = get(envs, "OLDPWD")) == -1)
+	int	a;
+
+	s = get(envs, "OLDPWD");
+	a = chdir(s);
+	if (a == -1)
 		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 	else
 	{
@@ -26,7 +30,7 @@ static void	ft_hack1_cd(t_cmap *envs, char *s, char *buffer)
 
 static int	ft_hack0_cd(char **str, char *buffer, t_cmap *envs)
 {
-	char *s;
+	char	*s;
 
 	s = NULL;
 	if (ft_strncmp(*str, "-", 2) == 0)
@@ -50,10 +54,10 @@ static int	ft_hack0_cd(char **str, char *buffer, t_cmap *envs)
 	return (0);
 }
 
-int			ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
+int	ft_exec_cd(char **str, int is_pipe, int fd, t_cmap *envs)
 {
-	char *to_der;
-	char *buffer;
+	char	*to_der;
+	char	*buffer;
 
 	buffer = malloc(64);
 	if (!*str || ft_strncmp(*str, "--", 3) == 0)

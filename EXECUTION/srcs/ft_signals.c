@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:35:26 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:35:50 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:15:15 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	signal_quit(void)
 		write(2, "Quit: 3\n", 8);
 }
 
-void		signal_handler(int sig)
+void	signal_handler(int sig)
 {
 	if (sig == SIGINT)
 		signal_int();
@@ -45,13 +45,13 @@ void		signal_handler(int sig)
 		signal_quit();
 }
 
-void		init_parent_signals(void)
+void	init_parent_signals(void)
 {
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 }
 
-void		init_child_signal(void)
+void	init_child_signal(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);

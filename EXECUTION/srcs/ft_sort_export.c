@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:36:21 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:36:30 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:15:45 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_swap(void *pda, void *pdb)
 	d2 = tmp;
 }
 
-t_clist		*sorted_keys(t_clist *keys)
+t_clist	*sorted_keys(t_clist *keys)
 {
 	t_clist		*next;
 	t_clist		*current;

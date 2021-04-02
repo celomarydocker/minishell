@@ -6,13 +6,13 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:13:12 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:13:53 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 15:44:08 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-static char		*join_command(const char *path, char **cmd)
+static char	*join_command(const char *path, char **cmd)
 {
 	char	*joined;
 
@@ -24,7 +24,7 @@ static char		*join_command(const char *path, char **cmd)
 	return (NULL);
 }
 
-int				check_perm(const char *command, const char *path, char **line)
+int	check_perm(const char *command, const char *path, char **line)
 {
 	char	*cmd;
 	int		ret;

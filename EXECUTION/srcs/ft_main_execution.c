@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:27:54 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:28:27 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:11:53 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_clist	*put_data_into_struct(const char *command, const t_cmap *envs)
 	return (exec_list);
 }
 
-static int		exec_command(const t_clist *commands, t_cmap *envs)
+static int	exec_command(const t_clist *commands, t_cmap *envs)
 {
 	t_clist			*iter_lst;
 	int				pipe_ret;
@@ -91,7 +91,7 @@ static int		exec_command(const t_clist *commands, t_cmap *envs)
 	return (0);
 }
 
-void			all_commands(char *s, t_cmap *global_env)
+void	all_commands(char *s, t_cmap *global_env)
 {
 	t_clist		*exec_pipe;
 	char		**cmds;

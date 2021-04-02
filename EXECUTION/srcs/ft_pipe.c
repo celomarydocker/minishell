@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:09:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:10:37 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:13:01 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_setup_input(int old_input, BOOL is_first, t_pair_files io)
 	}
 }
 
-void		ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
+void	ft_setup_io(int fd[2], int input, int is[2], t_pair_files io)
 {
 	ft_setup_input(input, is[0], io);
 	ft_setup_output(fd[1], is[1], io);
@@ -74,7 +74,7 @@ static void	ft_child_pipe(t_exec *data, int fd[2], BOOL *is, t_cmap *envs)
 	ft_child_helper(data, envs);
 }
 
-int			ft_pipe(t_clist *pipe_exec, BOOL is_first, int old_stdin,
+int	ft_pipe(t_clist *pipe_exec, BOOL is_first, int old_stdin,
 		t_cmap *envs)
 {
 	int				vars[7];

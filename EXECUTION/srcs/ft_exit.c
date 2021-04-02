@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:32:06 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:01:57 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:10:24 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_isnumber(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (str[0] == '-' || str[0] == '+')
@@ -57,9 +57,9 @@ static int	ft_hack1_exit(char **str, int is_pipe)
 		exit(255);
 }
 
-int			ft_exec_exit(char **str, int is_pipe, int fd, t_cmap *envs)
+int	ft_exec_exit(char **str, int is_pipe, int fd, t_cmap *envs)
 {
-	int excod;
+	int	excod;
 
 	excod = 0;
 	if (str[0])

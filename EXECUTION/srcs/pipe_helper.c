@@ -6,13 +6,13 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:38:21 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:38:50 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:17:30 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-int		ft_pipe_return(int status)
+int	ft_pipe_return(int status)
 {
 	if (WIFSIGNALED(status))
 		return (WTERMSIG(status) + 128);

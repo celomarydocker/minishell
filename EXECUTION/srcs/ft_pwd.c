@@ -6,7 +6,7 @@
 /*   By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:14:47 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:32:00 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:13:39 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_exec_pwd(char **str, int is_pipe, int fd, t_cmap *envs)
 {
-	char pwd[200];
+	char	pwd[200];
 
 	getcwd(pwd, 200 * sizeof(char));
 	ft_putstr_fd(pwd, fd);

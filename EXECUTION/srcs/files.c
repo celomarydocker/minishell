@@ -6,18 +6,18 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:15:29 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:18:01 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 15:58:02 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/execution.h"
 
-static int		append_file(t_file *file)
+static int	append_file(t_file *file)
 {
 	return (open(file->filename, O_APPEND | O_RDWR | O_CREAT, 0644));
 }
 
-static void		output_file(t_file *file, t_pair_files *pair)
+static void	output_file(t_file *file, t_pair_files *pair)
 {
 	if (file->redirect == APPEND)
 		pair->output = append_file(file);
@@ -26,12 +26,12 @@ static void		output_file(t_file *file, t_pair_files *pair)
 					O_RDWR | O_TRUNC | O_CREAT, 0644));
 }
 
-static int		input_file(t_file *file)
+static int	input_file(t_file *file)
 {
 	return (open(file->filename, O_RDONLY));
 }
 
-static int		io_manip(t_file *file, t_pair_files *pair, char **file_error,
+static int	io_manip(t_file *file, t_pair_files *pair, char **file_error,
 		int *error)
 {
 	if (file->redirect == INPUT)

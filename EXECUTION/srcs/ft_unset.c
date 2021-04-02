@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:11:45 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:12:16 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:16:19 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	nested_unset(char *s, t_cmap *envs)
 	return (ret);
 }
 
-int			ft_unset(char **arguments, int is_pipe, int fd, t_cmap *envs)
+int	ft_unset(char **arguments, int is_pipe, int fd, t_cmap *envs)
 {
 	unsigned int		iterator;
 	int					ret;

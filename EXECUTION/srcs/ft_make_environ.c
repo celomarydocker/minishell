@@ -6,7 +6,7 @@
 /*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:29:02 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/01 18:29:20 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:12:22 by hfadyl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_clist *iterator, const char *cmd)
 				ft_cstrdup("=")), value));
 }
 
-char		**from_map_to_array_2d(t_cmap *map, const char *cmd)
+char	**from_map_to_array_2d(t_cmap *map, const char *cmd)
 {
 	char			**array_2d;
 	t_clist			*lst;
