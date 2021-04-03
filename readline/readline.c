@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
+/*   By: mel-omar <mel-omar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:14:17 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/03 15:28:36 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 21:05:34 by mel-omar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ char	*readline(t_cmap *envs)
 	string = getenv("TERM");
 	if (!string)
 	{
-		ft_putstr_fd("TERM option not set in your envirement varibales\n", 2);
+		ft_putstr_fd("TERM environment variable not set.\n", 2);
 		setv(envs, "?", ft_cstrdup("1"));
-		return (NULL);
+		exit(1);
 	}
 	tgetent(NULL, string);
 	string = 0;
