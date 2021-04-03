@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 17:47:33 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/02 18:46:18 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 09:37:26 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_global
 	int					count_prompt;
 	int					is_prompt;
 	int					sigint_ret;
+	int					g_total;
 	t_cmap				*g_builtins;
 }	g_global;
 

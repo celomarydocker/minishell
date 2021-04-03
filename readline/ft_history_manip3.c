@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 17:17:33 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/02 17:17:50 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 10:08:45 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	display_history_line(void)
 {
 	int	*c;
 
-	tcapply("cb");
-	tcapply("ce");
+	tcapply("rc");
 	write(1, "\r", 1);
+	tcapply("cd");
+	tcapply("sc");
 	prompt();
 	if (g_global.g_line)
 	{

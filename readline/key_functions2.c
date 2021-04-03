@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:44 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/02 13:03:17 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 10:13:04 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ctrl_d(t_stack *left, t_stack *right)
 
 void	ctrl_l(void)
 {
+	tcapply("rc");
 	tcapply("cl");
+	tcapply("sc");
 	display_history_line();
 }

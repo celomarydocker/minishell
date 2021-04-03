@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:14:17 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/02 16:48:29 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 10:06:22 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	set_char(int c)
 {
-	int	total;
-
 	insert_char(&g_global.g_line->left, c);
-	total = g_global.g_line->len + 4 + g_global.count_prompt;
-	if (total % tgetnum("co") == 0)
+	g_global.g_total = g_global.g_line->len + 4 + g_global.count_prompt;
+	if (g_global.g_total % tgetnum("co") == 0)
 		write(1, "\n", 1);
 	write(1, &c, sizeof(int));
 	tcapply("sc");
@@ -72,6 +70,8 @@ char	*readline(t_cmap *envs)
 	}
 	tgetent(NULL, string);
 	string = 0;
+	tcapply("sc");
+	prompt();
 	while (1)
 	{
 		d = get_char();

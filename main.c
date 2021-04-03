@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:33:04 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/02 18:54:07 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 10:06:59 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_bash(t_cmap **envs, char **environ, int argc, char *argv[])
 	g_global.g_pid = 0;
 	argv = NULL;
 	argc = 0;
-	prompt();
 }
 
 void	clear_all(t_cmap **envs)
@@ -45,7 +44,6 @@ void	reset_vars(char **line)
 	free(*line);
 	*line = NULL;
 	g_global.g_pid = 0;
-	prompt();
 }
 
 int	main(int argc, char *argv[], char **environ)
