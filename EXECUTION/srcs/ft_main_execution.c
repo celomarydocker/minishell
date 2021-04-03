@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:27:54 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/02 16:11:53 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/03 15:17:07 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_clist	*put_data_into_struct(const char *command, const t_cmap *envs)
 	t_clist	*parser_pipe;
 
 	parser_pipe = get_command_line((char *)command, (t_cmap *)envs);
-	exec_list = from_parsing2exec(parser_pipe, get((t_cmap *)envs, "PATH"));
+	exec_list = from_parsing2exec(parser_pipe, getenv("PATH"));
 	clear_list(&parser_pipe, free_ccommand);
 	return (exec_list);
 }

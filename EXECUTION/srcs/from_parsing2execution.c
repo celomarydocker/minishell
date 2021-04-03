@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   from_parsing2execution.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:19:22 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/02 15:59:05 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/03 15:20:24 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ static t_exec	*parse_exec(const t_ccommand *command, const char *path)
 	exec = malloc(sizeof(t_exec));
 	exec->cmd = ft_cstrdup(command->cmd);
 	exec->arguments = convert_list2array2d(command->data->text, exec->cmd);
-	exec->perm = check_existance(exec->cmd, path, &line);
+	if (path)
+		exec->perm = check_existance(exec->cmd, path, &line);
+	else
+		exec->perm = sample_command(exec->cmd, &line);
 	exec->error = command->error;
 	if (line)
 	{

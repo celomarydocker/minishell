@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:44:11 by mel-omar@st       #+#    #+#             */
-/*   Updated: 2021/04/01 15:21:49 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 15:19:58 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int					ft_pipe(t_clist *pipe_exec,
 						BOOL is_first, int old_stdin, t_cmap *envs);
 t_clist				*from_parsing2exec(const t_clist *lst,
 						const char *path);
+t_permessions		sample_command(const char *command, char **line);
 t_permessions		check_existance(const char *command,
 						const char *path, char **line);
 void				free_exec(void *exec);

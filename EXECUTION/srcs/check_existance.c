@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_existance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfadyl <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:13:12 by hfadyl            #+#    #+#             */
-/*   Updated: 2021/04/02 15:44:08 by hfadyl           ###   ########.fr       */
+/*   Updated: 2021/04/03 15:27:16 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ t_permessions	sample_command(const char *command, char **line)
 	int	ret;
 
 	ret = is_command(command);
+	*line = NULL;
+	if (check_if_builtins(command))
+		return (BUILTINS);
 	if (ret == 1)
 	{
 		*line = ft_cstrdup((char *)command);
 		return (FILE_EXEC);
 	}
 	else if (ret == 2)
-	{
-		*line = NULL;
 		return (PERMISSION_DENIED);
-	}
 	return (NOT_FOUND);
 }
 

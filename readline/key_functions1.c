@@ -6,7 +6,7 @@
 /*   By: mel-omar@student.1337.ma <mel-omar>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:57:48 by mel-omar          #+#    #+#             */
-/*   Updated: 2021/04/02 12:20:30 by mel-omar@st      ###   ########.fr       */
+/*   Updated: 2021/04/03 15:28:22 by mel-omar@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,17 @@ void	key_right(void)
 
 void	key_remove_char(void)
 {
+	int		g;
+
+	g_global.g_total = g_global.g_line->len + 4 + g_global.count_prompt;
+	if (g_global.g_total % tgetnum("co") == 0)
+	{
+		tcapply("dl");
+		tcapply("up");
+		g = 0;
+		while (g++ < tgetnum("co"))
+			tcapply("nd");
+	}
 	delete_one_char(&g_global.g_line->left);
 	tcapply("le");
 	tcapply("sc");
