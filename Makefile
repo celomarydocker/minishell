@@ -6,15 +6,15 @@
 #    By: hfadyl <hfadyl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/18 14:33:53 by mel-omar@st       #+#    #+#              #
-#    Updated: 2021/04/02 17:52:14 by hfadyl           ###   ########.fr        #
+#    Updated: 2021/04/03 18:53:42 by hfadyl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/display.c\
+SRCS =  PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/display.c\
 	  PARSER/print/ft_atoi.c PARSER/print/ft_putnbr.c PARSER/print/print.c PARSER/print/print_utils.c\
-	  PARSER/print/display_flags.c PARSER/readline/readline.c PARSER/dt/hash_table/additional_method.c \
+	  PARSER/print/display_flags.c PARSER/dt/hash_table/additional_method.c \
 	  PARSER/dt/hash_table/hash_map_method.c PARSER/dt/hash_table/hash_method2.c \
 	  PARSER/dt/linkedlist/linkedlist_method.c PARSER/dt/linkedlist/linkedlist_method2.c \
 	  PARSER/command_recognizer/double_quotes.c PARSER/command_recognizer/free_data.c \
@@ -32,12 +32,11 @@ SRCS = PARSER/print/apply_flags.c PARSER/print/checker_flags.c PARSER/print/disp
 	  EXECUTION/srcs/ft_builtins_handler.c EXECUTION/srcs/ft_init_builtins.c \
 	  EXECUTION/srcs/ft_main_execution.c EXECUTION/srcs/ft_signals.c ERRORS/srcs/ft_handle_file_case_export.c \
 	  EXECUTION/srcs/checker2.c ERRORS/srcs/check_backslash.c ERRORS/srcs/check_quotes.c \
-	  readline/key_functions1.c readline/key_functions2.c readline/stack_manip.c readline/helper_method.c \
-	  readline/readline.c readline/ft_termcap.c readline/ft_history_manip.c PARSER/dt/stack/*.c \
 	  ERRORS/srcs/check_redirections.c ERRORS/srcs/ft_check_dupl.c ERRORS/srcs/ft_error_parsing.c \
+	  readline/key_functions1.c readline/key_functions2.c readline/stack_manip.c readline/helper_method.c \
+	  readline/readline.c readline/ft_termcap.c readline/ft_history_manip2.c  readline/ft_history_manip3.c readline/ft_history_manip.c PARSER/dt/stack/*.c \
 	  ERRORS/srcs/ft_error_printer.c EXECUTION/srcs/ft_remove_unused.c main.c EXECUTION/srcs/check_existance.c \
-	  ERRORS/srcs/ft_pipe_errors.c ERRORS/srcs/additional_function_error.c EXECUTION/srcs/ft_sort_export.c \
-	  EXECUTION/srcs/helper_function.c
+	  ERRORS/srcs/ft_pipe_errors.c ERRORS/srcs/additional_function_error.c EXECUTION/srcs/ft_sort_export.c EXECUTION/srcs/helper_function.c                                                                                                                                                                                                               
 
 LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_isalnum.o  \
 		ft_strlcat.o ft_strncmp.o ft_substr.o ft_atoi.o ft_isalpha.o ft_itoa.o \
@@ -48,14 +47,14 @@ LIBFTOBJ = ft_isprint.o ft_memcmp.o ft_putchar_fd.o ft_isalnum.o  \
 		ft_strjoin.o ft_strmapi.o 
 	  
 	  
-OBJS = PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/display.o\
+OBJS =  PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/display.o\
 	  PARSER/print/ft_atoi.o PARSER/print/ft_putnbr.o PARSER/print/print.o PARSER/print/print_utils.o\
-	  PARSER/print/display_flags.o PARSER/readline/readline.o PARSER/dt/hash_table/additional_method.o \
+	  PARSER/print/display_flags.o PARSER/dt/hash_table/additional_method.o \
 	  PARSER/dt/hash_table/hash_map_method.o PARSER/dt/hash_table/hash_method2.o \
 	  PARSER/dt/linkedlist/linkedlist_method.o PARSER/dt/linkedlist/linkedlist_method2.o \
 	  PARSER/command_recognizer/double_quotes.o PARSER/command_recognizer/free_data.o \
 	  PARSER/command_recognizer/getter_methods.o PARSER/command_recognizer/handle_coomands.o \
-	  PARSER/command_recognizer/handle_coomands2.o PARSER/command_recognizer/replace_envirement.o  \
+	  PARSER/command_recognizer/handle_coomands2.o PARSER/command_recognizer/replace_envirement.o \
 	  PARSER/command_recognizer/method_helper.o PARSER/command_recognizer/method_helper3.o \
 	  PARSER/command_recognizer/rec_method.o PARSER/command_recognizer/single_quotes.o \
 	  PARSER/command_recognizer/split_envirement_variables.o PARSER/command_recognizer/split_utiils.o \
@@ -68,18 +67,17 @@ OBJS = PARSER/print/apply_flags.o PARSER/print/checker_flags.o PARSER/print/disp
 	  EXECUTION/srcs/ft_builtins_handler.o EXECUTION/srcs/ft_init_builtins.o \
 	  EXECUTION/srcs/ft_main_execution.o EXECUTION/srcs/ft_signals.o ERRORS/srcs/ft_handle_file_case_export.o \
 	  EXECUTION/srcs/checker2.o ERRORS/srcs/check_backslash.o ERRORS/srcs/check_quotes.o \
-	  readline/key_functions1.o readline/key_functions2.o readline/stack_manip.o readline/helper_method.o \
-	  readline/readline.o readline/ft_termcap.o readline/ft_history_manip.o PARSER/dt/stack/*.o \
 	  ERRORS/srcs/check_redirections.o ERRORS/srcs/ft_check_dupl.o ERRORS/srcs/ft_error_parsing.o \
+	  readline/key_functions1.o readline/key_functions2.o readline/stack_manip.o readline/helper_method.o \
+	  readline/readline.o readline/ft_termcap.o readline/ft_history_manip2.o  readline/ft_history_manip3.o readline/ft_history_manip.o PARSER/dt/stack/*.o \
 	  ERRORS/srcs/ft_error_printer.o EXECUTION/srcs/ft_remove_unused.o main.o EXECUTION/srcs/check_existance.o \
-	  ERRORS/srcs/ft_pipe_errors.o ERRORS/srcs/additional_function_error.o EXECUTION/srcs/ft_sort_export.o \
-	  EXECUTION/srcs/helper_function.o
+	  ERRORS/srcs/ft_pipe_errors.o ERRORS/srcs/additional_function_error.o EXECUTION/srcs/ft_sort_export.o EXECUTION/srcs/helper_function.o
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
 	@make -f libft/Makefile
-	@gcc -Wall -Wextra -Werror libft.a $(SRCS)  -o $(NAME)
+	@gcc -Wall -Wextra -Werror -lcurses libft.a $(SRCS)  -o $(NAME)
 	@rm -f $(LIBFTOBJ)
 	
 clean:
